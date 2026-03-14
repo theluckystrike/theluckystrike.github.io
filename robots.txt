@@ -4,3 +4,4 @@ Allow: /
 Sitemap: https://theluckystrike.github.io/sitemap.xml
 Sitemap: https://theluckystrike.github.io/chrome-tips/sitemap.xml
 Sitemap: https://theluckystrike.github.io/chrome-extension-guide/sitemap.xml
+Sitemap: https://theluckystrike.github.io/claude-skills-guide/sitemap.xml
