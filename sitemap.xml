@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>https://theluckystrike.github.io/chrome-tips/sitemap.xml</loc>
-  </sitemap>
-  <sitemap>
-    <loc>https://theluckystrike.github.io/chrome-extension-guide/sitemap.xml</loc>
-  </sitemap>
-  <sitemap>
-    <loc>https://theluckystrike.github.io/claude-skills-guide/sitemap.xml</loc>
-  </sitemap>
+  <sitemap><loc>https://theluckystrike.github.io/chrome-tips/sitemap.xml</loc></sitemap>
+  <sitemap><loc>https://theluckystrike.github.io/chrome-extension-guide/sitemap.xml</loc></sitemap>
+  <sitemap><loc>https://theluckystrike.github.io/claude-skills-guide/sitemap.xml</loc></sitemap>
+  <sitemap><loc>https://theluckystrike.github.io/ai-tools-compared/sitemap.xml</loc></sitemap>
+  <sitemap><loc>https://theluckystrike.github.io/remote-work-tools/sitemap.xml</loc></sitemap>
+  <sitemap><loc>https://theluckystrike.github.io/privacy-tools-guide/sitemap.xml</loc></sitemap>
 </sitemapindex>

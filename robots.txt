@@ -5,3 +5,6 @@ Sitemap: https://theluckystrike.github.io/sitemap.xml
 Sitemap: https://theluckystrike.github.io/chrome-tips/sitemap.xml
 Sitemap: https://theluckystrike.github.io/chrome-extension-guide/sitemap.xml
 Sitemap: https://theluckystrike.github.io/claude-skills-guide/sitemap.xml
+Sitemap: https://theluckystrike.github.io/ai-tools-compared/sitemap.xml
+Sitemap: https://theluckystrike.github.io/remote-work-tools/sitemap.xml
+Sitemap: https://theluckystrike.github.io/privacy-tools-guide/sitemap.xml
