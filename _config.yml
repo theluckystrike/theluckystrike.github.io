@@ -1,4 +1,10 @@
 title: "theluckystrike"
 url: "https://theluckystrike.github.io"
+description: "Free developer tools and knowledge bases"
+author: "Michael Lip"
 plugins:
   - jekyll-sitemap
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
