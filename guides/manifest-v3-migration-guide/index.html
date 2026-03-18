@@ -1,0 +1,863 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifest V3 Migration Guide - Complete MV2 to MV3 Walkthrough</title>
+    <meta name="description" content="A Chrome extension developer who migrated 16 extensions from Manifest V2 to V3 shares every problem encountered and how to fix them. Service workers, declarativeNetRequest, chrome.action, and more.">
+    <meta name="author" content="Michael Lip">
+    <link rel="canonical" href="https://theluckystrike.github.io/guides/manifest-v3-migration-guide/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Manifest V3 Migration Guide - Complete MV2 to MV3 Walkthrough">
+    <meta property="og:description" content="A Chrome extension developer who migrated 16 extensions from Manifest V2 to V3 shares every problem encountered and how to fix them. Service workers, declarativeNetRequest, chrome.action, and more.">
+    <meta property="og:url" content="https://theluckystrike.github.io/guides/manifest-v3-migration-guide/">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Manifest V3 Migration Guide - Complete MV2 to MV3 Walkthrough",
+        "author": {"@type": "Person", "name": "Michael Lip"},
+        "datePublished": "2026-03-18",
+        "publisher": {"@type": "Organization", "name": "Zovo"}
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; line-height: 1.7; color: #1d1d1f; background: #fff; }
+        .nav { border-bottom: 1px solid #f0f0f0; padding: 1rem 0; margin-bottom: 3rem; }
+        .nav-inner { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; }
+        .nav a { color: #6C5CE7; text-decoration: none; font-weight: 500; }
+        article { max-width: 720px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+        h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.75rem; }
+        .meta { color: #86868b; font-size: 0.9rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #f0f0f0; }
+        h2 { font-size: 1.5rem; font-weight: 600; margin: 2.5rem 0 1rem; }
+        h3 { font-size: 1.2rem; font-weight: 600; margin: 2rem 0 0.75rem; }
+        p { margin-bottom: 1.25rem; font-size: 1.05rem; color: #424245; }
+        a { color: #6C5CE7; }
+        ul, ol { margin: 0 0 1.25rem 1.5rem; font-size: 1.05rem; color: #424245; }
+        li { margin-bottom: 0.5rem; }
+        code { font-family: 'SF Mono', Menlo, monospace; background: #f5f5f7; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+        pre { background: #1d1d1f; color: #f5f5f7; border-radius: 12px; padding: 1.25rem; margin: 1.5rem 0; overflow-x: auto; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; color: inherit; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #f0f0f0; font-size: 0.95rem; }
+        th { font-weight: 600; background: #f9f9fb; }
+        blockquote { border-left: 3px solid #6C5CE7; margin: 1.5rem 0; padding: 0.75rem 1.25rem; background: #f9f9fb; border-radius: 0 8px 8px 0; }
+        .footer { border-top: 1px solid #f0f0f0; padding: 2rem 0; margin-top: 3rem; }
+        .footer-inner { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; color: #86868b; font-size: 0.9rem; }
+        .migration-box { background: #fff8f0; border: 1px solid #f0d9b5; border-radius: 12px; padding: 1.25rem; margin: 1.5rem 0; }
+        .migration-box h4 { color: #b8860b; margin-bottom: 0.5rem; font-size: 1rem; }
+        .gotcha { background: #fff0f0; border-left: 3px solid #e74c3c; padding: 0.75rem 1.25rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+        .gotcha strong { color: #e74c3c; }
+        @media (max-width: 600px) { h1 { font-size: 1.75rem; } article { padding: 0 1rem 3rem; } }
+    </style>
+</head>
+<body>
+    <nav class="nav"><div class="nav-inner"><a href="https://theluckystrike.github.io">&larr; Home</a><a href="https://zovo.one">zovo.one</a></div></nav>
+    <article>
+        <h1>Manifest V3 Migration Guide</h1>
+        <div class="meta">By Michael Lip &middot; March 18, 2026 &middot; 20 min read</div>
+
+        <p>I've migrated 16 Chrome extensions from Manifest V2 to Manifest V3. Some took an afternoon. Some took two weeks of debugging service worker lifecycle issues that made me question my career choices.</p>
+
+        <p>The Chrome Web Store stopped accepting new MV2 extensions a while back, and Google has been progressively disabling MV2 extensions for users. If you still have MV2 extensions, the clock ran out. You need to migrate.</p>
+
+        <p>This guide covers every breaking change I encountered across those 16 migrations, with the exact code transformations you need. I'm going to show the MV2 code, the MV3 equivalent, and the gotchas that documentation doesn't warn you about.</p>
+
+        <h2>The Big Picture: What Changed</h2>
+
+        <p>MV3 isn't a minor version bump. It's a fundamental shift in how Chrome extensions work. Here are the major changes:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>MV2</th>
+                    <th>MV3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Background scripts</td>
+                    <td>Persistent background pages</td>
+                    <td>Service workers (non-persistent)</td>
+                </tr>
+                <tr>
+                    <td>Network request modification</td>
+                    <td><code>webRequestBlocking</code></td>
+                    <td><code>declarativeNetRequest</code></td>
+                </tr>
+                <tr>
+                    <td>Browser/page action</td>
+                    <td><code>browser_action</code> / <code>page_action</code></td>
+                    <td><code>action</code> (unified)</td>
+                </tr>
+                <tr>
+                    <td>Content security policy</td>
+                    <td>String format, remote code allowed</td>
+                    <td>Object format, no remote code</td>
+                </tr>
+                <tr>
+                    <td>Host permissions</td>
+                    <td>In <code>permissions</code> array</td>
+                    <td>Separate <code>host_permissions</code> field</td>
+                </tr>
+                <tr>
+                    <td>Script execution</td>
+                    <td><code>chrome.tabs.executeScript</code></td>
+                    <td><code>chrome.scripting.executeScript</code></td>
+                </tr>
+                <tr>
+                    <td>Remote code execution</td>
+                    <td>Allowed</td>
+                    <td>Forbidden</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>The service worker change is the one that causes the most pain. Everything else is mostly find-and-replace.</p>
+
+        <h2>Step 1: Update the Manifest</h2>
+
+        <p>Start with the manifest.json file. This is where most changes are concentrated.</p>
+
+        <h3>MV2 Manifest</h3>
+
+        <pre><code>{
+  "manifest_version": 2,
+  "name": "My Extension",
+  "version": "1.0.0",
+  "description": "Does useful things",
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "https://api.example.com/*"
+  ],
+  "content_security_policy": "script-src 'self'; object-src 'self'",
+  "web_accessible_resources": [
+    "images/*.png",
+    "styles/injected.css"
+  ]
+}</code></pre>
+
+        <h3>MV3 Manifest</h3>
+
+        <pre><code>{
+  "manifest_version": 3,
+  "name": "My Extension",
+  "version": "1.0.0",
+  "description": "Does useful things",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.example.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["images/*.png", "styles/injected.css"],
+      "matches": ["&lt;all_urls&gt;"]
+    }
+  ]
+}</code></pre>
+
+        <p>Key changes in the manifest:</p>
+
+        <ol>
+            <li><code>"manifest_version": 3</code> - obvious but easy to forget when copy-pasting</li>
+            <li><code>"browser_action"</code> becomes <code>"action"</code>. If you had <code>"page_action"</code>, that's also now just <code>"action"</code></li>
+            <li><code>"background"</code> switches from <code>"scripts"</code> array to a single <code>"service_worker"</code> string. Add <code>"type": "module"</code> if you want ES module imports</li>
+            <li>Host permissions move from <code>"permissions"</code> to <code>"host_permissions"</code></li>
+            <li><code>"content_security_policy"</code> changes from a string to an object with scoped keys</li>
+            <li><code>"web_accessible_resources"</code> changes from a flat array to an array of objects with <code>"resources"</code> and <code>"matches"</code></li>
+        </ol>
+
+        <div class="gotcha">
+            <strong>Gotcha:</strong> The <code>"type": "module"</code> in the background field is optional but extremely useful. Without it, you can't use <code>import</code> statements in your service worker. I add it to every new extension now. But be aware: if you use <code>"type": "module"</code>, your service worker runs in strict mode, which can break sloppy code that relies on implicit globals or <code>this</code> referring to the global scope.
+        </div>
+
+        <h2>Step 2: Service Workers Replace Background Pages</h2>
+
+        <p>This is the big one. In MV2, your background script ran in a full page context with access to the DOM (window, document, etc.). It could be persistent (always running) or event-based (wakes up for events, then goes idle).</p>
+
+        <p>In MV3, the background script is a service worker. No DOM access. No <code>window</code> object. No <code>document</code>. No <code>XMLHttpRequest</code> (use <code>fetch</code> instead). And critically: the service worker can be terminated at any time when idle, and it will be restarted the next time an event fires.</p>
+
+        <h3>The Lifecycle Problem</h3>
+
+        <p>This lifecycle behavior is what causes 80% of MV3 migration bugs. In MV2, you could do this:</p>
+
+        <pre><code>// MV2 - This works fine with a persistent background page
+let userData = null;
+
+chrome.runtime.onInstalled.addListener(() => {
+  userData = { theme: 'dark', count: 0 };
+});
+
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (msg.type === 'GET_USER') {
+    sendResponse(userData); // Always available
+  }
+  if (msg.type === 'INCREMENT') {
+    userData.count++;
+    sendResponse(userData);
+  }
+});</code></pre>
+
+        <p>In MV3, this breaks. The service worker terminates after about 30 seconds of inactivity. When it restarts, <code>userData</code> is <code>null</code> because the in-memory state is gone. Your popup sends a message, gets back <code>null</code>, and everything falls apart.</p>
+
+        <h3>The Fix: Persist State to Storage</h3>
+
+        <pre><code>// MV3 - Service worker safe version
+chrome.runtime.onInstalled.addListener(async () => {
+  await chrome.storage.session.set({
+    userData: { theme: 'dark', count: 0 }
+  });
+});
+
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (msg.type === 'GET_USER') {
+    chrome.storage.session.get('userData', (result) => {
+      sendResponse(result.userData || null);
+    });
+    return true; // Keep message channel open for async response
+  }
+
+  if (msg.type === 'INCREMENT') {
+    chrome.storage.session.get('userData', (result) => {
+      const userData = result.userData || { theme: 'dark', count: 0 };
+      userData.count++;
+      chrome.storage.session.set({ userData }, () => {
+        sendResponse(userData);
+      });
+    });
+    return true;
+  }
+});</code></pre>
+
+        <p>Notice the <code>return true</code> in the message listener. That's critical. It tells Chrome to keep the message channel open because you're going to call <code>sendResponse</code> asynchronously. Without it, the channel closes immediately and your response never arrives. This was already the case in MV2 for async responses, but it's easy to forget when rewriting code.</p>
+
+        <div class="gotcha">
+            <strong>Gotcha:</strong> <code>chrome.storage.session</code> was added specifically for MV3. It's like <code>chrome.storage.local</code> but the data is cleared when the browser closes. Use it for temporary state that doesn't need to survive browser restarts. It's faster than <code>storage.local</code> because it doesn't need to write to disk.
+        </div>
+
+        <h3>No DOM in Service Workers</h3>
+
+        <p>If your MV2 background page used any DOM APIs, you need alternatives.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>MV2 (Background Page)</th>
+                    <th>MV3 (Service Worker)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>new XMLHttpRequest()</code></td>
+                    <td><code>fetch()</code></td>
+                </tr>
+                <tr>
+                    <td><code>document.createElement('canvas')</code></td>
+                    <td><code>OffscreenCanvas</code> or <code>chrome.offscreen</code> API</td>
+                </tr>
+                <tr>
+                    <td><code>document.createElement('audio')</code></td>
+                    <td><code>chrome.offscreen</code> API</td>
+                </tr>
+                <tr>
+                    <td><code>window.localStorage</code></td>
+                    <td><code>chrome.storage.local</code></td>
+                </tr>
+                <tr>
+                    <td><code>new DOMParser()</code></td>
+                    <td><code>chrome.offscreen</code> API</td>
+                </tr>
+                <tr>
+                    <td><code>setTimeout</code> (long delays)</td>
+                    <td><code>chrome.alarms</code> API</td>
+                </tr>
+                <tr>
+                    <td><code>setInterval</code></td>
+                    <td><code>chrome.alarms</code> API</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>The Offscreen API</h3>
+
+        <p>When you absolutely need DOM access from the background context, the <code>chrome.offscreen</code> API creates an invisible document that can use DOM APIs. You need the <code>"offscreen"</code> permission.</p>
+
+        <pre><code>// background.js (service worker)
+
+// Create an offscreen document for DOM operations
+async function getOffscreenDocument() {
+  const existingContexts = await chrome.runtime.getContexts({
+    contextTypes: ['OFFSCREEN_DOCUMENT']
+  });
+
+  if (existingContexts.length > 0) {
+    return; // Already exists
+  }
+
+  await chrome.offscreen.createDocument({
+    url: 'offscreen.html',
+    reasons: ['DOM_PARSER'],
+    justification: 'Parse HTML content from API responses'
+  });
+}
+
+// Use it to parse HTML
+async function parseHTML(htmlString) {
+  await getOffscreenDocument();
+
+  const response = await chrome.runtime.sendMessage({
+    target: 'offscreen',
+    type: 'PARSE_HTML',
+    data: htmlString
+  });
+
+  return response;
+}</code></pre>
+
+        <pre><code>// offscreen.html
+&lt;!DOCTYPE html&gt;
+&lt;script src="offscreen.js"&gt;&lt;/script&gt;</code></pre>
+
+        <pre><code>// offscreen.js
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (msg.target !== 'offscreen') return;
+
+  if (msg.type === 'PARSE_HTML') {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(msg.data, 'text/html');
+    const title = doc.querySelector('title')?.textContent || '';
+    const links = [...doc.querySelectorAll('a')].map(a => a.href);
+    sendResponse({ title, links });
+    return true;
+  }
+});</code></pre>
+
+        <p>The offscreen API is clunky. I won't sugarcoat it. Having to create a separate HTML file and bounce messages back and forth is a lot of ceremony for something that used to be a two-line DOM operation. But it works, and it's the sanctioned way to do it.</p>
+
+        <h3>Timers and Alarms</h3>
+
+        <p><code>setTimeout</code> and <code>setInterval</code> technically work in service workers. The problem is that the service worker can be terminated before the timer fires. If you set a <code>setTimeout</code> for 5 minutes, the service worker will be killed long before that.</p>
+
+        <pre><code>// MV2 - Background page timer
+setInterval(() => {
+  checkForUpdates();
+}, 30 * 60 * 1000); // Every 30 minutes</code></pre>
+
+        <pre><code>// MV3 - Use chrome.alarms instead
+// Need "alarms" permission in manifest
+
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.alarms.create('checkUpdates', {
+    periodInMinutes: 30
+  });
+});
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === 'checkUpdates') {
+    checkForUpdates();
+  }
+});</code></pre>
+
+        <div class="gotcha">
+            <strong>Gotcha:</strong> <code>chrome.alarms</code> has a minimum interval of 30 seconds (it used to be 1 minute). If you need something to run more frequently than that, you'll need a different approach. One option is keeping the service worker alive by maintaining an active connection from a content script or popup. But be careful - Chrome may flag extensions that artificially keep service workers alive.
+        </div>
+
+        <h2>Step 3: Replace webRequestBlocking with declarativeNetRequest</h2>
+
+        <p>This change affects ad blockers, privacy extensions, and anything that modifies network requests. In MV2, you could observe and modify every request in real-time using <code>webRequest</code> and <code>webRequestBlocking</code>. In MV3, you declare rules upfront and Chrome's engine applies them.</p>
+
+        <h3>MV2 Approach</h3>
+
+        <pre><code>// MV2 - Block requests matching patterns
+chrome.webRequest.onBeforeRequest.addListener(
+  (details) => {
+    if (details.url.includes('tracking.js')) {
+      return { cancel: true };
+    }
+    if (details.url.includes('old-domain.com')) {
+      return {
+        redirectUrl: details.url.replace(
+          'old-domain.com', 'new-domain.com'
+        )
+      };
+    }
+  },
+  { urls: ["&lt;all_urls&gt;"] },
+  ["blocking"]
+);</code></pre>
+
+        <h3>MV3 Approach</h3>
+
+        <p>First, add the permission and rule file to your manifest:</p>
+
+        <pre><code>{
+  "permissions": ["declarativeNetRequest"],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "my_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}</code></pre>
+
+        <p>Then create the rules file:</p>
+
+        <pre><code>// rules.json
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": {
+      "urlFilter": "tracking.js",
+      "resourceTypes": ["script"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "transform": {
+          "host": "new-domain.com"
+        }
+      }
+    },
+    "condition": {
+      "urlFilter": "||old-domain.com",
+      "resourceTypes": [
+        "main_frame", "sub_frame", "script",
+        "stylesheet", "image", "xmlhttprequest"
+      ]
+    }
+  }
+]</code></pre>
+
+        <p>The declarative approach is fundamentally different. Instead of running JavaScript on every request (which is powerful but slow and a privacy concern), you're giving Chrome a list of rules and it handles the matching internally. It's faster. It's more private. But it's also less flexible.</p>
+
+        <h3>Dynamic Rules</h3>
+
+        <p>If you need to add or modify rules at runtime (based on user preferences, for example), use the dynamic rules API:</p>
+
+        <pre><code>// Add rules dynamically
+await chrome.declarativeNetRequest.updateDynamicRules({
+  addRules: [
+    {
+      id: 100,
+      priority: 1,
+      action: { type: 'block' },
+      condition: {
+        urlFilter: userSpecifiedDomain,
+        resourceTypes: ['main_frame']
+      }
+    }
+  ],
+  removeRuleIds: [100] // Remove old version first
+});</code></pre>
+
+        <p>You can have up to 5,000 dynamic rules and 300,000 static rules. That's enough for most use cases. But if you're building something like uBlock Origin that needs hundreds of thousands of dynamic, content-dependent rules, MV3 is genuinely limiting. That's a real trade-off, not just theoretical.</p>
+
+        <h2>Step 4: Update API Calls</h2>
+
+        <h3>chrome.browserAction becomes chrome.action</h3>
+
+        <p>Simple rename. Every method is the same, just under a different namespace.</p>
+
+        <pre><code>// MV2
+chrome.browserAction.setIcon({ path: 'icon.png' });
+chrome.browserAction.setBadgeText({ text: '5' });
+chrome.browserAction.setBadgeBackgroundColor({ color: '#6C5CE7' });
+chrome.browserAction.onClicked.addListener(handleClick);
+
+// MV3
+chrome.action.setIcon({ path: 'icon.png' });
+chrome.action.setBadgeText({ text: '5' });
+chrome.action.setBadgeBackgroundColor({ color: '#6C5CE7' });
+chrome.action.onClicked.addListener(handleClick);</code></pre>
+
+        <p>If you used <code>chrome.pageAction</code>, that's also now <code>chrome.action</code>. The concept of page-specific actions is handled by enabling/disabling the action for specific tabs:</p>
+
+        <pre><code>// MV2 page action behavior in MV3
+chrome.action.disable(); // Disabled by default
+
+// Enable for specific tab
+chrome.action.enable(tabId);</code></pre>
+
+        <h3>chrome.tabs.executeScript becomes chrome.scripting.executeScript</h3>
+
+        <p>The new scripting API is more structured but also more powerful.</p>
+
+        <pre><code>// MV2
+chrome.tabs.executeScript(tabId, {
+  code: 'document.title'
+}, (results) => {
+  console.log(results[0]);
+});
+
+chrome.tabs.executeScript(tabId, {
+  file: 'content-script.js'
+});
+
+chrome.tabs.insertCSS(tabId, {
+  file: 'styles.css'
+});</code></pre>
+
+        <pre><code>// MV3 - Need "scripting" permission
+chrome.scripting.executeScript({
+  target: { tabId: tabId },
+  func: () => document.title
+}).then((results) => {
+  console.log(results[0].result);
+});
+
+chrome.scripting.executeScript({
+  target: { tabId: tabId },
+  files: ['content-script.js']
+});
+
+chrome.scripting.insertCSS({
+  target: { tabId: tabId },
+  files: ['styles.css']
+});</code></pre>
+
+        <div class="gotcha">
+            <strong>Gotcha:</strong> In MV2, you could use <code>code: 'some string of JS'</code> to execute arbitrary code. In MV3, you pass a function reference with <code>func</code>. The function is serialized and sent to the content script context. This means you can't use closures that reference variables in the service worker scope. If you need to pass data, use the <code>args</code> parameter:
+        </div>
+
+        <pre><code>// Passing arguments to injected functions
+const color = '#6C5CE7';
+const selector = '.header';
+
+chrome.scripting.executeScript({
+  target: { tabId: tabId },
+  func: (bgColor, sel) => {
+    document.querySelector(sel).style.backgroundColor = bgColor;
+  },
+  args: [color, selector]
+});</code></pre>
+
+        <h3>No More Remote Code Execution</h3>
+
+        <p>This one bit me on 3 of my 16 extensions. MV2 allowed you to fetch JavaScript from a remote server and execute it. MV3 forbids this entirely. All code must be included in your extension package.</p>
+
+        <pre><code>// MV2 - This was allowed (and a security risk)
+fetch('https://cdn.example.com/analytics.js')
+  .then(r => r.text())
+  .then(code => {
+    chrome.tabs.executeScript(tabId, { code: code });
+  });
+
+// MV3 - NOT ALLOWED. You'll get an error.
+// All scripts must be bundled with the extension.</code></pre>
+
+        <p>If you need to load configuration or data from a remote server, you can still <code>fetch()</code> JSON data. You just can't execute remote code. The distinction is: data is fine, code is not.</p>
+
+        <p>For extensions that relied on remotely-hosted logic (A/B testing, feature flags, dynamic behavior), the fix is to bundle all possible code paths in the extension and use remote config to select which path to run.</p>
+
+        <h2>Step 5: Content Security Policy</h2>
+
+        <p>The CSP format changed from a string to an object, and the rules got stricter.</p>
+
+        <pre><code>// MV2
+"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+
+// MV3
+"content_security_policy": {
+  "extension_pages": "script-src 'self'; object-src 'self'"
+}</code></pre>
+
+        <p>Two major restrictions in MV3:</p>
+
+        <ol>
+            <li><code>'unsafe-eval'</code> is no longer allowed for extension pages. If your code uses <code>eval()</code>, <code>new Function()</code>, or <code>setTimeout</code> with a string argument, it will break.</li>
+            <li>You can't reference remote scripts in the CSP. No CDN-hosted libraries on extension pages.</li>
+        </ol>
+
+        <p>The <code>'unsafe-eval'</code> restriction is the one that causes the most pain. Some libraries use <code>eval</code> or <code>new Function</code> internally. If you're using a library that does this, you'll need to find an alternative or use a bundled version that avoids eval.</p>
+
+        <p>Common offenders I've run into: older versions of handlebars templating, some JSON schema validators, and various "template literal" libraries. Check your dependencies.</p>
+
+        <h3>Sandbox Pages</h3>
+
+        <p>If you absolutely must run <code>eval()</code> (maybe you're building a code editor extension), you can use a sandboxed page:</p>
+
+        <pre><code>// manifest.json
+"sandbox": {
+  "pages": ["sandbox.html"]
+}
+
+// sandbox.html has relaxed CSP and can use eval()
+// But it can't use Chrome extension APIs
+// Communicate with it via window.postMessage()</code></pre>
+
+        <p>I've used this for exactly one extension that needed to evaluate user-written JavaScript. It works but adds complexity. Avoid it if you can.</p>
+
+        <h2>Step 6: Web Accessible Resources</h2>
+
+        <p>In MV2, web accessible resources were available to all websites. In MV3, you specify which origins can access them.</p>
+
+        <pre><code>// MV2 - Any website can access these
+"web_accessible_resources": [
+  "images/logo.png",
+  "injected.css"
+]
+
+// MV3 - Specify which sites can access them
+"web_accessible_resources": [
+  {
+    "resources": ["images/logo.png", "injected.css"],
+    "matches": ["https://example.com/*"]
+  },
+  {
+    "resources": ["content-styles.css"],
+    "matches": ["&lt;all_urls&gt;"]
+  }
+]</code></pre>
+
+        <p>This is actually a security improvement. In MV2, any website could detect your installed extensions by probing for web-accessible resource URLs. MV3 limits this to only the origins you specify. If your content script only runs on specific sites, restrict access accordingly.</p>
+
+        <div class="gotcha">
+            <strong>Gotcha:</strong> If you use <code>"use_dynamic_url": true</code> in a web accessible resource entry, Chrome generates a unique per-session URL for the resource. This prevents fingerprinting but means the URL changes every session, so you can't hardcode it. Access it via <code>chrome.runtime.getURL()</code>.
+        </div>
+
+        <h2>Step 7: Storage API Changes</h2>
+
+        <p>The storage API itself didn't change dramatically, but how you use it shifts because of the service worker lifecycle.</p>
+
+        <h3>chrome.storage.session</h3>
+
+        <p>New in MV3. This storage area is:</p>
+        <ul>
+            <li>In-memory only (fast reads/writes)</li>
+            <li>Cleared when the browser session ends</li>
+            <li>Not accessible from content scripts by default (you can enable it with <code>chrome.storage.session.setAccessLevel</code>)</li>
+            <li>Limited to 10 MB by default</li>
+        </ul>
+
+        <pre><code>// Store temporary data that survives service worker restarts
+// but not browser restarts
+chrome.storage.session.set({ tempData: { key: 'value' } });
+
+// Allow content scripts to access session storage
+chrome.storage.session.setAccessLevel({
+  accessLevel: 'TRUSTED_AND_UNTRUSTED_CONTEXTS'
+});</code></pre>
+
+        <p>I use <code>storage.session</code> for data that's too transient for <code>storage.local</code> but needs to survive service worker restarts. Things like cached API responses, active tab state, and temporary user preferences.</p>
+
+        <h3>Promise-based API</h3>
+
+        <p>All Chrome extension APIs in MV3 support promises (in addition to callbacks). This makes async code much cleaner:</p>
+
+        <pre><code>// MV2 style (callbacks)
+chrome.storage.local.get(['settings'], (result) => {
+  const settings = result.settings;
+  chrome.storage.local.set({ settings: { ...settings, theme: 'dark' } }, () => {
+    console.log('Saved');
+  });
+});
+
+// MV3 style (promises)
+const { settings } = await chrome.storage.local.get(['settings']);
+await chrome.storage.local.set({
+  settings: { ...settings, theme: 'dark' }
+});
+console.log('Saved');</code></pre>
+
+        <p>So much cleaner. This alone made the migration worthwhile for some of my extensions that had deep callback nesting.</p>
+
+        <h2>Step 8: Testing Your Migrated Extension</h2>
+
+        <p>Testing MV3 extensions requires checking things that MV2 didn't care about. Here's my testing checklist:</p>
+
+        <h3>Service Worker Lifecycle Tests</h3>
+
+        <ol>
+            <li><strong>Install and open popup.</strong> Does everything work on first load?</li>
+            <li><strong>Wait 30 seconds.</strong> Open the popup again. Is your state preserved?</li>
+            <li><strong>Wait 5 minutes without interacting.</strong> Open the popup again. Does the service worker wake up correctly? Is state intact?</li>
+            <li><strong>Open Chrome task manager</strong> (Shift+Esc). Watch the service worker appear and disappear. Does your extension handle the transitions gracefully?</li>
+            <li><strong>Disable and re-enable the extension.</strong> Does it recover state from storage?</li>
+        </ol>
+
+        <h3>Testing Service Worker Termination</h3>
+
+        <p>You can force-terminate the service worker from <code>chrome://serviceworker-internals/</code>. Find your extension's service worker and click "Stop". Then trigger an event (click the icon, send a message from a content script). The service worker should restart and handle the event correctly.</p>
+
+        <p>I do this test religiously. If your extension breaks after a forced stop, users will see the same bug in production when Chrome terminates your service worker after idle time.</p>
+
+        <h3>Permission Tests</h3>
+
+        <ol>
+            <li>Install with all optional permissions denied. Does the core functionality work?</li>
+            <li>Grant permissions one at a time. Does each feature activate correctly?</li>
+            <li>Revoke a permission. Does the extension degrade gracefully?</li>
+        </ol>
+
+        <h3>Content Script Tests</h3>
+
+        <ol>
+            <li>Test on HTTP and HTTPS pages.</li>
+            <li>Test on pages with strict CSP headers.</li>
+            <li>Test with other popular extensions installed (ad blockers, password managers). Extension conflicts are real.</li>
+            <li>Test in incognito mode (extensions need explicit permission to run there).</li>
+        </ol>
+
+        <h2>Step 9: Common Migration Bugs and Fixes</h2>
+
+        <h3>Bug: "Service worker registration failed"</h3>
+
+        <p>This usually means there's a syntax error in your service worker file. Service workers fail silently on syntax errors - they just don't register.</p>
+
+        <p>Fix: Open <code>chrome://extensions</code>, click "Errors" on your extension. The error message will point to the line with the issue. Common causes: using <code>window</code>, <code>document</code>, or other DOM globals that don't exist in service workers.</p>
+
+        <h3>Bug: Messages not getting responses</h3>
+
+        <p>If <code>chrome.runtime.sendMessage</code> from your popup or content script isn't getting a response, check two things:</p>
+
+        <ol>
+            <li>Is your message listener returning <code>true</code> for async responses?</li>
+            <li>Is the service worker alive when the message is sent? If it was terminated, Chrome should restart it automatically when a message arrives, but there can be a brief delay.</li>
+        </ol>
+
+        <pre><code>// WRONG - response is lost because listener returns before async completes
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  chrome.storage.local.get('data', (result) => {
+    sendResponse(result.data);
+  });
+  // Implicitly returns undefined (falsy)
+});
+
+// CORRECT - return true to keep channel open
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  chrome.storage.local.get('data', (result) => {
+    sendResponse(result.data);
+  });
+  return true; // This is the fix
+});</code></pre>
+
+        <h3>Bug: Alarms not firing</h3>
+
+        <p>If you create an alarm with a <code>delayInMinutes</code> less than 0.5 (30 seconds), Chrome silently adjusts it to 0.5. Your alarm will fire, just later than expected.</p>
+
+        <p>Also, alarms don't fire while the device is sleeping. If a user closes their laptop and reopens it 3 hours later, any missed alarms will fire once. Not individually for each missed interval - just once.</p>
+
+        <h3>Bug: Extension popup closes during async operations</h3>
+
+        <p>The popup is a separate page. When the user clicks away, it closes and its JavaScript context is destroyed. If your popup was in the middle of an async operation (API call, storage write), that operation is abandoned.</p>
+
+        <p>Fix: Move long-running operations to the service worker. The popup should only handle UI. Send a message to the service worker to start the operation, and have the service worker notify the popup (if it's still open) when done.</p>
+
+        <pre><code>// popup.js - Don't do long operations here
+document.getElementById('sync-btn').addEventListener('click', () => {
+  // Tell the service worker to handle it
+  chrome.runtime.sendMessage({ type: 'START_SYNC' });
+
+  // Update UI immediately
+  document.getElementById('status').textContent = 'Syncing...';
+});
+
+// Listen for completion
+chrome.runtime.onMessage.addListener((msg) => {
+  if (msg.type === 'SYNC_COMPLETE') {
+    document.getElementById('status').textContent = 'Done!';
+  }
+});</code></pre>
+
+        <h2>Step 10: Publishing the Update</h2>
+
+        <p>When you're ready to publish the MV3 version on the Chrome Web Store:</p>
+
+        <ol>
+            <li><strong>Increment your version number.</strong> Don't try to publish the same version with a different manifest version.</li>
+            <li><strong>Test with the actual .zip package</strong>, not just the unpacked extension. Sometimes file path issues only show up in the packaged version.</li>
+            <li><strong>Submit for review.</strong> MV3 extensions generally get approved faster than MV2 did, in my experience. My last three MV3 submissions were approved within 24 hours.</li>
+            <li><strong>Monitor crash reports</strong> for the first week. The Chrome Web Store dashboard shows crash reports. Service worker issues often manifest as crashes rather than errors.</li>
+        </ol>
+
+        <p>Consider publishing as a staged rollout if the Web Store offers it for your account. Push to 10% of users first, monitor for a few days, then roll out to everyone.</p>
+
+        <h2>Migration Checklist</h2>
+
+        <p>Here's the checklist I use for every migration. Print it out or save it somewhere:</p>
+
+        <ol>
+            <li>Update <code>manifest_version</code> to 3</li>
+            <li>Replace <code>browser_action</code>/<code>page_action</code> with <code>action</code></li>
+            <li>Convert background scripts to service worker</li>
+            <li>Move host permissions to <code>host_permissions</code></li>
+            <li>Update <code>content_security_policy</code> to object format</li>
+            <li>Update <code>web_accessible_resources</code> to new format</li>
+            <li>Replace <code>chrome.browserAction</code>/<code>chrome.pageAction</code> with <code>chrome.action</code></li>
+            <li>Replace <code>chrome.tabs.executeScript</code> with <code>chrome.scripting.executeScript</code></li>
+            <li>Replace <code>chrome.tabs.insertCSS</code> with <code>chrome.scripting.insertCSS</code></li>
+            <li>Remove all uses of <code>eval()</code> and <code>new Function()</code></li>
+            <li>Remove all remote code loading</li>
+            <li>Replace <code>XMLHttpRequest</code> with <code>fetch</code></li>
+            <li>Replace <code>localStorage</code> with <code>chrome.storage</code></li>
+            <li>Replace <code>setTimeout</code>/<code>setInterval</code> (long-running) with <code>chrome.alarms</code></li>
+            <li>Move in-memory state to <code>chrome.storage.session</code></li>
+            <li>Add <code>return true</code> to all async message listeners</li>
+            <li>Replace <code>webRequestBlocking</code> with <code>declarativeNetRequest</code> if applicable</li>
+            <li>Test service worker lifecycle (termination and restart)</li>
+            <li>Test all features after 5-minute idle period</li>
+            <li>Update version number and publish</li>
+        </ol>
+
+        <h2>Was It Worth It?</h2>
+
+        <p>Honestly? MV3 is a better architecture for most extensions. The service worker model forces you to write stateless, event-driven code. The declarative net request API is faster than intercepting every request in JavaScript. The security improvements (no remote code, no eval) make the extension ecosystem safer.</p>
+
+        <p>But the migration itself is painful. Google could have provided better tooling and a longer transition period. The documentation improved significantly over time, but the early adopters (myself included) had to figure out a lot through trial and error.</p>
+
+        <p>If you're starting the migration now, you have it easier than I did. The APIs are stable, the documentation is decent, and there are plenty of real-world examples to reference. Follow this guide, test thoroughly, and you'll get through it.</p>
+
+        <p>And if you're building a new extension from scratch, start with MV3 from day one. There's no reason to learn MV2 patterns at this point. The future is service workers and declarative APIs. Get comfortable with them.</p>
+
+    </article>
+    <footer class="footer"><div class="footer-inner">Built by Michael Lip - <a href="https://zovo.one">zovo.one</a></div></footer>
+</body>
+</html>
