@@ -4,293 +4,332 @@ layout: null
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chrome Keeps Crashing? 15 Fixes to Stop It for Good</title>
-    <meta name="description" content="Chrome keeps crashing? These 15 tested fixes address the real causes, from renderer process failures to corrupt profiles, with actual crash log analysis and benchmarks.">
-    <meta name="author" content="Michael Lip">
-    <link rel="canonical" href="https://theluckystrike.github.io/guides/chrome-keeps-crashing-fix/">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Chrome Keeps Crashing? 15 Fixes to Stop It for Good</title>
+ <meta name="description" content="Chrome keeps crashing? These 15 tested fixes address the real causes, from renderer process failures to corrupt profiles, with actual crash log analysis and benchmarks.">
+ <meta name="author" content="Michael Lip">
+ <link rel="canonical" href="https://theluckystrike.github.io/guides/chrome-keeps-crashing-fix/">
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Chrome Keeps Crashing? 15 Fixes to Stop It for Good">
-    <meta property="og:description" content="Chrome keeps crashing? These 15 tested fixes address the real causes, from renderer process failures to corrupt profiles, with actual crash log analysis and benchmarks.">
-    <meta property="og:url" content="https://theluckystrike.github.io/guides/chrome-keeps-crashing-fix/">
-    <meta property="og:site_name" content="Zovo">
+ <!-- Open Graph -->
+ <meta property="og:type" content="article">
+ <meta property="og:title" content="Chrome Keeps Crashing? 15 Fixes to Stop It for Good">
+ <meta property="og:description" content="Chrome keeps crashing? These 15 tested fixes address the real causes, from renderer process failures to corrupt profiles, with actual crash log analysis and benchmarks.">
+ <meta property="og:url" content="https://theluckystrike.github.io/guides/chrome-keeps-crashing-fix/">
+ <meta property="og:site_name" content="Zovo">
+    <meta property="article:published_time" content="2026-03-18T00:00:00+00:00">
+    <meta property="article:author" content="Michael Lip">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Chrome Keeps Crashing? 15 Fixes to Stop It for Good">
-    <meta name="twitter:description" content="Chrome keeps crashing? These 15 tested fixes address the real causes, from renderer process failures to corrupt profiles, with actual crash log analysis and benchmarks.">
+ <!-- Twitter Card -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Chrome Keeps Crashing? 15 Fixes to Stop It for Good">
+ <meta name="twitter:description" content="Chrome keeps crashing? These 15 tested fixes address the real causes, from renderer process failures to corrupt profiles, with actual crash log analysis and benchmarks.">
 
-    <!-- JSON-LD Article Schema -->
+ <!-- JSON-LD Article Schema -->
+ <script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "Chrome Keeps Crashing? 15 Fixes to Stop It for Good",
+ "description": "Chrome keeps crashing? These 15 tested fixes address the real causes, from renderer process failures to corrupt profiles, with actual crash log analysis and benchmarks.",
+ "author": {
+            "@type": "Person",
+            "name": "Michael Lip",
+            "url": "https://theluckystrike.github.io/about",
+            "sameAs": [
+                "https://github.com/theluckystrike",
+                "https://www.upwork.com/freelancers/~theluckystrike"
+            ],
+            "jobTitle": "Chrome Extension Engineer",
+            "description": "Solo developer of 16 Chrome extensions with 4,700+ users. Top Rated Plus on Upwork."
+        },
+ "datePublished": "2026-03-18",
+ "publisher": {
+ "@type": "Organization",
+ "name": "Zovo"
+ },
+ "url": "https://theluckystrike.github.io/guides/chrome-keeps-crashing-fix/"
+ }
+ </script>
+
+ <!-- Fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+ <style>
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+
+ body {
+ font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+ line-height: 1.7;
+ color: #1d1d1f;
+ background: #fff;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ }
+
+ .nav {
+ border-bottom: 1px solid #f0f0f0;
+ padding: 1rem 0;
+ margin-bottom: 3rem;
+ }
+
+ .nav-inner {
+ max-width: 720px;
+ margin: 0 auto;
+ padding: 0 1.5rem;
+ }
+
+ .nav a {
+ color: #6C5CE7;
+ text-decoration: none;
+ font-weight: 500;
+ font-size: 0.95rem;
+ }
+
+ .nav a:hover {
+ text-decoration: underline;
+ }
+
+ article {
+ max-width: 720px;
+ margin: 0 auto;
+ padding: 0 1.5rem 4rem;
+ }
+
+ h1 {
+ font-size: 2.25rem;
+ font-weight: 700;
+ line-height: 1.2;
+ margin-bottom: 0.75rem;
+ color: #1d1d1f;
+ letter-spacing: -0.02em;
+ }
+
+ .article-meta {
+ color: #86868b;
+ font-size: 0.9rem;
+ margin-bottom: 2.5rem;
+ padding-bottom: 1.5rem;
+ border-bottom: 1px solid #f0f0f0;
+ }
+
+ h2 {
+ font-size: 1.5rem;
+ font-weight: 600;
+ margin: 2.5rem 0 1rem;
+ color: #1d1d1f;
+ letter-spacing: -0.01em;
+ }
+
+ h3 {
+ font-size: 1.2rem;
+ font-weight: 600;
+ margin: 2rem 0 0.75rem;
+ color: #1d1d1f;
+ }
+
+ h4, h5, h6 {
+ font-size: 1.05rem;
+ font-weight: 600;
+ margin: 1.5rem 0 0.5rem;
+ color: #1d1d1f;
+ }
+
+ p {
+ margin-bottom: 1.25rem;
+ font-size: 1.05rem;
+ color: #424245;
+ }
+
+ a {
+ color: #6C5CE7;
+ text-decoration: none;
+ }
+
+ a:hover {
+ text-decoration: underline;
+ }
+
+ strong {
+ font-weight: 600;
+ color: #1d1d1f;
+ }
+
+ em {
+ font-style: italic;
+ }
+
+ ul, ol {
+ margin: 0 0 1.25rem 1.5rem;
+ font-size: 1.05rem;
+ color: #424245;
+ }
+
+ li {
+ margin-bottom: 0.5rem;
+ line-height: 1.7;
+ }
+
+ code {
+ font-family: 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+ background: #f5f5f7;
+ padding: 0.15em 0.4em;
+ border-radius: 4px;
+ font-size: 0.9em;
+ color: #1d1d1f;
+ }
+
+ pre {
+ background: #1d1d1f;
+ color: #f5f5f7;
+ border-radius: 12px;
+ padding: 1.25rem 1.5rem;
+ margin: 1.5rem 0;
+ overflow-x: auto;
+ font-size: 0.9rem;
+ line-height: 1.6;
+ }
+
+ pre code {
+ background: none;
+ padding: 0;
+ color: inherit;
+ font-size: inherit;
+ }
+
+ blockquote {
+ border-left: 3px solid #6C5CE7;
+ margin: 1.5rem 0;
+ padding: 0.75rem 1.25rem;
+ background: #f9f9fb;
+ border-radius: 0 8px 8px 0;
+ }
+
+ blockquote p {
+ color: #424245;
+ margin-bottom: 0;
+ }
+
+ hr {
+ border: none;
+ border-top: 1px solid #f0f0f0;
+ margin: 2.5rem 0;
+ }
+
+ img {
+ max-width: 100%;
+ border-radius: 8px;
+ margin: 1em 0;
+ }
+
+ table {
+ width: 100%;
+ border-collapse: collapse;
+ margin: 1.5rem 0;
+ font-size: 0.95rem;
+ }
+
+ th, td {
+ padding: 0.75rem 1rem;
+ border: 1px solid #e5e5e7;
+ text-align: left;
+ }
+
+ th {
+ background: #f5f5f7;
+ font-weight: 600;
+ }
+
+ .footer {
+ border-top: 1px solid #f0f0f0;
+ padding: 2rem 0;
+ margin-top: 3rem;
+ }
+
+ .footer-inner {
+ max-width: 720px;
+ margin: 0 auto;
+ padding: 0 1.5rem;
+ color: #86868b;
+ font-size: 0.9rem;
+ }
+
+ .footer-inner a {
+ color: #6C5CE7;
+ }
+
+ @media (max-width: 600px) {
+ h1 { font-size: 1.75rem; }
+ h2 { font-size: 1.3rem; }
+ article { padding: 0 1rem 3rem; }
+ .nav-inner.footer-inner { padding: 0 1rem; }
+ }
+ </style>
+
+    <!-- BreadcrumbList Schema -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Chrome Keeps Crashing? 15 Fixes to Stop It for Good",
-        "description": "Chrome keeps crashing? These 15 tested fixes address the real causes, from renderer process failures to corrupt profiles, with actual crash log analysis and benchmarks.",
-        "author": {
-            "@type": "Person",
-            "name": "Michael Lip"
-        },
-        "datePublished": "2026-03-18",
-        "publisher": {
-            "@type": "Organization",
-            "name": "Zovo"
-        },
-        "url": "https://theluckystrike.github.io/guides/chrome-keeps-crashing-fix/"
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://theluckystrike.github.io"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Guides",
+                "item": "https://theluckystrike.github.io/guides/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Chrome Keeps Crashing? 15 Fixes to Stop It for Good",
+                "item": "https://theluckystrike.github.io/guides/chrome-keeps-crashing-fix/"
+            }
+        ]
     }
     </script>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.7;
-            color: #1d1d1f;
-            background: #fff;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .nav {
-            border-bottom: 1px solid #f0f0f0;
-            padding: 1rem 0;
-            margin-bottom: 3rem;
-        }
-
-        .nav-inner {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .nav a {
-            color: #6C5CE7;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .nav a:hover {
-            text-decoration: underline;
-        }
-
-        article {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 1.5rem 4rem;
-        }
-
-        h1 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 0.75rem;
-            color: #1d1d1f;
-            letter-spacing: -0.02em;
-        }
-
-        .article-meta {
-            color: #86868b;
-            font-size: 0.9rem;
-            margin-bottom: 2.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 2.5rem 0 1rem;
-            color: #1d1d1f;
-            letter-spacing: -0.01em;
-        }
-
-        h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 2rem 0 0.75rem;
-            color: #1d1d1f;
-        }
-
-        h4, h5, h6 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin: 1.5rem 0 0.5rem;
-            color: #1d1d1f;
-        }
-
-        p {
-            margin-bottom: 1.25rem;
-            font-size: 1.05rem;
-            color: #424245;
-        }
-
-        a {
-            color: #6C5CE7;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        strong {
-            font-weight: 600;
-            color: #1d1d1f;
-        }
-
-        em {
-            font-style: italic;
-        }
-
-        ul, ol {
-            margin: 0 0 1.25rem 1.5rem;
-            font-size: 1.05rem;
-            color: #424245;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-            line-height: 1.7;
-        }
-
-        code {
-            font-family: 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
-            background: #f5f5f7;
-            padding: 0.15em 0.4em;
-            border-radius: 4px;
-            font-size: 0.9em;
-            color: #1d1d1f;
-        }
-
-        pre {
-            background: #1d1d1f;
-            color: #f5f5f7;
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            margin: 1.5rem 0;
-            overflow-x: auto;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        pre code {
-            background: none;
-            padding: 0;
-            color: inherit;
-            font-size: inherit;
-        }
-
-        blockquote {
-            border-left: 3px solid #6C5CE7;
-            margin: 1.5rem 0;
-            padding: 0.75rem 1.25rem;
-            background: #f9f9fb;
-            border-radius: 0 8px 8px 0;
-        }
-
-        blockquote p {
-            color: #424245;
-            margin-bottom: 0;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid #f0f0f0;
-            margin: 2.5rem 0;
-        }
-
-        img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin: 1em 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            font-size: 0.95rem;
-        }
-
-        th, td {
-            padding: 0.75rem 1rem;
-            border: 1px solid #e5e5e7;
-            text-align: left;
-        }
-
-        th {
-            background: #f5f5f7;
-            font-weight: 600;
-        }
-
-        .footer {
-            border-top: 1px solid #f0f0f0;
-            padding: 2rem 0;
-            margin-top: 3rem;
-        }
-
-        .footer-inner {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            color: #86868b;
-            font-size: 0.9rem;
-        }
-
-        .footer-inner a {
-            color: #6C5CE7;
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 1.75rem; }
-            h2 { font-size: 1.3rem; }
-            article { padding: 0 1rem 3rem; }
-            .nav-inner, .footer-inner { padding: 0 1rem; }
-        }
-    </style>
 </head>
 <body>
-    <nav class="nav">
-        <div class="nav-inner">
-            <a href="/">&larr; theluckystrike.github.io</a> &middot; <a href="/guides/">Guides</a>
-        </div>
-    </nav>
+ <nav class="nav">
+ <div class="nav-inner">
+ <a href="/">&larr; theluckystrike.github.io</a> &middot; <a href="/guides/">Guides</a>
+ </div>
+ </nav>
 
-    <article>
-        <h1>Chrome Keeps Crashing? 15 Fixes to Stop It for Good</h1>
-        <div class="article-meta">By Michael Lip &middot; 2026-03-18</div>
-        
+ <article data-original-research="true">
+ <h1>Chrome Keeps Crashing? 15 Fixes to Stop It for Good</h1>
+ <div class="article-meta">By Michael Lip &middot; 2026-03-18</div>
+ 
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Chrome Keeps Crashing? 15 Fixes to Stop It for Good",
-  "description": "Chrome keeps crashing? These 15 tested fixes address the real causes, from renderer process failures to corrupt profiles, with actual crash log analys",
-  "author": {
-    "@type": "Person",
-    "name": "Michael Lip"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Zovo"
-  },
-  "datePublished": "2026-03-18",
-  "dateModified": "2026-03-18"
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "Chrome Keeps Crashing? 15 Fixes to Stop It for Good",
+ "description": "Chrome keeps crashing? These 15 tested fixes address the real causes, from renderer process failures to corrupt profiles, with actual crash log analys",
+ "author": {
+ "@type": "Person",
+ "name": "Michael Lip"
+ },
+ "publisher": {
+ "@type": "Organization",
+ "name": "Zovo"
+ },
+ "datePublished": "2026-03-18",
+ "dateModified": "2026-03-18",
+        "wordCount": 5203
 }
 </script>
 > 21 min read | 4971 words | By Michael Lip
@@ -298,45 +337,45 @@ layout: null
 
 
 <div class="wiki-definition-box" style="margin:1.5rem 0;padding:16px 20px;background:linear-gradient(135deg,#f8f9fe 0%,#eef0ff 100%);border-left:4px solid #6C5CE7;border-radius:0 12px 12px 0;">
-  <p style="margin:0 0 4px;font-size:0.75rem;color:#6C5CE7;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;font-family:Inter,sans-serif;">Wikipedia Definition</p>
-  <p style="margin:0 0 8px;font-size:0.95rem;color:#2d3436;line-height:1.6;font-family:Inter,sans-serif;">Google Chrome is a cross-platform web browser developed by Google. It was launched in 2008 for Microsoft Windows and was built with free software components from Apple WebKit and Mozilla Firefox.</p>
-  <p style="margin:0;font-size:0.75rem;color:#999;">Source: <a href="https://en.wikipedia.org/wiki/Google_Chrome" target="_blank" rel="noopener" style="color:#6C5CE7;">Wikipedia &mdash; Google Chrome</a> &middot; 2026-03-18</p>
+ <p style="margin:0 0 4px;font-size:0.75rem;color:#6C5CE7;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;font-family:Inter,sans-serif;">Wikipedia Definition</p>
+ <p style="margin:0 0 8px;font-size:0.95rem;color:#2d3436;line-height:1.6;font-family:Inter,sans-serif;">Google Chrome is a cross-platform web browser developed by Google. It was launched in 2008 for Microsoft Windows and was built with free software components from Apple WebKit and Mozilla Firefox.</p>
+ <p style="margin:0;font-size:0.75rem;color:#999;">Source: <a href="https://en.wikipedia.org/wiki/Google_Chrome" target="_blank" rel="noopener" style="color:#6C5CE7;">Wikipedia - Google Chrome</a> &middot; 2026-03-18</p>
 </div>
 
 <div class="live-badges" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 1rem 0; align-items: center;">
-  <a href="https://chromewebstore.google.com/detail/gbnadjkeegkhbcoeaeaoedpojlcknnhp" target="_blank" rel="noopener">
-    <img src="https://img.shields.io/chrome-web-store/users/gbnadjkeegkhbcoeaeaoedpojlcknnhp?label=users&color=00ff88&style=flat-square" alt="JSON Formatter Pro users" loading="lazy">
-  </a>
-  <a href="https://chromewebstore.google.com/detail/gbnadjkeegkhbcoeaeaoedpojlcknnhp" target="_blank" rel="noopener">
-    <img src="https://img.shields.io/chrome-web-store/rating/gbnadjkeegkhbcoeaeaoedpojlcknnhp?label=rating&color=00ccff&style=flat-square" alt="JSON Formatter Pro rating" loading="lazy">
-  </a>
-  <a href="https://chromewebstore.google.com/detail/gbnadjkeegkhbcoeaeaoedpojlcknnhp" target="_blank" rel="noopener">
-    <img src="https://img.shields.io/chrome-web-store/v/gbnadjkeegkhbcoeaeaoedpojlcknnhp?label=version&color=ff6b35&style=flat-square" alt="JSON Formatter Pro version" loading="lazy">
-  </a>
-  <a href="https://github.com/theluckystrike/json-formatter-chrome-extension" target="_blank" rel="noopener">
-    <img src="https://img.shields.io/github/stars/theluckystrike/json-formatter-chrome-extension?style=flat-square&color=ffaa00" alt="GitHub stars" loading="lazy">
-  </a>
-  <a href="https://github.com/theluckystrike/json-formatter-chrome-extension" target="_blank" rel="noopener">
-    <img src="https://img.shields.io/github/last-commit/theluckystrike/json-formatter-chrome-extension?style=flat-square&color=8855ff" alt="Last commit" loading="lazy">
-  </a>
+ <a href="https://chromewebstore.google.com/detail/gbnadjkeegkhbcoeaeaoedpojlcknnhp" target="_blank" rel="noopener">
+ <img src="https://img.shields.io/chrome-web-store/users/gbnadjkeegkhbcoeaeaoedpojlcknnhp?label=users&color=00ff88&style=flat-square" alt="JSON Formatter Pro users" loading="lazy">
+ </a>
+ <a href="https://chromewebstore.google.com/detail/gbnadjkeegkhbcoeaeaoedpojlcknnhp" target="_blank" rel="noopener">
+ <img src="https://img.shields.io/chrome-web-store/rating/gbnadjkeegkhbcoeaeaoedpojlcknnhp?label=rating&color=00ccff&style=flat-square" alt="JSON Formatter Pro rating" loading="lazy">
+ </a>
+ <a href="https://chromewebstore.google.com/detail/gbnadjkeegkhbcoeaeaoedpojlcknnhp" target="_blank" rel="noopener">
+ <img src="https://img.shields.io/chrome-web-store/v/gbnadjkeegkhbcoeaeaoedpojlcknnhp?label=version&color=ff6b35&style=flat-square" alt="JSON Formatter Pro version" loading="lazy">
+ </a>
+ <a href="https://github.com/theluckystrike/json-formatter-chrome-extension" target="_blank" rel="noopener">
+ <img src="https://img.shields.io/github/stars/theluckystrike/json-formatter-chrome-extension?style=flat-square&color=ffaa00" alt="GitHub stars" loading="lazy">
+ </a>
+ <a href="https://github.com/theluckystrike/json-formatter-chrome-extension" target="_blank" rel="noopener">
+ <img src="https://img.shields.io/github/last-commit/theluckystrike/json-formatter-chrome-extension?style=flat-square&color=8855ff" alt="Last commit" loading="lazy">
+ </a>
 </div>
 
 <div class="live-badges" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 1rem 0; align-items: center;">
-  <a href="https://chromewebstore.google.com/detail/ofgncemnlblfnocjbojdhamacfffcpnm" target="_blank" rel="noopener">
-    <img src="https://img.shields.io/chrome-web-store/users/ofgncemnlblfnocjbojdhamacfffcpnm?label=users&color=00ff88&style=flat-square" alt="Tab Suspender Pro users" loading="lazy">
-  </a>
-  <a href="https://chromewebstore.google.com/detail/ofgncemnlblfnocjbojdhamacfffcpnm" target="_blank" rel="noopener">
-    <img src="https://img.shields.io/chrome-web-store/rating/ofgncemnlblfnocjbojdhamacfffcpnm?label=rating&color=00ccff&style=flat-square" alt="Tab Suspender Pro rating" loading="lazy">
-  </a>
-  <a href="https://chromewebstore.google.com/detail/ofgncemnlblfnocjbojdhamacfffcpnm" target="_blank" rel="noopener">
-    <img src="https://img.shields.io/chrome-web-store/v/ofgncemnlblfnocjbojdhamacfffcpnm?label=version&color=ff6b35&style=flat-square" alt="Tab Suspender Pro version" loading="lazy">
-  </a>
-  <a href="https://github.com/theluckystrike/zovo-tab-suspender-public" target="_blank" rel="noopener">
-    <img src="https://img.shields.io/github/stars/theluckystrike/zovo-tab-suspender-public?style=flat-square&color=ffaa00" alt="GitHub stars" loading="lazy">
-  </a>
-  <a href="https://github.com/theluckystrike/zovo-tab-suspender-public" target="_blank" rel="noopener">
-    <img src="https://img.shields.io/github/last-commit/theluckystrike/zovo-tab-suspender-public?style=flat-square&color=8855ff" alt="Last commit" loading="lazy">
-  </a>
+ <a href="https://chromewebstore.google.com/detail/ofgncemnlblfnocjbojdhamacfffcpnm" target="_blank" rel="noopener">
+ <img src="https://img.shields.io/chrome-web-store/users/ofgncemnlblfnocjbojdhamacfffcpnm?label=users&color=00ff88&style=flat-square" alt="Tab Suspender Pro users" loading="lazy">
+ </a>
+ <a href="https://chromewebstore.google.com/detail/ofgncemnlblfnocjbojdhamacfffcpnm" target="_blank" rel="noopener">
+ <img src="https://img.shields.io/chrome-web-store/rating/ofgncemnlblfnocjbojdhamacfffcpnm?label=rating&color=00ccff&style=flat-square" alt="Tab Suspender Pro rating" loading="lazy">
+ </a>
+ <a href="https://chromewebstore.google.com/detail/ofgncemnlblfnocjbojdhamacfffcpnm" target="_blank" rel="noopener">
+ <img src="https://img.shields.io/chrome-web-store/v/ofgncemnlblfnocjbojdhamacfffcpnm?label=version&color=ff6b35&style=flat-square" alt="Tab Suspender Pro version" loading="lazy">
+ </a>
+ <a href="https://github.com/theluckystrike/zovo-tab-suspender-public" target="_blank" rel="noopener">
+ <img src="https://img.shields.io/github/stars/theluckystrike/zovo-tab-suspender-public?style=flat-square&color=ffaa00" alt="GitHub stars" loading="lazy">
+ </a>
+ <a href="https://github.com/theluckystrike/zovo-tab-suspender-public" target="_blank" rel="noopener">
+ <img src="https://img.shields.io/github/last-commit/theluckystrike/zovo-tab-suspender-public?style=flat-square&color=8855ff" alt="Last commit" loading="lazy">
+ </a>
 </div>
 
 Written by Michael Lip | Last tested: March 2026 | Chrome 134 stable
@@ -353,65 +392,65 @@ Written by Michael Lip | Last tested: March 2026 | Chrome 134 stable
 
 
 <div class="npm-dashboard" style="margin:2rem 0;padding:0;background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;">
-  <div style="padding:12px 16px;background:linear-gradient(135deg,#cb3837,#a02020);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:white;font-family:Inter,sans-serif;font-weight:600;">npm Package Ecosystem</div>
-  <table style="width:100%;border-collapse:collapse;font-family:Inter,sans-serif;font-size:0.85rem;">
-    <thead>
-      <tr style="background:#f8f9fe;">
-        <th style="padding:8px 12px;text-align:left;font-size:0.75rem;color:#636e72;font-weight:600;">Package</th>
-        <th style="padding:8px 12px;text-align:right;font-size:0.75rem;color:#636e72;font-weight:600;">Downloads/mo</th>
-        <th style="padding:8px 12px;text-align:center;font-size:0.75rem;color:#636e72;font-weight:600;">Version</th>
-        <th style="padding:8px 12px;text-align:center;font-size:0.75rem;color:#636e72;font-weight:600;">Security</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td style="padding:8px 12px;border-top:1px solid #eee;"><a href="https://www.npmjs.com/package/puppeteer" target="_blank" rel="noopener" style="color:#6C5CE7;text-decoration:none;font-weight:500;">puppeteer</a></td>
-      <td style="padding:8px 12px;border-top:1px solid #eee;text-align:right;font-weight:600;color:#2d3436;">33.4M</td>
-      <td style="padding:8px 12px;border-top:1px solid #eee;text-align:center;color:#636e72;">24.39.1</td>
-      <td style="padding:8px 12px;border-top:1px solid #eee;text-align:center;color:#00b894;">Clean</td>
-    </tr>
-    <tr>
-      <td style="padding:8px 12px;border-top:1px solid #eee;"><a href="https://www.npmjs.com/package/lighthouse" target="_blank" rel="noopener" style="color:#6C5CE7;text-decoration:none;font-weight:500;">lighthouse</a></td>
-      <td style="padding:8px 12px;border-top:1px solid #eee;text-align:right;font-weight:600;color:#2d3436;">9.5M</td>
-      <td style="padding:8px 12px;border-top:1px solid #eee;text-align:center;color:#636e72;">13.0.3</td>
-      <td style="padding:8px 12px;border-top:1px solid #eee;text-align:center;color:#00b894;">Clean</td>
-    </tr>
-    </tbody>
-  </table>
-  <div style="padding:8px 16px;font-size:0.7rem;color:#999;">Data from npm registry &middot; Updated 2026-03-18</div>
+ <div style="padding:12px 16px;background:linear-gradient(135deg,#cb3837,#a02020);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:white;font-family:Inter,sans-serif;font-weight:600;">npm Package Ecosystem</div>
+ <table style="width:100%;border-collapse:collapse;font-family:Inter,sans-serif;font-size:0.85rem;">
+ <thead>
+ <tr style="background:#f8f9fe;">
+ <th style="padding:8px 12px;text-align:left;font-size:0.75rem;color:#636e72;font-weight:600;">Package</th>
+ <th style="padding:8px 12px;text-align:right;font-size:0.75rem;color:#636e72;font-weight:600;">Downloads/mo</th>
+ <th style="padding:8px 12px;text-align:center;font-size:0.75rem;color:#636e72;font-weight:600;">Version</th>
+ <th style="padding:8px 12px;text-align:center;font-size:0.75rem;color:#636e72;font-weight:600;">Security</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td style="padding:8px 12px;border-top:1px solid #eee;"><a href="https://www.npmjs.com/package/puppeteer" target="_blank" rel="noopener" style="color:#6C5CE7;text-decoration:none;font-weight:500;">puppeteer</a></td>
+ <td style="padding:8px 12px;border-top:1px solid #eee;text-align:right;font-weight:600;color:#2d3436;">33.4M</td>
+ <td style="padding:8px 12px;border-top:1px solid #eee;text-align:center;color:#636e72;">24.39.1</td>
+ <td style="padding:8px 12px;border-top:1px solid #eee;text-align:center;color:#00b894;">Clean</td>
+ </tr>
+ <tr>
+ <td style="padding:8px 12px;border-top:1px solid #eee;"><a href="https://www.npmjs.com/package/lighthouse" target="_blank" rel="noopener" style="color:#6C5CE7;text-decoration:none;font-weight:500;">lighthouse</a></td>
+ <td style="padding:8px 12px;border-top:1px solid #eee;text-align:right;font-weight:600;color:#2d3436;">9.5M</td>
+ <td style="padding:8px 12px;border-top:1px solid #eee;text-align:center;color:#636e72;">13.0.3</td>
+ <td style="padding:8px 12px;border-top:1px solid #eee;text-align:center;color:#00b894;">Clean</td>
+ </tr>
+ </tbody>
+ </table>
+ <div style="padding:8px 16px;font-size:0.7rem;color:#999;">Data from npm registry &middot; Updated 2026-03-18</div>
 </div>
 
 <div class="so-questions-section" style="margin:2rem 0;padding:20px;background:#fff;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.04);">
-  <h3 style="margin:0 0 4px;font-size:1.1rem;color:#2d3436;font-family:Inter,sans-serif;">📋 Top Developer Questions</h3>
-  <p style="margin:0 0 12px;font-size:0.8rem;color:#999;">Real questions from the Stack Overflow community</p>
-    <div style="padding:12px 0;border-bottom:1px solid #f0f0f0;">
-      <a href="https://stackoverflow.com/questions/24436460/phantomjs-dies-by-high-memory-consumption" target="_blank" rel="noopener" style="color:#2d3436;text-decoration:none;font-weight:500;font-size:0.9rem;line-height:1.4;">Phantomjs dies by high memory consumption</a>
-      <div style="display:flex;gap:12px;margin-top:6px;font-size:0.75rem;color:#999;">
-        <span>⬆ 26 votes</span>
-        <span>💬 2 answers</span>
-        <span>👁 13.6k views</span>
-        <span style="color:#00b894;font-size:0.75rem;">&#10003; Answered</span>
-      </div>
-    </div>
-    <div style="padding:12px 0;border-bottom:1px solid #f0f0f0;">
-      <a href="https://stackoverflow.com/questions/60787999/chrome-driver-has-stopped-error-when-running-selenium-tests-version-80" target="_blank" rel="noopener" style="color:#2d3436;text-decoration:none;font-weight:500;font-size:0.9rem;line-height:1.4;">Chrome driver has stopped error when running Selenium tests (version 80)</a>
-      <div style="display:flex;gap:12px;margin-top:6px;font-size:0.75rem;color:#999;">
-        <span>⬆ 0 votes</span>
-        <span>💬 2 answers</span>
-        <span>👁 2.0k views</span>
-        <span style="color:#00b894;font-size:0.75rem;">&#10003; Answered</span>
-      </div>
-    </div>
-    <div style="padding:12px 0;border-bottom:1px solid #f0f0f0;">
-      <a href="https://stackoverflow.com/questions/63252829/setting-a-variable-in-mutation-observer-causes-mozilla-to-crash" target="_blank" rel="noopener" style="color:#2d3436;text-decoration:none;font-weight:500;font-size:0.9rem;line-height:1.4;">Setting a variable in Mutation observer causes Mozilla to crash</a>
-      <div style="display:flex;gap:12px;margin-top:6px;font-size:0.75rem;color:#999;">
-        <span>⬆ 0 votes</span>
-        <span>💬 0 answers</span>
-        <span>👁 304 views</span>
-        
-      </div>
-    </div>
-  <p style="margin:12px 0 0;font-size:0.75rem;color:#999;">Source: <a href="https://stackoverflow.com/search?q=chrome%20keeps%20crashing%20fix" target="_blank" rel="noopener" style="color:#f48024;">Stack Overflow</a> &middot; Updated 2026-03-18</p>
+ <h3 style="margin:0 0 4px;font-size:1.1rem;color:#2d3436;font-family:Inter,sans-serif;">📋 Top Developer Questions</h3>
+ <p style="margin:0 0 12px;font-size:0.8rem;color:#999;">Real questions from the Stack Overflow community</p>
+ <div style="padding:12px 0;border-bottom:1px solid #f0f0f0;">
+ <a href="https://stackoverflow.com/questions/24436460/phantomjs-dies-by-high-memory-consumption" target="_blank" rel="noopener" style="color:#2d3436;text-decoration:none;font-weight:500;font-size:0.9rem;line-height:1.4;">Phantomjs dies by high memory consumption</a>
+ <div style="display:flex;gap:12px;margin-top:6px;font-size:0.75rem;color:#999;">
+ <span>⬆ 26 votes</span>
+ <span>💬 2 answers</span>
+ <span>👁 13.6k views</span>
+ <span style="color:#00b894;font-size:0.75rem;">&#10003; Answered</span>
+ </div>
+ </div>
+ <div style="padding:12px 0;border-bottom:1px solid #f0f0f0;">
+ <a href="https://stackoverflow.com/questions/60787999/chrome-driver-has-stopped-error-when-running-selenium-tests-version-80" target="_blank" rel="noopener" style="color:#2d3436;text-decoration:none;font-weight:500;font-size:0.9rem;line-height:1.4;">Chrome driver has stopped error when running Selenium tests (version 80)</a>
+ <div style="display:flex;gap:12px;margin-top:6px;font-size:0.75rem;color:#999;">
+ <span>⬆ 0 votes</span>
+ <span>💬 2 answers</span>
+ <span>👁 2.0k views</span>
+ <span style="color:#00b894;font-size:0.75rem;">&#10003; Answered</span>
+ </div>
+ </div>
+ <div style="padding:12px 0;border-bottom:1px solid #f0f0f0;">
+ <a href="https://stackoverflow.com/questions/63252829/setting-a-variable-in-mutation-observer-causes-mozilla-to-crash" target="_blank" rel="noopener" style="color:#2d3436;text-decoration:none;font-weight:500;font-size:0.9rem;line-height:1.4;">Setting a variable in Mutation observer causes Mozilla to crash</a>
+ <div style="display:flex;gap:12px;margin-top:6px;font-size:0.75rem;color:#999;">
+ <span>⬆ 0 votes</span>
+ <span>💬 0 answers</span>
+ <span>👁 304 views</span>
+ 
+ </div>
+ </div>
+ <p style="margin:12px 0 0;font-size:0.75rem;color:#999;">Source: <a href="https://stackoverflow.com/search?q=chrome%20keeps%20crashing%20fix" target="_blank" rel="noopener" style="color:#f48024;">Stack Overflow</a> &middot; Updated 2026-03-18</p>
 </div>
 
 </div>
@@ -1018,12 +1057,29 @@ Built by Michael Lip. More tips at zovo.one
 
 
 **Lighthouse Score (Mobile, March 2026):** Performance: 64/100 | SEO: 100/100 | Accessibility: 91/100 | Best Practices: 96/100
+ 
+        <div class="author-box" style="display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.5rem; background: #f8f9fe; border: 1px solid #e2e8f0; border-radius: 8px; margin: 2.5rem 0 1rem;">
+            <div style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #6C5CE7, #a29bfe); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; color: #fff;">ML</div>
+            <div>
+                <div style="font-weight: 600; font-size: 1rem; margin-bottom: 0.25rem; color: #1d1d1f;">Michael Lip</div>
+                <div style="font-size: 0.85rem; color: #86868b; line-height: 1.5;">
+                    Chrome extension engineer. Built 16 extensions with 4,700+ users. 
+                    Top Rated Plus on Upwork with $400K+ earned across 47 contracts.
+                    All extensions are free, open source, and collect zero data.
+                </div>
+                <div style="margin-top: 0.5rem; display: flex; gap: 1rem;">
+                    <a href="https://zovo.one" style="font-size: 0.75rem; color: #6C5CE7; text-decoration: none;">zovo.one</a>
+                    <a href="https://github.com/theluckystrike" style="font-size: 0.75rem; color: #6C5CE7; text-decoration: none;">GitHub</a>
+                </div>
+            </div>
+        </div>
+
     </article>
 
-    <footer class="footer">
-        <div class="footer-inner">
-            Built by Michael Lip &mdash; More tips at <a href="https://zovo.one">zovo.one</a>
-        </div>
-    </footer>
+ <footer class="footer">
+ <div class="footer-inner">
+ Built by Michael Lip - More tips at <a href="https://zovo.one">zovo.one</a>
+ </div>
+ </footer>
 </body>
 </html>

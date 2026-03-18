@@ -20,7 +20,17 @@ layout: null
         "@context": "https://schema.org",
         "@type": "TechArticle",
         "headline": "Manifest V3 Migration Guide - Complete MV2 to MV3 Walkthrough",
-        "author": {"@type": "Person", "name": "Michael Lip"},
+        "author": {
+            "@type": "Person",
+            "name": "Michael Lip",
+            "url": "https://theluckystrike.github.io/about",
+            "sameAs": [
+                "https://github.com/theluckystrike",
+                "https://www.upwork.com/freelancers/~theluckystrike"
+            ],
+            "jobTitle": "Chrome Extension Engineer",
+            "description": "Solo developer of 16 Chrome extensions with 4,700+ users. Top Rated Plus on Upwork."
+        },
         "datePublished": "2026-03-18",
         "publisher": {"@type": "Organization", "name": "Zovo"}
     }
@@ -57,10 +67,24 @@ layout: null
         .gotcha strong { color: #e74c3c; }
         @media (max-width: 600px) { h1 { font-size: 1.75rem; } article { padding: 0 1rem 3rem; } }
     </style>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://theluckystrike.github.io"},
+            {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://theluckystrike.github.io/guides/"},
+            {"@type": "ListItem", "position": 3, "name": "Manifest V3 Migration Guide - Complete MV2 to MV3 Walkthrough", "item": "https://theluckystrike.github.io/guides/manifest-v3-migration-guide/"}
+        ]
+    }
+    </script>
+
 </head>
 <body>
     <nav class="nav"><div class="nav-inner"><a href="https://theluckystrike.github.io">&larr; Home</a><a href="https://zovo.one">zovo.one</a></div></nav>
-    <article>
+    <article data-original-research="true">
         <h1>Manifest V3 Migration Guide</h1>
         <div class="meta">By Michael Lip &middot; March 18, 2026 &middot; 20 min read</div>
 
@@ -207,7 +231,7 @@ layout: null
         </ol>
 
         <div class="gotcha">
-            <strong>Gotcha:</strong> The <code>"type": "module"</code> in the background field is optional but extremely useful. Without it, you can't use <code>import</code> statements in your service worker. I add it to every new extension now. But be aware: if you use <code>"type": "module"</code>, your service worker runs in strict mode, which can break sloppy code that relies on implicit globals or <code>this</code> referring to the global scope.
+            Gotcha: The <code>"type": "module"</code> in the background field is optional but extremely useful. Without it, you can't use <code>import</code> statements in your service worker. I add it to every new extension now. But be aware: if you use <code>"type": "module"</code>, your service worker runs in strict mode, which can break sloppy code that relies on implicit globals or <code>this</code> referring to the global scope.
         </div>
 
         <h2>Step 2: Service Workers Replace Background Pages</h2>
@@ -271,7 +295,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         <p>Notice the <code>return true</code> in the message listener. That's critical. It tells Chrome to keep the message channel open because you're going to call <code>sendResponse</code> asynchronously. Without it, the channel closes immediately and your response never arrives. This was already the case in MV2 for async responses, but it's easy to forget when rewriting code.</p>
 
         <div class="gotcha">
-            <strong>Gotcha:</strong> <code>chrome.storage.session</code> was added specifically for MV3. It's like <code>chrome.storage.local</code> but the data is cleared when the browser closes. Use it for temporary state that doesn't need to survive browser restarts. It's faster than <code>storage.local</code> because it doesn't need to write to disk.
+            Gotcha: <code>chrome.storage.session</code> was added specifically for MV3. It's like <code>chrome.storage.local</code> but the data is cleared when the browser closes. Use it for temporary state that doesn't need to survive browser restarts. It's faster than <code>storage.local</code> because it doesn't need to write to disk.
         </div>
 
         <h3>No DOM in Service Workers</h3>
@@ -398,7 +422,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 });</code></pre>
 
         <div class="gotcha">
-            <strong>Gotcha:</strong> <code>chrome.alarms</code> has a minimum interval of 30 seconds (it used to be 1 minute). If you need something to run more frequently than that, you'll need a different approach. One option is keeping the service worker alive by maintaining an active connection from a content script or popup. But be careful - Chrome may flag extensions that artificially keep service workers alive.
+            Gotcha: <code>chrome.alarms</code> has a minimum interval of 30 seconds (it used to be 1 minute). If you need something to run more frequently than that, you'll need a different approach. One option is keeping the service worker alive by maintaining an active connection from a content script or popup. But be careful - Chrome may flag extensions that artificially keep service workers alive.
         </div>
 
         <h2>Step 3: Replace webRequestBlocking with declarativeNetRequest</h2>
@@ -564,7 +588,7 @@ chrome.scripting.insertCSS({
 });</code></pre>
 
         <div class="gotcha">
-            <strong>Gotcha:</strong> In MV2, you could use <code>code: 'some string of JS'</code> to execute arbitrary code. In MV3, you pass a function reference with <code>func</code>. The function is serialized and sent to the content script context. This means you can't use closures that reference variables in the service worker scope. If you need to pass data, use the <code>args</code> parameter:
+            Gotcha: In MV2, you could use <code>code: 'some string of JS'</code> to execute arbitrary code. In MV3, you pass a function reference with <code>func</code>. The function is serialized and sent to the content script context. This means you can't use closures that reference variables in the service worker scope. If you need to pass data, use the <code>args</code> parameter:
         </div>
 
         <pre><code>// Passing arguments to injected functions
@@ -660,7 +684,7 @@ fetch('https://cdn.example.com/analytics.js')
         <p>This is actually a security improvement. In MV2, any website could detect your installed extensions by probing for web-accessible resource URLs. MV3 limits this to only the origins you specify. If your content script only runs on specific sites, restrict access accordingly.</p>
 
         <div class="gotcha">
-            <strong>Gotcha:</strong> If you use <code>"use_dynamic_url": true</code> in a web accessible resource entry, Chrome generates a unique per-session URL for the resource. This prevents fingerprinting but means the URL changes every session, so you can't hardcode it. Access it via <code>chrome.runtime.getURL()</code>.
+            Gotcha: If you use <code>"use_dynamic_url": true</code> in a web accessible resource entry, Chrome generates a unique per-session URL for the resource. This prevents fingerprinting but means the URL changes every session, so you can't hardcode it. Access it via <code>chrome.runtime.getURL()</code>.
         </div>
 
         <h2>Step 7: Storage API Changes</h2>
@@ -716,11 +740,11 @@ console.log('Saved');</code></pre>
         <h3>Service Worker Lifecycle Tests</h3>
 
         <ol>
-            <li><strong>Install and open popup.</strong> Does everything work on first load?</li>
-            <li><strong>Wait 30 seconds.</strong> Open the popup again. Is your state preserved?</li>
-            <li><strong>Wait 5 minutes without interacting.</strong> Open the popup again. Does the service worker wake up correctly? Is state intact?</li>
-            <li><strong>Open Chrome task manager</strong> (Shift+Esc). Watch the service worker appear and disappear. Does your extension handle the transitions gracefully?</li>
-            <li><strong>Disable and re-enable the extension.</strong> Does it recover state from storage?</li>
+            <li>Install and open popup. Does everything work on first load?</li>
+            <li>Wait 30 seconds. Open the popup again. Is your state preserved?</li>
+            <li>Wait 5 minutes without interacting. Open the popup again. Does the service worker wake up correctly? Is state intact?</li>
+            <li>Open Chrome task manager (Shift+Esc). Watch the service worker appear and disappear. Does your extension handle the transitions gracefully?</li>
+            <li>Disable and re-enable the extension. Does it recover state from storage?</li>
         </ol>
 
         <h3>Testing Service Worker Termination</h3>
@@ -812,10 +836,10 @@ chrome.runtime.onMessage.addListener((msg) => {
         <p>When you're ready to publish the MV3 version on the Chrome Web Store:</p>
 
         <ol>
-            <li><strong>Increment your version number.</strong> Don't try to publish the same version with a different manifest version.</li>
-            <li><strong>Test with the actual .zip package</strong>, not just the unpacked extension. Sometimes file path issues only show up in the packaged version.</li>
-            <li><strong>Submit for review.</strong> MV3 extensions generally get approved faster than MV2 did, in my experience. My last three MV3 submissions were approved within 24 hours.</li>
-            <li><strong>Monitor crash reports</strong> for the first week. The Chrome Web Store dashboard shows crash reports. Service worker issues often manifest as crashes rather than errors.</li>
+            <li>Increment your version number. Don't try to publish the same version with a different manifest version.</li>
+            <li>Test with the actual .zip package, not just the unpacked extension. Sometimes file path issues only show up in the packaged version.</li>
+            <li>Submit for review. MV3 extensions generally get approved faster than MV2 did, in my experience. My last three MV3 submissions were approved within 24 hours.</li>
+            <li>Monitor crash reports for the first week. The Chrome Web Store dashboard shows crash reports. Service worker issues often manifest as crashes rather than errors.</li>
         </ol>
 
         <p>Consider publishing as a staged rollout if the Web Store offers it for your account. Push to 10% of users first, monitor for a few days, then roll out to everyone.</p>
@@ -856,6 +880,23 @@ chrome.runtime.onMessage.addListener((msg) => {
         <p>If you're starting the migration now, you have it easier than I did. The APIs are stable, the documentation is decent, and there are plenty of real-world examples to reference. Follow this guide, test thoroughly, and you'll get through it.</p>
 
         <p>And if you're building a new extension from scratch, start with MV3 from day one. There's no reason to learn MV2 patterns at this point. The future is service workers and declarative APIs. Get comfortable with them.</p>
+
+    
+        <div class="author-box" style="display: flex; gap: 1.25rem; align-items: flex-start; padding: 1.5rem; background: #f8f9fe; border: 1px solid #e2e8f0; border-radius: 8px; margin: 2.5rem 0 1rem;">
+            <div style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #6C5CE7, #a29bfe); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; color: #fff;">ML</div>
+            <div>
+                <div style="font-weight: 600; font-size: 1rem; margin-bottom: 0.25rem; color: #1d1d1f;">Michael Lip</div>
+                <div style="font-size: 0.85rem; color: #86868b; line-height: 1.5;">
+                    Chrome extension engineer. Built 16 extensions with 4,700+ users. 
+                    Top Rated Plus on Upwork with $400K+ earned across 47 contracts.
+                    All extensions are free, open source, and collect zero data.
+                </div>
+                <div style="margin-top: 0.5rem; display: flex; gap: 1rem;">
+                    <a href="https://zovo.one" style="font-size: 0.75rem; color: #6C5CE7; text-decoration: none;">zovo.one</a>
+                    <a href="https://github.com/theluckystrike" style="font-size: 0.75rem; color: #6C5CE7; text-decoration: none;">GitHub</a>
+                </div>
+            </div>
+        </div>
 
     </article>
     <footer class="footer"><div class="footer-inner">Built by Michael Lip - <a href="https://zovo.one">zovo.one</a></div></footer>

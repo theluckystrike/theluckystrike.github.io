@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Base64 Encoder and Decoder Online — Encode, Decode & Decrypt | Zovo"
+title: "Base64 Encoder and Decoder Online  -  Encode, Decode & Decrypt | Zovo"
 description: "Encode and decode Base64 strings, files, and images instantly. Free online Base64 encoder decoder with URL-safe mode and file support. No server uploads."
 permalink: /tools/base64/
 keywords: "base64 decode online, base64 encode decode online, decode base 64 online, decrypt base64 online, base64 encoder decoder, base64 converter, base64 to text, text to base64, url-safe base64, base64 image encoder"
@@ -568,30 +568,30 @@ author: Michael Lip
 
     <p>Base64 is a binary-to-text encoding scheme that converts binary data into a string of printable ASCII characters. It works by taking groups of three bytes (24 bits) and splitting them into four 6-bit values, each mapped to one of 64 characters: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code>, <code>+</code>, and <code>/</code>. If the input length is not divisible by three, the output is padded with <code>=</code> signs. The encoding increases data size by roughly 33 percent, since every three bytes of input produce four bytes of output.</p>
 
-    <p>Base64 was standardized in RFC 4648 and is used whenever binary data must travel through text-only channels. If you need to <strong>base64 encode and decode online</strong>, this tool handles both directions instantly in your browser.</p>
+    <p>Base64 was standardized in RFC 4648 and is used whenever binary data must travel through text-only channels. If you need to base64 encode and decode online, this tool handles both directions instantly in your browser.</p>
 
-    <h2>Base64 Decode Online &mdash; Instant Text Decoding</h2>
+    <h2>Base64 Decode Online  -  Instant Text Decoding</h2>
 
-    <p>Paste any Base64 string into the input panel and click <strong>Decode</strong>. The tool reverses the encoding and returns the original text immediately. You can <strong>decode base 64 online</strong> without installing software or signing up for an account. The decoder supports standard Base64, multi-line PEM-formatted data, and strings with or without padding characters. Auto-detection recognizes Base64 input and suggests decoding with a single click.</p>
+    <p>Paste any Base64 string into the input panel and click Decode. The tool reverses the encoding and returns the original text immediately. You can decode base 64 online without installing software or signing up for an account. The decoder supports standard Base64, multi-line PEM-formatted data, and strings with or without padding characters. Auto-detection recognizes Base64 input and suggests decoding with a single click.</p>
 
     <h2>Base64 Encode and Decode Online</h2>
 
-    <p>This tool is a complete <strong>Base64 encode decode online</strong> solution. Switch between encoding and decoding modes with one click, or drag and drop a file to encode it. UTF-8 support means you can encode text in any language, including accented characters, CJK, and emoji. The output is ready to paste into code, configuration files, data URIs, or API requests.</p>
+    <p>This tool is a complete Base64 encode decode online solution. Switch between encoding and decoding modes with one click, or drag and drop a file to encode it. UTF-8 support means you can encode text in any language, including accented characters, CJK, and emoji. The output is ready to paste into code, configuration files, data URIs, or API requests.</p>
 
     <h2>Decrypt Base64 Strings and Files</h2>
 
-    <p>Many users search for how to <strong>decrypt base64 online</strong> when they encounter encoded data in emails, API responses, configuration files, or log entries. While Base64 is technically an encoding (not encryption), the process of reversing it feels like decryption: you have an unreadable string and you want the original content. This tool lets you "decrypt" Base64 data by pasting it and clicking Decode. The result appears instantly, and your data never leaves your browser.</p>
+    <p>Many users search for how to decrypt base64 online when they encounter encoded data in emails, API responses, configuration files, or log entries. While Base64 is technically an encoding (not encryption), the process of reversing it feels like decryption: you have an unreadable string and you want the original content. This tool lets you "decrypt" Base64 data by pasting it and clicking Decode. The result appears instantly, and your data never leaves your browser.</p>
 
     <p>If the data was actually encrypted before being Base64-encoded, you will need to decode the Base64 layer first (using this tool), then decrypt the binary output with the appropriate encryption key and algorithm (such as AES or RSA).</p>
 
     <h2>Common Use Cases</h2>
 
     <ul>
-      <li><strong>API authentication:</strong> HTTP Basic Auth base64-encodes a username:password pair. JWT tokens use base64url encoding for their header and payload segments. Decode these values online to inspect tokens during development and debugging.</li>
-      <li><strong>Data URIs:</strong> Embed images, fonts, or small files directly into HTML or CSS by converting them to base64. A base64-encoded PNG in an <code>&lt;img src="data:image/png;base64,..."&gt;</code> tag loads inline without a separate HTTP request.</li>
-      <li><strong>Email attachments (MIME):</strong> SMTP was designed for ASCII text. Base64 encoding lets binary attachments like PDFs, images, and zip files travel safely through email systems.</li>
-      <li><strong>Storing binary in JSON or XML:</strong> Neither format supports raw binary. Base64 lets you embed file contents, cryptographic keys, or certificates as text strings.</li>
-      <li><strong>Debugging encoded payloads:</strong> APIs, webhooks, and logging systems often base64-encode data. Decode those payloads online to read the original content without writing any code.</li>
+      <li>API authentication: HTTP Basic Auth base64-encodes a username:password pair. JWT tokens use base64url encoding for their header and payload segments. Decode these values online to inspect tokens during development and debugging.</li>
+      <li>Data URIs: Embed images, fonts, or small files directly into HTML or CSS by converting them to base64. A base64-encoded PNG in an <code>&lt;img src="data:image/png;base64,..."&gt;</code> tag loads inline without a separate HTTP request.</li>
+      <li>Email attachments (MIME): SMTP was designed for ASCII text. Base64 encoding lets binary attachments like PDFs, images, and zip files travel safely through email systems.</li>
+      <li>Storing binary in JSON or XML: Neither format supports raw binary. Base64 lets you embed file contents, cryptographic keys, or certificates as text strings.</li>
+      <li>Debugging encoded payloads: APIs, webhooks, and logging systems often base64-encode data. Decode those payloads online to read the original content without writing any code.</li>
     </ul>
 
     <h2>URL-Safe Base64 Encoding</h2>
@@ -606,7 +606,7 @@ author: Michael Lip
 
     <h3>Encoding vs. Encryption</h3>
 
-    <p>Base64 is <strong>not</strong> encryption. It provides no security whatsoever. Anyone can decode a base64 string instantly, as this tool demonstrates. Its purpose is safe transport and format compatibility, not confidentiality. If you need to protect sensitive data, use proper encryption (AES-256, RSA) and treat base64 as a formatting step that happens before or after encryption.</p>
+    <p>Base64 is not encryption. It provides no security whatsoever. Anyone can decode a base64 string instantly, as this tool demonstrates. Its purpose is safe transport and format compatibility, not confidentiality. If you need to protect sensitive data, use proper encryption (AES-256, RSA) and treat base64 as a formatting step that happens before or after encryption.</p>
 
     <h3>UTF-8 and Base64</h3>
 
@@ -923,4 +923,30 @@ author: Michael Lip
   updateStats("b64Output", "b64OutputStats");
 
 })();
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://theluckystrike.github.io"},
+        {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://theluckystrike.github.io/tools/"},
+        {"@type": "ListItem", "position": 3, "name": "Base64 Encoder Decoder", "item": "https://theluckystrike.github.io/tools/base64/"}
+    ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Base64 Encoder and Decoder Online",
+    "description": "Encode and decode Base64 strings, files, and images instantly.",
+    "url": "https://theluckystrike.github.io/tools/base64/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "author": {"@type": "Person", "name": "Michael Lip", "url": "https://theluckystrike.github.io/about"}
+}
 </script>
