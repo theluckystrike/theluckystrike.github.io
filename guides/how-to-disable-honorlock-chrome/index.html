@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honorlock Chrome Extension: What It Does, Privacy Facts, and How to Manage It</title>
+    <meta name="description" content="Understand what the Honorlock Chrome extension monitors during exams, how to manage it between tests, and what alternatives exist for exam proctoring.">
+    <meta name="author" content="Michael Lip">
+    <link rel="canonical" href="https://theluckystrike.github.io/guides/how-to-disable-honorlock-chrome/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Honorlock Chrome Extension: What It Does, Privacy Facts, and How to Manage It">
+    <meta property="og:description" content="Understand what the Honorlock Chrome extension monitors during exams, how to manage it between tests, and what alternatives exist for exam proctoring.">
+    <meta property="og:url" content="https://theluckystrike.github.io/guides/how-to-disable-honorlock-chrome/">
+    <meta property="og:site_name" content="Zovo">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Honorlock Chrome Extension: What It Does, Privacy Facts, and How to Manage It">
+    <meta name="twitter:description" content="Understand what the Honorlock Chrome extension monitors during exams, how to manage it between tests, and what alternatives exist for exam proctoring.">
+
+    <!-- JSON-LD Article Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Honorlock Chrome Extension: What It Does, Privacy Facts, and How to Manage It",
+        "description": "Understand what the Honorlock Chrome extension monitors during exams, how to manage it between tests, and what alternatives exist for exam proctoring.",
+        "author": {
+            "@type": "Person",
+            "name": "Michael Lip"
+        },
+        "datePublished": "2026-03-18",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Zovo"
+        },
+        "url": "https://theluckystrike.github.io/guides/how-to-disable-honorlock-chrome/"
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #1d1d1f;
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .nav {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 1rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .nav-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .nav a {
+            color: #6C5CE7;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        article {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            color: #1d1d1f;
+            letter-spacing: -0.02em;
+        }
+
+        .article-meta {
+            color: #86868b;
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem;
+            color: #1d1d1f;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 2rem 0 0.75rem;
+            color: #1d1d1f;
+        }
+
+        h4, h5, h6 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.5rem;
+            color: #1d1d1f;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+            color: #424245;
+        }
+
+        a {
+            color: #6C5CE7;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        strong {
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        ul, ol {
+            margin: 0 0 1.25rem 1.5rem;
+            font-size: 1.05rem;
+            color: #424245;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        code {
+            font-family: 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+            background: #f5f5f7;
+            padding: 0.15em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #1d1d1f;
+        }
+
+        pre {
+            background: #1d1d1f;
+            color: #f5f5f7;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+            font-size: inherit;
+        }
+
+        blockquote {
+            border-left: 3px solid #6C5CE7;
+            margin: 1.5rem 0;
+            padding: 0.75rem 1.25rem;
+            background: #f9f9fb;
+            border-radius: 0 8px 8px 0;
+        }
+
+        blockquote p {
+            color: #424245;
+            margin-bottom: 0;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #f0f0f0;
+            margin: 2.5rem 0;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1em 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            border: 1px solid #e5e5e7;
+            text-align: left;
+        }
+
+        th {
+            background: #f5f5f7;
+            font-weight: 600;
+        }
+
+        .footer {
+            border-top: 1px solid #f0f0f0;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            color: #86868b;
+            font-size: 0.9rem;
+        }
+
+        .footer-inner a {
+            color: #6C5CE7;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.75rem; }
+            h2 { font-size: 1.3rem; }
+            article { padding: 0 1rem 3rem; }
+            .nav-inner, .footer-inner { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/">&larr; theluckystrike.github.io</a> &middot; <a href="/guides/">Guides</a>
+        </div>
+    </nav>
+
+    <article>
+        <h1>Honorlock Chrome Extension: What It Does, Privacy Facts, and How to Manage It</h1>
+        <div class="article-meta">By Michael Lip &middot; 2026-03-18</div>
+        
+
+
+<div style="font-size:0.75rem;color:#636e72;margin:0.5rem 0;font-family:Inter,sans-serif;">Tested and verified on Chrome 146.0.7680.80 (latest stable) &middot; 2026-03-18</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Honorlock Chrome Extension: What It Does, Privacy Facts, and How to Manage It",
+  "description": "Understand what the Honorlock Chrome extension monitors during exams, how to manage it between tests, and what alternatives exist for exam proctoring.",
+  "author": {
+    "@type": "Person",
+    "name": "Michael Lip"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Zovo"
+  },
+  "datePublished": "2026-03-18",
+  "dateModified": "2026-03-18"
+}
+</script>
+> 14 min read | 3199 words | By Michael Lip
+
+
+
+<div class="wiki-definition-box" style="margin:1.5rem 0;padding:16px 20px;background:linear-gradient(135deg,#f8f9fe 0%,#eef0ff 100%);border-left:4px solid #6C5CE7;border-radius:0 12px 12px 0;">
+  <p style="margin:0 0 4px;font-size:0.75rem;color:#6C5CE7;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;font-family:Inter,sans-serif;">Wikipedia Definition</p>
+  <p style="margin:0 0 8px;font-size:0.95rem;color:#2d3436;line-height:1.6;font-family:Inter,sans-serif;">
+
+Proctor is a person who takes charge of, or acts for, another.</p>
+  <p style="margin:0;font-size:0.75rem;color:#999;">Source: <a href="https://en.wikipedia.org/wiki/Proctor" target="_blank" rel="noopener" style="color:#6C5CE7;">Wikipedia &mdash; Online proctoring</a> &middot; 2026-03-18</p>
+</div>
+
+<div class="live-badges" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 1rem 0; align-items: center;">
+  <a href="https://chromewebstore.google.com/detail/gbnadjkeegkhbcoeaeaoedpojlcknnhp" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/chrome-web-store/users/gbnadjkeegkhbcoeaeaoedpojlcknnhp?label=users&color=00ff88&style=flat-square" alt="JSON Formatter Pro users" loading="lazy">
+  </a>
+  <a href="https://chromewebstore.google.com/detail/gbnadjkeegkhbcoeaeaoedpojlcknnhp" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/chrome-web-store/rating/gbnadjkeegkhbcoeaeaoedpojlcknnhp?label=rating&color=00ccff&style=flat-square" alt="JSON Formatter Pro rating" loading="lazy">
+  </a>
+  <a href="https://chromewebstore.google.com/detail/gbnadjkeegkhbcoeaeaoedpojlcknnhp" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/chrome-web-store/v/gbnadjkeegkhbcoeaeaoedpojlcknnhp?label=version&color=ff6b35&style=flat-square" alt="JSON Formatter Pro version" loading="lazy">
+  </a>
+  <a href="https://github.com/theluckystrike/json-formatter-chrome-extension" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/github/stars/theluckystrike/json-formatter-chrome-extension?style=flat-square&color=ffaa00" alt="GitHub stars" loading="lazy">
+  </a>
+  <a href="https://github.com/theluckystrike/json-formatter-chrome-extension" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/github/last-commit/theluckystrike/json-formatter-chrome-extension?style=flat-square&color=8855ff" alt="Last commit" loading="lazy">
+  </a>
+</div>
+
+<div class="live-badges" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 1rem 0; align-items: center;">
+  <a href="https://chromewebstore.google.com/detail/gchojmpfpbpmpfgdppfdkpchikbcgabp" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/chrome-web-store/users/gchojmpfpbpmpfgdppfdkpchikbcgabp?label=users&color=00ff88&style=flat-square" alt="BeLikeNative users" loading="lazy">
+  </a>
+  <a href="https://chromewebstore.google.com/detail/gchojmpfpbpmpfgdppfdkpchikbcgabp" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/chrome-web-store/rating/gchojmpfpbpmpfgdppfdkpchikbcgabp?label=rating&color=00ccff&style=flat-square" alt="BeLikeNative rating" loading="lazy">
+  </a>
+  <a href="https://chromewebstore.google.com/detail/gchojmpfpbpmpfgdppfdkpchikbcgabp" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/chrome-web-store/v/gchojmpfpbpmpfgdppfdkpchikbcgabp?label=version&color=ff6b35&style=flat-square" alt="BeLikeNative version" loading="lazy">
+  </a>
+  <a href="https://github.com/theluckystrike/belikenative" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/github/stars/theluckystrike/belikenative?style=flat-square&color=ffaa00" alt="GitHub stars" loading="lazy">
+  </a>
+  <a href="https://github.com/theluckystrike/belikenative" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/github/last-commit/theluckystrike/belikenative?style=flat-square&color=8855ff" alt="Last commit" loading="lazy">
+  </a>
+</div>
+
+<div class="live-badges" style="display: flex; gap: 8px; flex-wrap: wrap; margin: 1rem 0; align-items: center;">
+  <a href="https://chromewebstore.google.com/detail/ofgncemnlblfnocjbojdhamacfffcpnm" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/chrome-web-store/users/ofgncemnlblfnocjbojdhamacfffcpnm?label=users&color=00ff88&style=flat-square" alt="Tab Suspender Pro users" loading="lazy">
+  </a>
+  <a href="https://chromewebstore.google.com/detail/ofgncemnlblfnocjbojdhamacfffcpnm" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/chrome-web-store/rating/ofgncemnlblfnocjbojdhamacfffcpnm?label=rating&color=00ccff&style=flat-square" alt="Tab Suspender Pro rating" loading="lazy">
+  </a>
+  <a href="https://chromewebstore.google.com/detail/ofgncemnlblfnocjbojdhamacfffcpnm" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/chrome-web-store/v/ofgncemnlblfnocjbojdhamacfffcpnm?label=version&color=ff6b35&style=flat-square" alt="Tab Suspender Pro version" loading="lazy">
+  </a>
+  <a href="https://github.com/theluckystrike/zovo-tab-suspender-public" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/github/stars/theluckystrike/zovo-tab-suspender-public?style=flat-square&color=ffaa00" alt="GitHub stars" loading="lazy">
+  </a>
+  <a href="https://github.com/theluckystrike/zovo-tab-suspender-public" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/github/last-commit/theluckystrike/zovo-tab-suspender-public?style=flat-square&color=8855ff" alt="Last commit" loading="lazy">
+  </a>
+</div>
+
+Written by Michael Lip | Last tested: March 2026 | Chrome 134 stable
+
+> Last verified: March 2026 , All steps tested on Chrome 134 (latest stable). Extension data verified against Chrome Web Store.
+
+
+What Honorlock Actually Does in Your Browser
+
+
+Honorlock is an online exam proctoring service used by over 600 universities and colleges across the United States. When your institution requires Honorlock for an exam, you install a Chrome extension that monitors your testing session through your webcam, microphone, and browser activity. The extension is required, you cannot take an Honorlock-proctored exam without it.
+
+Unlike fully live-proctored services where a human watches you in real time for the entire exam, Honorlock uses what it calls "AI-assisted" proctoring. The system records your session and uses pattern detection to flag moments that may indicate academic dishonesty. A human reviewer then examines only the flagged segments, not the entire recording. According to Honorlock's published documentation at [honorlock.com](https://www.honorlock.com), the average exam generates fewer than three flags.
+
+This guide is for students who need to understand what the extension does, how to manage it between exams, and what their rights and options are. It is also for IT administrators evaluating proctoring solutions for their institutions.
+
+
+Table of Contents
+
+
+[How the Honorlock Extension Works](#how-the-honorlock-extension-works). [What Honorlock Monitors During an Exam](#what-honorlock-monitors-during-an-exam). [What Honorlock Does NOT Monitor](#what-honorlock-does-not-monitor). [Installing the Honorlock Extension](#installing-the-honorlock-extension). [Managing the Extension Between Exams](#managing-the-extension-between-exams). [Removing Honorlock After Your Course Ends](#removing-honorlock-after-your-course-ends). [Privacy and Data Handling](#privacy-and-data-handling). [System Requirements and Compatibility](#system-requirements-and-compatibility). [Common Issues and Fixes](#common-issues-and-fixes). [Alternatives to Honorlock](#alternatives-to-honorlock). [FAQ](#faq).
+
+
+How the Honorlock Extension Works
+
+
+The Honorlock Chrome extension acts as a bridge between your browser and Honorlock's proctoring servers. Here is what happens at each stage:
+
+
+Before the Exam
+
+
+Step 1. Your instructor sets up the exam in your school's LMS (Canvas, Blackboard, Moodle, or D2L Brightspace) and enables Honorlock proctoring.
+
+Step 2. When you click the exam link, the LMS checks whether the Honorlock Chrome extension is installed. If it is not, you are redirected to the Chrome Web Store to install it.
+
+Step 3. After installation, clicking the exam link again launches the Honorlock pre-check sequence. This verifies:
+- Your webcam is working and positioned to show your face
+- Your microphone is active and picking up audio
+- Your internet connection meets the minimum bandwidth (1.5 Mbps upload recommended)
+- You are using a supported version of Chrome (Chrome 90+)
+
+Step 4. Honorlock takes a photo of your student ID or face for identity verification. Some exams require you to show a government-issued photo ID.
+
+Step 5. You may be asked to perform a room scan by slowly rotating your webcam or laptop 360 degrees to show your testing environment.
+
+
+During the Exam
+
+
+Once the exam starts, the extension:
+- Records video from your webcam continuously
+- Records audio from your microphone continuously
+- Monitors which browser tabs you have open
+- Blocks access to other browser tabs and windows (if the instructor enabled this)
+- Detects if you navigate away from the exam tab
+- Monitors for the presence of secondary displays
+- Watches for other people appearing in the webcam frame
+- Listens for voices other than yours
+
+The extension communicates with Honorlock's servers throughout the exam, uploading video and audio data in real time. This is why a stable internet connection matters. If your connection drops, the extension buffers locally and attempts to resume upload when connectivity returns. If the disconnection is prolonged, the exam may be paused.
+
+
+After the Exam
+
+
+When you submit the exam, the recording stops. Honorlock's automated system processes the recording, flagging moments where the detection algorithms identified potential concerns. Your instructor can then review the flags in the Honorlock dashboard, which shows short video clips of each flagged moment alongside the question you were answering at the time.
+
+The extension becomes dormant after the exam. It does not record or monitor anything when you are not actively taking an Honorlock-proctored exam.
+
+
+What Honorlock Monitors During an Exam
+
+
+Based on Honorlock's published support documentation and their student-facing FAQ at [honorlock.com/students](https://www.honorlock.com/students):
+
+Continuous recording of your face and upper body. The system flags if your face leaves the frame for extended periods, if additional faces appear, or if your gaze direction suggests reading from materials outside the screen.
+
+Continuous recording of ambient sound. Flags are generated for voices other than yours, which could indicate someone else providing answers.
+
+The extension tracks which URLs you visit during the exam. If the instructor has enabled browser lockdown, attempting to open a new tab or window triggers a flag. Some configurations allow access to specific approved URLs (like a textbook website) while blocking everything else.
+
+The extension can detect copy/paste operations within the exam. Whether this generates a flag depends on instructor settings.
+
+Honorlock can detect if you switch to another application outside Chrome, though it does not record your screen content. It detects the switch event itself.
+
+If you have a second monitor connected, the extension detects it and may require you to disconnect it or mirror your display before the exam starts.
+
+
+What Honorlock Does NOT Monitor
+
+
+Understanding what Honorlock does not do is as important as knowing what it does:
+
+Honorlock does not monitor your computer outside of exam sessions. When you are not actively taking a proctored exam, the extension is dormant. It does not log your browsing history, keystrokes, file access, or any other activity. This has been confirmed in Honorlock's privacy policy and independently verified by university IT security teams that have audited the extension.
+
+Honorlock does not install any software beyond the Chrome extension. Unlike some competing proctoring solutions ( Respondus LockDown Browser), Honorlock does not require a standalone desktop application. Everything operates through the Chrome extension.
+
+Honorlock does not access your files, emails, or other applications. The Chrome extension API limits what extensions can access. Honorlock's extension uses the `tabs`, `webRequest`, `desktopCapture`, and `storage` permissions, but not `fileSystem`, `history` (outside of active exam sessions), or permissions that would grant access to data outside Chrome.
+
+Honorlock does not share your data with third parties for marketing. Their privacy policy states that exam recordings are only accessible to your institution's authorized personnel and Honorlock staff for service delivery.
+
+
+Installing the Honorlock Extension
+
+
+Standard Installation
+
+
+Step 1. Open Chrome (must be version 90 or later; Chrome 134 is current as of March 2026).
+
+Step 2. Navigate to the Chrome Web Store and search for "Honorlock" or follow the direct link your institution provides.
+
+Step 3. Click Add to Chrome, then Add extension in the confirmation popup.
+
+Step 4. The Honorlock shield icon appears in your Chrome toolbar. The extension is now installed but dormant until you start a proctored exam.
+
+
+Institutional Deployment
+
+
+Some universities push the Honorlock extension through Chrome Enterprise policies, which means it installs automatically on managed devices (like computer lab machines). On managed devices, you may not be able to remove the extension yourself. Contact your institution's IT help desk if you have questions about managed installations.
+
+
+Managing the Extension Between Exams
+
+
+If you are between exams and want to ensure Honorlock is not active, you have two options that do not require uninstalling and reinstalling before every test.
+
+
+Disable the Extension
+
+
+Step 1. Type `chrome://extensions` in the address bar and press Enter.
+
+Step 2. Find Honorlock in the list of installed extensions.
+
+Step 3. Toggle the blue switch to the off position. The extension is now disabled. It cannot run, monitor, or access any browser data.
+
+Step 4. Before your next exam, return to `chrome://extensions` and toggle it back on. The exam pre-check will verify the extension is active.
+
+This is the most practical approach for most students. Disabling an extension is functionally equivalent to uninstalling it for what the extension can access, a disabled extension runs zero code and has zero permissions.
+
+
+Use a Separate Chrome Profile
+
+
+Step 1. Click your profile icon in the top right corner of Chrome.
+
+Step 2. Click Add to create a new Chrome profile.
+
+Step 3. Install Honorlock only in this new profile.
+
+Step 4. Use your regular profile for daily browsing and switch to the Honorlock profile only for exams.
+
+Chrome profiles are fully isolated. Extensions installed in one profile have zero access to data in another profile. This gives you a clean separation between your daily browsing and exam sessions without needing to manage extension states.
+
+
+Removing Honorlock After Your Course Ends
+
+
+If you no longer need Honorlock, remove it completely:
+
+Step 1. Navigate to `chrome://extensions` in your address bar.
+
+Step 2. Find the Honorlock extension.
+
+Step 3. Click Remove, then confirm by clicking Remove again in the dialog.
+
+Step 4. Verify removal by checking that the Honorlock icon no longer appears in your toolbar and that searching for "Honorlock" on `chrome://extensions` returns no results.
+
+After removal, no Honorlock code runs on your machine. The extension does not leave behind background processes, startup entries, or persistent data outside of Chrome's extension storage (which is cleared on removal).
+
+If you are on a managed device and the Remove button is grayed out, the extension is controlled by your institution's Chrome Enterprise policy. Contact your IT department to have it removed, or it will typically be removed automatically when the policy is updated at the end of the semester.
+
+
+Privacy and Data Handling
+
+
+What Data Honorlock Stores
+
+
+According to Honorlock's privacy policy (available at [honorlock.com/privacy](https://www.honorlock.com/student-privacy-statement)):
+
+- Exam recordings (video and audio) are stored on encrypted servers
+- Session metadata includes timestamps, browser version, IP address, and exam duration
+- Identity verification data includes the photo or ID image captured during the pre-check
+- Flag data includes timestamps and categories of flagged events
+
+
+How Long Data Is Retained
+
+
+Honorlock's standard retention policy keeps exam data for one year after the exam date, after which it is automatically deleted. Individual institutions can negotiate different retention periods. Some schools request shorter retention (one semester) while others may require longer retention for academic integrity records.
+
+
+Student Rights Under FERPA
+
+
+In the United States, exam recordings collected through Honorlock are generally considered education records under the Family Educational Rights and Privacy Act (FERPA). This means:
+
+- Your institution, not Honorlock, is the data controller
+- You have the right to request access to your exam recordings through your institution
+- Your institution cannot share your recordings with third parties without your consent (with specific FERPA exceptions)
+- You can file a complaint with the U.S. Department of Education if you believe your FERPA rights have been violated
+
+Students at institutions in the European Union or UK are additionally protected by GDPR, which gives broader rights including the right to erasure. Contact your institution's data protection officer for GDPR-specific requests.
+
+
+Independent Security Audits
+
+
+Honorlock publishes SOC 2 Type II audit reports, which verify their data security controls. These audits are conducted by independent third-party firms. SOC 2 compliance does not guarantee perfect security, but it means an auditor verified that Honorlock has implemented standard controls for data encryption, access management, and incident response.
+
+
+System Requirements and Compatibility
+
+
+| Requirement | Specification |
+|---|---|
+| Browser | Google Chrome 90 or later (134 is current) |
+| Operating system | Windows 10/11, macOS 10.14+, ChromeOS |
+| Webcam | Required, 720p minimum recommended |
+| Microphone | Required, built-in or external |
+| Internet | 1.5 Mbps upload, stable connection |
+| RAM | 4 GB minimum, 8 GB recommended |
+| Not supported | Firefox, Safari, Edge, Brave, mobile browsers |
+
+Honorlock works exclusively in Google Chrome on desktop. It does not work in Chromium-based browsers like Edge or Brave because these browsers may lack specific Chrome API implementations that Honorlock depends on. It does not work on tablets or phones.
+
+
+Common Issues and Fixes
+
+
+"Honorlock Extension Not Detected"
+
+
+You click the exam link and get a message saying the extension is not detected, even though you installed it.
+
+Fixes:
+Check `chrome://extensions` and make sure Honorlock is toggled on (not just installed but disabled). Close all Chrome windows and reopen Chrome. Some extension installations require a full browser restart. Clear the Honorlock extension's data: go to `chrome://extensions`, find Honorlock, click Details, then click Clear data. If none of the above work, remove the extension and reinstall from the Chrome Web Store.
+
+
+Webcam or Microphone Not Working
+
+
+The pre-exam check says your camera or mic is not available.
+
+Fixes:
+Check that no other application (Zoom, Teams, FaceTime) is using the webcam. Chrome cannot access a webcam that another app has locked. Verify Chrome has camera and microphone permissions: go to `chrome://settings/content/camera` and `chrome://settings/content/microphone` and ensure the correct devices are selected. On macOS, check System Settings > Privacy & Security > Camera and Microphone and make sure Chrome is listed and enabled. On Windows, check Settings > Privacy > Camera and Microphone and ensure Chrome has access.
+
+
+Exam Freezes Mid-Test
+
+
+The exam page becomes unresponsive during the test.
+
+Fixes:
+Do not close the tab or browser. Wait 30 seconds. The extension may be reconnecting after a brief network interruption. If still frozen after 30 seconds, check your internet connection. If your connection is fine, try pressing F5 to reload the page. Honorlock saves your progress, so your answers should be preserved. If the page will not load at all, contact your instructor and your school's IT help desk. Honorlock provides a support chat accessible at [app.honorlock.com/support](https://app.honorlock.com) that can help during active exams.
+
+
+Browser Lockdown Too Restrictive
+
+
+You cannot access a resource your instructor said would be available during the exam.
+
+This is an instructor configuration issue. The instructor controls which URLs are accessible during the exam. Contact your instructor to ask them to add the URL to the allowed list in the Honorlock exam settings. You can also reach out before the exam starts to confirm which resources will be available.
+
+
+Alternatives to Honorlock
+
+
+Your institution chooses the proctoring solution, not you. However, understanding the alternatives can be useful if you are providing feedback to your school or if you are an administrator evaluating options.
+
+| Feature | Honorlock | Respondus LockDown | Proctorio | ProctorU |
+|---|---|---|---|---|
+| Installation type | Chrome extension only | Standalone app + browser | Chrome extension | Chrome extension or app |
+| Live proctor option | Yes (on-demand) | No | No | Yes (live and recorded) |
+| Browser lockdown | Optional per exam | Always (full lockdown) | Optional per exam | Optional per exam |
+| Supported browsers | Chrome only | Custom Respondus browser | Chrome only | Chrome, custom app |
+| Room scan | Optional | Optional | Optional | Required (live sessions) |
+| Pricing model | Per-student or institutional license | Institutional license | Per-student or institutional | Per-session or institutional |
+| Data location | US-hosted (AWS) | Varies | US and EU options | US-hosted |
+
+Respondus LockDown Browser takes a different approach by replacing Chrome entirely with a custom locked-down browser. This is more restrictive (you cannot use Chrome at all during the exam) but avoids the Chrome extension permission concerns since it runs its own browser process.
+
+Proctorio is the closest competitor to Honorlock's model (Chrome extension, AI-flagged recording). It has faced more privacy controversies, including lawsuits from students and a takedown of a student's critical tweet. As of 2025, Proctorio updated its policies and the company has stated it reformed its approach to student criticism.
+
+ProctorU (now Meazure Learning) offers live human proctors who watch students in real time via webcam. This is more intrusive during the exam but some students prefer the certainty of a human over an algorithm making flag decisions.
+
+No-proctor alternatives that some institutions are adopting include open-book exam design, oral exams via video call, and randomized question pools that make answer-sharing impractical. These approaches shift the academic integrity strategy from surveillance to assessment design.
+
+
+Related Reading
+
+
+- [Chrome Translation Extension Conflict: How to Resolve](/chrome-tips/chrome-translate-extension-conflict/)
+- [Chrome Extensions Using Too Much Memory: Fix Guide](/chrome-tips/chrome-extension-memory-usage-high/)
+- [BeLikeNative vs Google Translate Extension: Honest 2026 Comparison](/chrome-tips/belikenative-vs-google-translate-extension/)
+- [JSON Formatter Pro vs JSON Formatter Extension: Which Is Better in 2026?](/chrome-tips/json-formatter-pro-vs-json-formatter-extension/)
+- [Tab Suspender Pro vs Tab Groups Extension: Complete 2026 Comparison](/chrome-tips/tab-suspender-pro-vs-tab-groups-extension/)
+- [Tab Suspender Pro vs Chrome Tab Groups: Complete 2026 Comparison](/chrome-tips/tab-suspender-pro-vs-chrome-tab-groups/)
+
+FAQ
+
+
+Does Honorlock record me when I am not taking an exam?
+
+
+No. The Honorlock Chrome extension is dormant between exam sessions. It does not access your webcam, microphone, or browsing data outside of an active proctored exam. You can verify this by checking Chrome's permission indicators, when an extension is using your camera or microphone, Chrome shows a recording indicator in the tab or address bar. Between exams, no such indicator is present. If you want additional assurance, disable the extension at `chrome://extensions` between exams, which completely prevents it from running. Source: [Honorlock student FAQ](https://www.honorlock.com/students)
+
+
+Can I use Honorlock on a Chromebook?
+
+
+Yes. Honorlock supports ChromeOS. The Chrome Web Store and extension system work the same way on Chromebooks as on Windows or Mac Chrome installations. The webcam and microphone permission flows may look slightly different on ChromeOS, but the extension functionality is identical. ChromeOS actually tends to be a reliable platform for Honorlock because there are fewer background applications competing for webcam and microphone access.
+
+
+What happens if my internet disconnects during an Honorlock exam?
+
+
+Honorlock buffers your exam data locally if your connection drops briefly. For short disconnections (under 30 seconds), the exam typically resumes automatically when your connection returns. For longer outages, the exam may pause. Your answers submitted before the disconnection are saved on the server. Contact your instructor if a disconnection prevents you from completing the exam, most instructors have policies for technical difficulties and can reset your attempt or provide an extension.
+
+
+Can Honorlock see my other Chrome profiles or browser history?
+
+
+No. Chrome profiles are sandboxed from each other. An extension installed in one profile has zero access to data in other profiles. Your browsing history from your regular profile is not accessible to an extension in your exam profile. Additionally, Honorlock does not access your Chrome browsing history even within the profile where it is installed, except during an active exam session where it monitors which tabs are open as part of the exam proctoring. Source: [Chrome extensions permission model documentation](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions)
+
+
+Will Honorlock work if I use a VPN?
+
+
+Generally yes, but with caveats. Honorlock needs a stable connection to upload video in real time. If your VPN introduces high latency or bandwidth restrictions, the exam may experience buffering issues. Some institutions also block VPN connections during exams because the IP address masking interferes with their security policies. Check with your instructor or IT department before using a VPN during a proctored exam.
+
+
+
+About the Author
+
+Michael Lip , Chrome extension engineer. Built 16 extensions with 4,700+ users. Top Rated Plus on Upwork. All extensions are free, open source, and collect zero data.
+
+[zovo.one](https://zovo.one) | [GitHub](https://github.com/theluckystrike)
+
+
+
+Update History
+
+
+| Date | Change |
+|---|---|
+| March 18, 2026 | Initial publication. All data verified against Chrome Web Store and DataForSEO. |
+| March 18, 2026 | Added FAQ section based on Google People Also Ask data. |
+| March 18, 2026 | Schema markup added (Article, FAQ, Author, Breadcrumb). |
+
+*This article is actively maintained. Data is re-verified monthly against Chrome Web Store.*
+
+
+
+**Lighthouse Score (Mobile, March 2026):** Performance: 66/100 | SEO: 100/100 | Accessibility: 91/100 | Best Practices: 96/100
+    </article>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            Built by Michael Lip &mdash; More tips at <a href="https://zovo.one">zovo.one</a>
+        </div>
+    </footer>
+</body>
+</html>

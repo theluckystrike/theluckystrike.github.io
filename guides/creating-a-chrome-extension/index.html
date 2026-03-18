@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a Chrome Extension: Complete Developer Guide 2026</title>
+    <meta name="description" content="Learn how to create a Chrome extension from scratch with Manifest V3. Step-by-step tutorial from a developer who built 16 extensions and earned $400K on Upwork.">
+    <meta name="author" content="Michael Lip">
+    <link rel="canonical" href="https://theluckystrike.github.io/guides/creating-a-chrome-extension/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Create a Chrome Extension: Complete Developer Guide 2026">
+    <meta property="og:description" content="Learn how to create a Chrome extension from scratch with Manifest V3. Step-by-step tutorial from a developer who built 16 extensions.">
+    <meta property="og:url" content="https://theluckystrike.github.io/guides/creating-a-chrome-extension/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Create a Chrome Extension: Complete Developer Guide 2026">
+    <meta name="twitter:description" content="Step-by-step Chrome extension tutorial from a developer who built 16 extensions.">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "How to Create a Chrome Extension: Complete Developer Guide 2026",
+        "description": "Learn how to create a Chrome extension from scratch with Manifest V3. Step-by-step tutorial covering project setup, APIs, permissions, debugging, publishing, and optimization.",
+        "author": {
+            "@type": "Person",
+            "name": "Michael Lip",
+            "jobTitle": "Founder & Developer",
+            "description": "$400K+ on Upwork, built 16 Chrome extensions",
+            "url": "https://zovo.one/about/michael-lip"
+        },
+        "datePublished": "2026-03-18",
+        "dateModified": "2026-03-18",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Zovo",
+            "url": "https://zovo.one"
+        },
+        "url": "https://theluckystrike.github.io/guides/creating-a-chrome-extension/",
+        "proficiencyLevel": "Beginner to Advanced",
+        "dependencies": "Chrome browser, text editor, basic JavaScript knowledge"
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": "How long does it take to create a Chrome extension?", "acceptedAnswer": {"@type": "Answer", "text": "A simple Chrome extension can be created in 30 minutes to 2 hours. More complex extensions with background scripts, content scripts, and API integrations typically take 1-4 weeks. I've built extensions ranging from single-afternoon projects to multi-month tools with 3,000+ users."}},
+            {"@type": "Question", "name": "Do I need to pay to publish a Chrome extension?", "acceptedAnswer": {"@type": "Answer", "text": "There is a one-time $5 developer registration fee to publish on the Chrome Web Store. After that, publishing and updates are free. There are no ongoing fees unless you choose to offer paid extensions through the Chrome Web Store payment system."}},
+            {"@type": "Question", "name": "What programming language do Chrome extensions use?", "acceptedAnswer": {"@type": "Answer", "text": "Chrome extensions use standard web technologies: HTML, CSS, and JavaScript. You can also use TypeScript (which compiles to JavaScript). The manifest.json file that defines your extension uses JSON. No special programming language is required."}},
+            {"@type": "Question", "name": "What is Manifest V3 and why does it matter?", "acceptedAnswer": {"@type": "Answer", "text": "Manifest V3 is Chrome's current extension platform, replacing Manifest V2. It introduces service workers instead of background pages, declarativeNetRequest instead of webRequest blocking, and stricter Content Security Policy. All new extensions must use MV3 as of 2024, and existing MV2 extensions are being phased out."}},
+            {"@type": "Question", "name": "Can I make money from a Chrome extension?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Common monetization strategies include freemium models (free base + paid pro features), one-time payments through the Chrome Web Store, subscription plans via Stripe or similar, and affiliate partnerships. Extensions with 10,000+ users can generate meaningful revenue. Focus on solving real problems first — monetization follows utility."}},
+            {"@type": "Question", "name": "Can Chrome extensions access data on every website?", "acceptedAnswer": {"@type": "Answer", "text": "Only if you request host permissions for those sites. Best practice is to use the activeTab permission, which only grants access to the current tab when the user clicks your extension icon. Broad host permissions like <all_urls> will trigger extra review from Google and may reduce user trust."}},
+            {"@type": "Question", "name": "What happens when my service worker goes idle?", "acceptedAnswer": {"@type": "Answer", "text": "In Manifest V3, service workers terminate after about 30 seconds of inactivity (previously 5 minutes in early MV3 builds). You need to persist state using chrome.storage and re-register event listeners at the top level of your service worker. Avoid relying on in-memory global variables."}},
+            {"@type": "Question", "name": "Is it possible to migrate an existing MV2 extension to MV3?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The main changes are converting your background page to a service worker, replacing chrome.browserAction with chrome.action, updating your Content Security Policy, and replacing blocking webRequest calls with declarativeNetRequest rules. Google provides an official migration checklist."}}
+        ]
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.7; color: #1d1d1f; background: #fff; -webkit-font-smoothing: antialiased; }
+        .nav { border-bottom: 1px solid #f0f0f0; padding: 1rem 0; margin-bottom: 3rem; }
+        .nav-inner { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav a { color: #6C5CE7; text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+        .nav a:hover { text-decoration: underline; }
+        article { max-width: 720px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+        h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+        .article-meta { color: #86868b; font-size: 0.9rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #f0f0f0; }
+        .authority-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #f3f0ff; border: 1px solid #6C5CE7; border-radius: 8px; padding: 0.5rem 1rem; margin: 1rem 0; font-size: 0.85rem; color: #6C5CE7; }
+        h2 { font-size: 1.5rem; font-weight: 600; margin: 2.5rem 0 1rem; letter-spacing: -0.01em; }
+        h3 { font-size: 1.2rem; font-weight: 600; margin: 2rem 0 0.75rem; }
+        p { margin-bottom: 1.25rem; font-size: 1.05rem; color: #424245; }
+        a { color: #6C5CE7; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        strong { font-weight: 600; color: #1d1d1f; }
+        ul, ol { margin: 0 0 1.25rem 1.5rem; font-size: 1.05rem; color: #424245; }
+        li { margin-bottom: 0.5rem; }
+        code { font-family: 'SF Mono', Menlo, Consolas, monospace; background: #f5f5f7; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+        pre { background: #1d1d1f; color: #f5f5f7; border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; overflow-x: auto; font-size: 0.9rem; line-height: 1.6; }
+        pre code { background: none; padding: 0; color: inherit; }
+        blockquote { border-left: 3px solid #6C5CE7; margin: 1.5rem 0; padding: 0.75rem 1.25rem; background: #f9f9fb; border-radius: 0 8px 8px 0; }
+        blockquote p { color: #424245; margin-bottom: 0; }
+        hr { border: none; border-top: 1px solid #f0f0f0; margin: 2.5rem 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+        th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #f0f0f0; }
+        th { font-weight: 600; background: #f9f9fb; }
+        .toc { background: #f9f9fb; border-radius: 12px; padding: 1.5rem 2rem; margin: 2rem 0; }
+        .toc h3 { margin-top: 0; }
+        .toc ol { margin-bottom: 0; }
+        .toc a { color: #424245; }
+        .toc a:hover { color: #6C5CE7; }
+        .tip-box { background: #f3f0ff; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; border-left: 3px solid #6C5CE7; }
+        .tip-box strong { color: #6C5CE7; }
+        .warning-box { background: #fff8f0; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0; border-left: 3px solid #e67e22; }
+        .warning-box strong { color: #e67e22; }
+        .faq-section { margin-top: 3rem; }
+        .faq-item { margin-bottom: 1.5rem; }
+        .faq-item h3 { font-size: 1.1rem; cursor: pointer; }
+        .footer { border-top: 1px solid #f0f0f0; padding: 2rem 0; margin-top: 3rem; }
+        .footer-inner { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; color: #86868b; font-size: 0.9rem; }
+        .footer-inner a { color: #6C5CE7; }
+        .ascii-diagram { background: #f9f9fb; border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; overflow-x: auto; font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 0.85rem; line-height: 1.5; color: #424245; white-space: pre; }
+        @media (max-width: 600px) { h1 { font-size: 1.75rem; } h2 { font-size: 1.3rem; } article { padding: 0 1rem 3rem; } pre { padding: 1rem; font-size: 0.8rem; } .ascii-diagram { font-size: 0.7rem; } }
+    </style>
+</head>
+<body>
+    <nav class="nav"><div class="nav-inner"><a href="https://theluckystrike.github.io">&larr; Home</a><a href="https://zovo.one">zovo.one</a></div></nav>
+    <article>
+        <h1>How to Create a Chrome Extension: Complete Developer Guide 2026</h1>
+        <div class="article-meta">
+            By <strong>Michael Lip</strong> &middot; March 18, 2026 &middot; 25 min read
+            <br>
+            <div class="authority-badge">16 Chrome extensions shipped &middot; $400K+ on Upwork &middot; 100% success rate</div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#architecture">Understanding Chrome Extension Architecture</a></li>
+                <li><a href="#setup">Setting Up Your Development Environment</a></li>
+                <li><a href="#first-extension">Building Your First Extension Step by Step</a></li>
+                <li><a href="#apis">Chrome Extension APIs Deep Dive</a></li>
+                <li><a href="#content-scripts">Content Scripts and DOM Manipulation</a></li>
+                <li><a href="#service-workers">Service Workers (Background Scripts) in MV3</a></li>
+                <li><a href="#permissions">Permissions: Request the Minimum</a></li>
+                <li><a href="#debugging">Debugging and Testing</a></li>
+                <li><a href="#publishing">Publishing to Chrome Web Store</a></li>
+                <li><a href="#advanced">Beyond the Basics: Advanced Patterns</a></li>
+                <li><a href="#faq">Frequently Asked Questions</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ol>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <h2 id="introduction">1. Introduction</h2>
+
+        <p>I've built 16 Chrome extensions, shipped them to thousands of users, and earned $400K on Upwork building software. Here's everything I know about creating Chrome extensions.</p>
+
+        <p>This is not another shallow tutorial that shows you how to change a page's background color. This is the guide I wish I had when I started building my first extension years ago &mdash; a comprehensive, practical walkthrough that takes you from zero to a published Chrome Web Store listing, written by someone who does this for a living.</p>
+
+        <p>Over the past decade, I've built every kind of Chrome extension you can imagine: tab managers, content analyzers, productivity tools, developer utilities, and SEO helpers. My suite of 16 extensions (the <a href="https://zovo.one">Zovo suite</a>) covers everything from word counting to tab suspension. Each one taught me something new about the platform, and I'm going to compress all of those lessons into this single guide.</p>
+
+        <p>Creating a Chrome extension is one of the most leveraged skills a web developer can learn. You already know HTML, CSS, and JavaScript. With those same tools, you can build software that runs inside the browser of over 3 billion Chrome users. No app store gatekeepers delaying you for weeks, no complex native SDKs to learn, no new programming language required.</p>
+
+        <p><strong>What you'll learn in this guide:</strong></p>
+        <ul>
+            <li>How Chrome extensions work under the hood (architecture, manifest, components)</li>
+            <li>Setting up a proper development environment</li>
+            <li>Building a real, working extension from scratch with complete code</li>
+            <li>Every major Chrome API you'll need, with practical examples</li>
+            <li>Content scripts, service workers, and message passing</li>
+            <li>The permissions model and how to build trust with users</li>
+            <li>Debugging techniques that will save you hours</li>
+            <li>Publishing to the Chrome Web Store and optimizing your listing</li>
+            <li>Advanced patterns for production-grade extensions</li>
+        </ul>
+
+        <p><strong>Prerequisites:</strong> You need a basic understanding of HTML, CSS, and JavaScript. If you can build a simple web page with some interactivity, you have enough knowledge to create a Chrome extension. If you're comfortable with <code>document.querySelector()</code>, event listeners, and JSON, you're more than ready.</p>
+
+        <p><strong>Time estimate:</strong> Your first extension in 30 minutes. A polished, publishable extension in a weekend. I'm not exaggerating &mdash; the barrier to entry is genuinely low. The depth and polish are where the real work happens, and that's what this guide will help you navigate.</p>
+
+        <p>Let's get started.</p>
+
+        <hr>
+
+        <!-- Section 2: Architecture -->
+        <h2 id="architecture">2. Understanding Chrome Extension Architecture</h2>
+
+        <p>Before you write a single line of code, you need to understand what a Chrome extension actually <em>is</em>. This foundational knowledge will make every step of creating a Chrome extension easier. Strip away the mystery and a Chrome extension is just a zip file containing web files &mdash; HTML, CSS, JavaScript, images &mdash; plus a special file called <code>manifest.json</code> that tells Chrome how to use them.</p>
+
+        <p>That's it. There's no compilation step, no binary, no special runtime. When you install an extension, Chrome unzips it into a profile directory and loads your files according to the instructions in the manifest. This is what makes Chrome extension development so accessible: if you can build a web page, you can build an extension.</p>
+
+        <h3>Manifest V3 vs. Manifest V2</h3>
+
+        <p>Every Chrome extension has a manifest version. <strong>Manifest V3 (MV3)</strong> is the current and only supported version for new extensions. Google began enforcing MV3 in 2024, and MV2 extensions are no longer accepted on the Chrome Web Store. If you find a tutorial using <code>"manifest_version": 2</code>, close it &mdash; it's outdated.</p>
+
+        <p>The biggest changes MV3 introduced:</p>
+        <ul>
+            <li><strong>Service workers</strong> replace persistent background pages. Your background code now runs in an event-driven service worker that terminates when idle.</li>
+            <li><strong>declarativeNetRequest</strong> replaces blocking webRequest. Network request modification is now rule-based, not code-based.</li>
+            <li><strong>Stricter Content Security Policy.</strong> No more remotely hosted code or <code>eval()</code>. All code must be bundled in your extension package.</li>
+            <li><strong>chrome.action</strong> replaces <code>chrome.browserAction</code> and <code>chrome.pageAction</code>. One unified API for toolbar icons.</li>
+        </ul>
+
+        <h3>Key Components of a Chrome Extension</h3>
+
+        <p>Every extension is built from some combination of these components:</p>
+
+        <ul>
+            <li><strong>manifest.json</strong> &mdash; The configuration file. Defines your extension's name, version, permissions, and which files serve which purpose. This is the only required file.</li>
+            <li><strong>Service Worker (background.js)</strong> &mdash; Runs in the background, listens for browser events (tab opened, page loaded, alarm fired), and coordinates your extension's logic. It has no DOM access.</li>
+            <li><strong>Content Scripts</strong> &mdash; JavaScript and CSS files injected into web pages. They can read and modify the DOM of the page the user is viewing. They run in an isolated world (more on this later).</li>
+            <li><strong>Popup (popup.html)</strong> &mdash; The small UI that appears when a user clicks your extension's toolbar icon. It's a normal HTML page with its own CSS and JS.</li>
+            <li><strong>Options Page (options.html)</strong> &mdash; A full-page settings UI where users configure your extension. Accessible from the Extensions management page or your popup.</li>
+            <li><strong>Side Panel</strong> &mdash; A panel that opens in the browser sidebar. Introduced in Chrome 114, side panels are great for tools that need persistent visibility without blocking the page.</li>
+        </ul>
+
+        <h3>How the Pieces Connect</h3>
+
+        <p>Here's a simplified architecture diagram showing how the components communicate:</p>
+
+        <div class="ascii-diagram">
++----------------------------------------------------------+
+|                     CHROME BROWSER                        |
+|                                                          |
+|  +------------------+     chrome.runtime      +--------+ |
+|  |  Service Worker   |&lt;-----messaging------&gt;|  Popup  | |
+|  |  (background.js)  |                       | (.html) | |
+|  +--------+---------+                        +--------+ |
+|           |                                              |
+|    chrome.tabs    chrome.runtime                         |
+|    .sendMessage   .onMessage                             |
+|           |                                              |
+|  +--------v------------------------------------------+   |
+|  |              Web Page (any website)                |   |
+|  |  +--------------------------------------------+   |   |
+|  |  |  Content Script (content.js)               |   |   |
+|  |  |  - Can read/modify page DOM                |   |   |
+|  |  |  - Isolated JavaScript context             |   |   |
+|  |  |  - Communicates via message passing        |   |   |
+|  |  +--------------------------------------------+   |   |
+|  +---------------------------------------------------+   |
+|                                                          |
+|  +------------------+          +---------------------+   |
+|  |  Options Page    |          |  chrome.storage      |   |
+|  |  (options.html)  |          |  (shared data store) |   |
+|  +------------------+          +---------------------+   |
++----------------------------------------------------------+</div>
+
+        <p>The critical concept here is <strong>message passing</strong>. Content scripts cannot directly call Chrome APIs (with a few exceptions like <code>chrome.runtime.sendMessage</code>). Instead, they send messages to the service worker, which has full API access and sends responses back. Think of the service worker as the brain and the content script as the hands.</p>
+
+        <div class="tip-box">
+            <strong>Pro tip:</strong> When I'm planning a new extension, I start by drawing this diagram and labeling which component handles which responsibility. It prevents the most common architectural mistake: putting logic in the wrong place.
+        </div>
+
+        <hr>
+
+        <!-- Section 3: Setup -->
+        <h2 id="setup">3. Setting Up Your Development Environment</h2>
+
+        <p>You don't need much to start creating a Chrome extension. The tooling requirements are minimal compared to mobile development or backend systems. Here's what you need:</p>
+
+        <h3>Required Tools</h3>
+        <ul>
+            <li><strong>Google Chrome</strong> &mdash; The browser you're building for. Make sure it's up to date.</li>
+            <li><strong>A text editor</strong> &mdash; I use VS Code with the following extensions: ESLint, Prettier, and Chrome Extension Manifest JSON Schema. Any editor works, but VS Code gives you manifest autocompletion out of the box.</li>
+            <li><strong>A terminal</strong> &mdash; For running scripts, linting, and packaging. Built into VS Code or any system terminal.</li>
+        </ul>
+
+        <p>That's it. No SDKs to download, no build tools to configure (for basic extensions), no emulators to run.</p>
+
+        <h3>Creating the Project Folder Structure</h3>
+
+        <p>Open your terminal and create a project directory. I recommend this structure for any new extension:</p>
+
+<pre><code>mkdir my-extension && cd my-extension
+
+# Create the standard folder structure
+mkdir -p src/icons
+touch manifest.json
+touch src/popup.html
+touch src/popup.js
+touch src/popup.css
+touch src/content.js
+touch src/background.js</code></pre>
+
+        <p>Your folder now looks like this:</p>
+
+<pre><code>my-extension/
+  manifest.json
+  src/
+    popup.html
+    popup.js
+    popup.css
+    content.js
+    background.js
+    icons/
+      icon-16.png
+      icon-48.png
+      icon-128.png</code></pre>
+
+        <h3>The Minimum Viable manifest.json</h3>
+
+        <p>Every Chrome extension starts with <code>manifest.json</code>. Here's the absolute minimum you need to load an extension in Chrome:</p>
+
+<pre><code>{
+  "manifest_version": 3,
+  "name": "My First Extension",
+  "version": "1.0.0",
+  "description": "A simple Chrome extension."
+}</code></pre>
+
+        <p>That's a valid extension. It doesn't <em>do</em> anything yet, but Chrome will load it without errors. We'll build on this foundation in the next section.</p>
+
+        <h3>Loading an Unpacked Extension</h3>
+
+        <p>To load your extension during development:</p>
+
+        <ol>
+            <li>Open Chrome and navigate to <code>chrome://extensions</code></li>
+            <li>Toggle <strong>Developer mode</strong> on (top right corner)</li>
+            <li>Click <strong>"Load unpacked"</strong></li>
+            <li>Select your project folder (the one containing <code>manifest.json</code>)</li>
+        </ol>
+
+        <p>Your extension now appears in the extensions list. You'll see its name, description, and an ID. Any time you change your code, click the refresh icon on your extension's card to reload it. For content script changes, you also need to refresh the target web page.</p>
+
+        <div class="tip-box">
+            <strong>Pro tip:</strong> Pin your extension to the toolbar immediately. Click the puzzle piece icon in Chrome's toolbar, then click the pin icon next to your extension. This makes the popup accessible with one click during development.
+        </div>
+
+        <p>You can also use the keyboard shortcut <code>Ctrl+Shift+E</code> (or <code>Cmd+Shift+E</code> on Mac) to quickly jump to the extensions page. I keep it open as a pinned tab during development.</p>
+
+        <hr>
+
+        <!-- Section 4: First Extension -->
+        <h2 id="first-extension">4. Building Your First Extension Step by Step</h2>
+
+        <p>Let's build something real. We're going to create a <strong>Page Word Counter</strong> &mdash; an extension that counts the words on any web page when you click the toolbar icon. This is inspired by Zovo's Word Counter extension, and it touches every core concept: manifest configuration, a popup UI, a content script, and message passing between components.</p>
+
+        <p>By the end of this section, you'll have a fully working extension you can demo and build upon.</p>
+
+        <h3>Step 1: The Complete manifest.json</h3>
+
+<pre><code>{
+  "manifest_version": 3,
+  "name": "Page Word Counter",
+  "version": "1.0.0",
+  "description": "Count words on any web page with one click.",
+  "icons": {
+    "16": "src/icons/icon-16.png",
+    "48": "src/icons/icon-48.png",
+    "128": "src/icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "src/icons/icon-16.png",
+      "48": "src/icons/icon-48.png"
+    },
+    "default_title": "Count words on this page"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["&lt;all_urls&gt;"],
+      "js": ["src/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  }
+}</code></pre>
+
+        <p>Let me explain every field:</p>
+
+        <ul>
+            <li><strong><code>manifest_version: 3</code></strong> &mdash; Required. Tells Chrome this is an MV3 extension.</li>
+            <li><strong><code>name</code></strong> &mdash; The display name. Keep it under 45 characters for the Chrome Web Store.</li>
+            <li><strong><code>version</code></strong> &mdash; Semantic versioning. Chrome requires this to increment with each update you publish.</li>
+            <li><strong><code>description</code></strong> &mdash; A short summary shown in the Web Store and extensions page. Max 132 characters.</li>
+            <li><strong><code>icons</code></strong> &mdash; Your extension icon in three sizes. 16px for the toolbar, 48px for the extensions page, 128px for the Web Store listing. Use PNG with transparency.</li>
+            <li><strong><code>action</code></strong> &mdash; Defines the toolbar button behavior. <code>default_popup</code> is the HTML file that appears when the user clicks the icon.</li>
+            <li><strong><code>permissions: ["activeTab"]</code></strong> &mdash; Grants access to the currently active tab when the user clicks the extension. This is the most privacy-friendly permission because it requires explicit user interaction.</li>
+            <li><strong><code>content_scripts</code></strong> &mdash; Tells Chrome to inject <code>content.js</code> into every page. <code>run_at: "document_idle"</code> means the script runs after the page has finished loading.</li>
+            <li><strong><code>background</code></strong> &mdash; Registers <code>background.js</code> as the service worker.</li>
+        </ul>
+
+        <h3>Step 2: The Popup UI (popup.html)</h3>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;link rel="stylesheet" href="popup.css"&gt;
+  &lt;title&gt;Word Counter&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;Word Counter&lt;/h1&gt;
+    &lt;div id="result" class="result"&gt;
+      &lt;span class="loading"&gt;Counting...&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="stats" id="stats" style="display: none;"&gt;
+      &lt;div class="stat"&gt;
+        &lt;span class="stat-value" id="wordCount"&gt;0&lt;/span&gt;
+        &lt;span class="stat-label"&gt;Words&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="stat"&gt;
+        &lt;span class="stat-value" id="charCount"&gt;0&lt;/span&gt;
+        &lt;span class="stat-label"&gt;Characters&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="stat"&gt;
+        &lt;span class="stat-value" id="readTime"&gt;0&lt;/span&gt;
+        &lt;span class="stat-label"&gt;Min Read&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;script src="popup.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <h3>Step 3: Popup Styles (popup.css)</h3>
+
+<pre><code>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, sans-serif;
+  width: 280px;
+  background: #ffffff;
+}
+
+.container {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 16px;
+}
+
+.result {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.loading {
+  color: #86868b;
+  font-size: 14px;
+}
+
+.stats {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #6C5CE7;
+}
+
+.stat-label {
+  display: block;
+  font-size: 11px;
+  color: #86868b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}</code></pre>
+
+        <h3>Step 4: Popup Logic (popup.js)</h3>
+
+<pre><code>// popup.js - Sends a message to the content script and displays results
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const resultDiv = document.getElementById('result');
+  const statsDiv = document.getElementById('stats');
+  const wordCountEl = document.getElementById('wordCount');
+  const charCountEl = document.getElementById('charCount');
+  const readTimeEl = document.getElementById('readTime');
+
+  try {
+    // Get the currently active tab
+    const [tab] = await chrome.tabs.query({
+      active: true,
+      currentWindow: true
+    });
+
+    // Send a message to the content script running in that tab
+    const response = await chrome.tabs.sendMessage(tab.id, {
+      action: 'countWords'
+    });
+
+    if (response &amp;&amp; response.success) {
+      // Hide loading, show stats
+      resultDiv.style.display = 'none';
+      statsDiv.style.display = 'flex';
+
+      // Update the UI with the word count data
+      wordCountEl.textContent = response.wordCount.toLocaleString();
+      charCountEl.textContent = response.charCount.toLocaleString();
+      readTimeEl.textContent = response.readTime;
+    } else {
+      resultDiv.innerHTML = '&lt;span style="color: #e74c3c;"&gt;Could not count words on this page.&lt;/span&gt;';
+    }
+  } catch (error) {
+    resultDiv.innerHTML = '&lt;span style="color: #e74c3c;"&gt;Cannot access this page. Try a regular website.&lt;/span&gt;';
+  }
+});</code></pre>
+
+        <h3>Step 5: Content Script (content.js)</h3>
+
+<pre><code>// content.js - Runs inside the web page, counts words in the DOM
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'countWords') {
+    try {
+      // Get all visible text from the page body
+      const bodyText = document.body.innerText || '';
+
+      // Count words by splitting on whitespace and filtering empty strings
+      const words = bodyText.trim().split(/\s+/).filter(word => word.length > 0);
+      const wordCount = words.length;
+
+      // Count characters (excluding extra whitespace)
+      const charCount = bodyText.replace(/\s+/g, ' ').trim().length;
+
+      // Estimate reading time (average 238 words per minute)
+      const readTime = Math.max(1, Math.ceil(wordCount / 238));
+
+      sendResponse({
+        success: true,
+        wordCount: wordCount,
+        charCount: charCount,
+        readTime: readTime
+      });
+    } catch (error) {
+      sendResponse({
+        success: false,
+        error: error.message
+      });
+    }
+  }
+
+  // Return true to indicate we will send a response asynchronously
+  return true;
+});</code></pre>
+
+        <h3>Step 6: Service Worker (background.js)</h3>
+
+<pre><code>// background.js - Service worker for the Page Word Counter
+// For this simple extension, the service worker handles installation events.
+// As your extension grows, this is where you'd add context menus,
+// alarms, and cross-component coordination.
+
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === 'install') {
+    console.log('Page Word Counter installed successfully.');
+  } else if (details.reason === 'update') {
+    console.log('Page Word Counter updated to version',
+      chrome.runtime.getManifest().version);
+  }
+});</code></pre>
+
+        <h3>Testing Your Extension</h3>
+
+        <ol>
+            <li>Navigate to <code>chrome://extensions</code> and enable Developer mode.</li>
+            <li>Click "Load unpacked" and select your project folder.</li>
+            <li>If you see any errors, they'll appear in red on the extension card. Click "Errors" to see details.</li>
+            <li>Pin the extension to your toolbar.</li>
+            <li>Navigate to any web page (like a Wikipedia article or a news site).</li>
+            <li>Click your extension icon. You should see the word count, character count, and estimated reading time.</li>
+        </ol>
+
+        <div class="tip-box">
+            <strong>Pro tip:</strong> If the popup shows "Cannot access this page," you're probably on a Chrome internal page like <code>chrome://extensions</code> or <code>chrome://settings</code>. Content scripts can't run on Chrome's internal pages. Navigate to a regular website and try again.
+        </div>
+
+        <p>Congratulations. You've just built a working Chrome extension that solves a real problem. Every concept we used here &mdash; the manifest, popup UI, content script injection, and message passing &mdash; forms the foundation for much more complex extensions. The Zovo Word Counter that I ship to real users is built on this exact same architecture, just with more features layered on top.</p>
+
+        <hr>
+
+        <!-- Section 5: APIs -->
+        <h2 id="apis">5. Chrome Extension APIs Deep Dive</h2>
+
+        <p>Chrome provides a rich set of APIs that give extensions capabilities far beyond what regular web pages can do. Here are the APIs you'll use most often, with practical examples from real extensions I've built.</p>
+
+        <h3>chrome.storage &mdash; Persistent Data</h3>
+
+        <p>This is the API you'll use in virtually every extension. It provides two storage areas:</p>
+
+        <ul>
+            <li><strong><code>chrome.storage.local</code></strong> &mdash; Stores data locally on the device. Up to 10 MB by default (can be increased with the <code>"unlimitedStorage"</code> permission). Fast and reliable.</li>
+            <li><strong><code>chrome.storage.sync</code></strong> &mdash; Syncs data across the user's Chrome instances via their Google account. Limited to 100 KB total, 8 KB per item. Great for settings and preferences.</li>
+        </ul>
+
+<pre><code>// Save data
+await chrome.storage.local.set({
+  wordCountHistory: [
+    { url: 'https://example.com', count: 1542, date: Date.now() }
+  ],
+  settings: { darkMode: true, avgWpm: 238 }
+});
+
+// Read data
+const { wordCountHistory, settings } = await chrome.storage.local.get([
+  'wordCountHistory',
+  'settings'
+]);
+
+// Listen for changes (works across all extension components)
+chrome.storage.onChanged.addListener((changes, areaName) => {
+  if (changes.settings) {
+    console.log('Settings changed:', changes.settings.newValue);
+  }
+});</code></pre>
+
+        <h3>chrome.tabs &mdash; Tab Management</h3>
+
+        <p>Query, create, update, and manage browser tabs. Essential for extensions like tab managers, which make up several of the Zovo tools.</p>
+
+<pre><code>// Get the active tab
+const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+// Open a new tab
+await chrome.tabs.create({ url: 'https://example.com' });
+
+// Send a message to a specific tab's content script
+const response = await chrome.tabs.sendMessage(tab.id, {
+  action: 'getData'
+});
+
+// Listen for tab events in the service worker
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === 'complete') {
+    console.log('Tab finished loading:', tab.url);
+  }
+});</code></pre>
+
+        <h3>chrome.runtime &mdash; Extension Lifecycle and Messaging</h3>
+
+        <p>The glue that holds your extension together. Handles messaging between components, installation events, and extension metadata.</p>
+
+<pre><code>// Listen for messages from any part of the extension
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === 'ANALYZE_PAGE') {
+    // Process the request
+    const result = processAnalysis(message.data);
+    sendResponse({ success: true, result });
+  }
+  return true; // Keep the message channel open for async responses
+});
+
+// Send a message from content script to service worker
+const response = await chrome.runtime.sendMessage({
+  type: 'ANALYZE_PAGE',
+  data: { url: window.location.href }
+});
+
+// Get extension info
+const manifest = chrome.runtime.getManifest();
+console.log('Version:', manifest.version);</code></pre>
+
+        <h3>chrome.action &mdash; Toolbar Icon</h3>
+
+        <p>Controls your extension's icon in the toolbar. In MV3, this replaces both <code>chrome.browserAction</code> and <code>chrome.pageAction</code>.</p>
+
+<pre><code>// Set a badge (small text overlay on the icon)
+await chrome.action.setBadgeText({ text: '42' });
+await chrome.action.setBadgeBackgroundColor({ color: '#6C5CE7' });
+
+// Change the icon dynamically
+await chrome.action.setIcon({
+  path: { 16: 'icons/active-16.png', 48: 'icons/active-48.png' }
+});
+
+// Disable the extension icon for specific tabs
+await chrome.action.disable(tabId);</code></pre>
+
+        <h3>chrome.alarms &mdash; Scheduled Tasks</h3>
+
+        <p>In MV3, you can't use <code>setInterval</code> or <code>setTimeout</code> for long-running timers because the service worker terminates when idle. Use <code>chrome.alarms</code> instead.</p>
+
+<pre><code>// Create an alarm that fires every 30 minutes
+chrome.alarms.create('syncData', { periodInMinutes: 30 });
+
+// Create a one-time alarm that fires in 5 minutes
+chrome.alarms.create('reminder', { delayInMinutes: 5 });
+
+// Listen for alarm events
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === 'syncData') {
+    performSync();
+  }
+});</code></pre>
+
+        <h3>chrome.contextMenus &mdash; Right-Click Menus</h3>
+
+        <p>Add custom items to Chrome's right-click context menu. Create them in the service worker's <code>onInstalled</code> handler.</p>
+
+<pre><code>chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: 'countSelection',
+    title: 'Count words in selection',
+    contexts: ['selection']
+  });
+});
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId === 'countSelection') {
+    const wordCount = info.selectionText.trim().split(/\s+/).length;
+    // Show the result via badge or notification
+    chrome.action.setBadgeText({ text: String(wordCount), tabId: tab.id });
+  }
+});</code></pre>
+
+        <h3>chrome.notifications &mdash; Desktop Notifications</h3>
+
+<pre><code>chrome.notifications.create('reminder', {
+  type: 'basic',
+  iconUrl: 'src/icons/icon-128.png',
+  title: 'Word Counter',
+  message: 'You have read approximately 15,000 words today!'
+});</code></pre>
+
+        <h3>API Reference Table</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>API</th>
+                    <th>Use Case</th>
+                    <th>Permission Required</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>chrome.storage</code></td><td>Save settings, cache data</td><td><code>storage</code></td></tr>
+                <tr><td><code>chrome.tabs</code></td><td>Query/manage tabs</td><td><code>tabs</code> (for URL access)</td></tr>
+                <tr><td><code>chrome.runtime</code></td><td>Messaging, lifecycle events</td><td>None (built-in)</td></tr>
+                <tr><td><code>chrome.action</code></td><td>Toolbar icon, badge, popup</td><td>None (built-in)</td></tr>
+                <tr><td><code>chrome.alarms</code></td><td>Scheduled/periodic tasks</td><td><code>alarms</code></td></tr>
+                <tr><td><code>chrome.contextMenus</code></td><td>Right-click menu items</td><td><code>contextMenus</code></td></tr>
+                <tr><td><code>chrome.notifications</code></td><td>Desktop notifications</td><td><code>notifications</code></td></tr>
+                <tr><td><code>chrome.scripting</code></td><td>Programmatic script injection</td><td><code>scripting</code></td></tr>
+                <tr><td><code>chrome.sidePanel</code></td><td>Sidebar panel UI</td><td><code>sidePanel</code></td></tr>
+                <tr><td><code>chrome.declarativeNetRequest</code></td><td>Block/modify network requests</td><td><code>declarativeNetRequest</code></td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <!-- Section 6: Content Scripts -->
+        <h2 id="content-scripts">6. Content Scripts and DOM Manipulation</h2>
+
+        <p>Content scripts are the most powerful and most misunderstood part of Chrome extension development. They're the code that runs <em>inside</em> web pages, giving you access to the page's DOM. This is how extensions modify website behavior, inject UI elements, extract data, and change appearances.</p>
+
+        <h3>What Content Scripts Can (and Can't) Access</h3>
+
+        <p>Content scripts have <strong>full access to the page DOM</strong>. They can read elements, modify styles, add new nodes, and listen for DOM events. However, they run in an <strong>isolated world</strong> &mdash; they share the DOM with the host page but have their own JavaScript execution environment. This means:</p>
+
+        <ul>
+            <li>Your content script can call <code>document.querySelector()</code> and modify elements.</li>
+            <li>Your content script <strong>cannot</strong> access JavaScript variables defined by the page (and vice versa).</li>
+            <li>Your content script <strong>cannot</strong> call functions defined by the page.</li>
+            <li>The page's JavaScript <strong>cannot</strong> detect or interfere with your content script.</li>
+        </ul>
+
+        <p>This isolation is a security feature. It prevents malicious websites from tampering with your extension's code and prevents your extension from accidentally conflicting with the page's JavaScript.</p>
+
+        <h3>CSS Injection</h3>
+
+        <p>You can inject CSS in two ways: declaratively in the manifest or programmatically via <code>chrome.scripting</code>.</p>
+
+        <p><strong>Declarative (manifest.json):</strong></p>
+
+<pre><code>"content_scripts": [
+  {
+    "matches": ["https://*.example.com/*"],
+    "css": ["src/injected-styles.css"],
+    "js": ["src/content.js"],
+    "run_at": "document_start"
+  }
+]</code></pre>
+
+        <p><strong>Programmatic (from the service worker):</strong></p>
+
+<pre><code>await chrome.scripting.insertCSS({
+  target: { tabId: tab.id },
+  css: '.my-widget { position: fixed; bottom: 20px; right: 20px; z-index: 99999; }'
+});</code></pre>
+
+        <h3>Message Passing Between Content Script and Service Worker</h3>
+
+        <p>This is the communication backbone of any non-trivial extension. The pattern is straightforward:</p>
+
+<pre><code>// === In the content script (content.js) ===
+// Send a message to the service worker and await a response
+async function requestAnalysis(pageData) {
+  const response = await chrome.runtime.sendMessage({
+    type: 'ANALYZE',
+    payload: pageData
+  });
+  return response;
+}
+
+// Listen for messages from the service worker
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === 'HIGHLIGHT_WORDS') {
+    highlightWordsOnPage(message.words);
+    sendResponse({ success: true });
+  }
+  return true;
+});
+
+// === In the service worker (background.js) ===
+// Listen for messages from content scripts
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === 'ANALYZE') {
+    // sender.tab tells you which tab sent this message
+    const analysis = performAnalysis(message.payload);
+    sendResponse({ result: analysis });
+  }
+  return true;
+});
+
+// Send a message to a specific tab's content script
+async function notifyContentScript(tabId, words) {
+  await chrome.tabs.sendMessage(tabId, {
+    type: 'HIGHLIGHT_WORDS',
+    words: words
+  });
+}</code></pre>
+
+        <h3>Real Example: Injecting a Floating Widget</h3>
+
+        <p>One common pattern is injecting a floating UI widget into web pages. Here's how to build a small floating button that appears on every page and triggers an action when clicked:</p>
+
+<pre><code>// content.js - Inject a floating action button
+
+function createFloatingWidget() {
+  // Create the widget container
+  const widget = document.createElement('div');
+  widget.id = 'my-extension-widget';
+  widget.innerHTML = `
+    &lt;button id="my-extension-btn" title="Count words"&gt;
+      W
+    &lt;/button&gt;
+  `;
+
+  // Style it (using a unique ID to avoid CSS conflicts)
+  const style = document.createElement('style');
+  style.textContent = `
+    #my-extension-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 2147483647;
+      font-family: -apple-system, sans-serif;
+    }
+    #my-extension-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      background: #6C5CE7;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(108, 92, 231, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    #my-extension-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(108, 92, 231, 0.5);
+    }
+  `;
+
+  document.head.appendChild(style);
+  document.body.appendChild(widget);
+
+  // Add click handler
+  document.getElementById('my-extension-btn').addEventListener('click', () => {
+    const wordCount = document.body.innerText.trim().split(/\s+/).length;
+    alert('This page has approximately ' + wordCount.toLocaleString() + ' words.');
+  });
+}
+
+// Run when the DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', createFloatingWidget);
+} else {
+  createFloatingWidget();
+}</code></pre>
+
+        <div class="warning-box">
+            <strong>Important:</strong> Always use extremely high z-index values (like 2147483647, the max 32-bit integer) and highly specific selectors for injected elements. Websites use aggressive CSS that can override your styles. Namespace your IDs and classes to avoid collisions.
+        </div>
+
+        <hr>
+
+        <!-- Section 7: Service Workers -->
+        <h2 id="service-workers">7. Service Workers (Background Scripts) in MV3</h2>
+
+        <p>If content scripts are the hands of your extension, the service worker is the brain. It's the central coordinator that runs in the background, listens for browser events, manages state, and orchestrates communication between components. Understanding service workers is critical for building reliable MV3 extensions.</p>
+
+        <h3>Why Service Workers Instead of Background Pages?</h3>
+
+        <p>In MV2, extensions could have persistent background pages &mdash; always-on HTML documents that consumed memory even when idle. Google replaced these with service workers in MV3 to improve browser performance. A service worker is a JavaScript file (no HTML, no DOM) that Chrome loads when needed and terminates when idle.</p>
+
+        <p>This is the single biggest architectural change in MV3, and it catches many developers off guard.</p>
+
+        <h3>Service Worker Lifecycle</h3>
+
+        <p>The lifecycle has three key phases:</p>
+
+        <ol>
+            <li><strong>Install</strong> &mdash; Fires when the extension is first installed or updated. Use this to set up one-time resources like context menus or default storage values.</li>
+            <li><strong>Activate</strong> &mdash; Fires after installation. The service worker is now running and listening for events.</li>
+            <li><strong>Idle / Terminate</strong> &mdash; After approximately 30 seconds of inactivity (no pending events, no open message ports), Chrome terminates the service worker. It restarts automatically when a registered event fires.</li>
+        </ol>
+
+<pre><code>// background.js - Service worker lifecycle example
+
+// This runs every time the service worker starts (including restarts after idle)
+console.log('Service worker started');
+
+// This runs only on install or update
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === 'install') {
+    // First install: set default settings
+    chrome.storage.local.set({
+      settings: { enabled: true, theme: 'light' },
+      stats: { totalWordsAnalyzed: 0 }
+    });
+
+    // Create context menus
+    chrome.contextMenus.create({
+      id: 'analyzeSelection',
+      title: 'Analyze selected text',
+      contexts: ['selection']
+    });
+  }
+});
+
+// Event listeners must be registered at the top level
+// (not inside callbacks or conditionals)
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === 'complete' &amp;&amp; tab.url) {
+    handlePageLoad(tabId, tab.url);
+  }
+});
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  handleMessage(message, sender).then(sendResponse);
+  return true; // Keep message channel open for async response
+});
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === 'dailySync') {
+    performDailySync();
+  }
+});
+
+// Helper functions
+async function handlePageLoad(tabId, url) {
+  const { settings } = await chrome.storage.local.get('settings');
+  if (settings.enabled) {
+    await chrome.action.setBadgeText({ text: 'ON', tabId });
+  }
+}
+
+async function handleMessage(message, sender) {
+  switch (message.type) {
+    case 'GET_SETTINGS':
+      const { settings } = await chrome.storage.local.get('settings');
+      return { success: true, settings };
+    case 'UPDATE_STATS':
+      const { stats } = await chrome.storage.local.get('stats');
+      stats.totalWordsAnalyzed += message.count;
+      await chrome.storage.local.set({ stats });
+      return { success: true };
+    default:
+      return { success: false, error: 'Unknown message type' };
+  }
+}</code></pre>
+
+        <h3>The Critical Rule: Top-Level Event Registration</h3>
+
+        <p>This is the most common mistake I see developers make with MV3 service workers. <strong>All event listeners must be registered at the top level of your service worker file, synchronously, every time it starts.</strong></p>
+
+<pre><code>// CORRECT: Event listener registered at top level
+chrome.runtime.onMessage.addListener(handleMessage);
+
+// WRONG: Event listener registered conditionally
+if (someCondition) {
+  chrome.runtime.onMessage.addListener(handleMessage); // May be missed on restart
+}
+
+// WRONG: Event listener registered asynchronously
+chrome.storage.local.get('settings').then((data) => {
+  chrome.runtime.onMessage.addListener(handleMessage); // Too late, may be missed
+});</code></pre>
+
+        <p>When Chrome restarts your service worker to deliver an event, it re-executes the entire file. If a listener isn't registered by the time the event arrives, the event is dropped silently. Always register first, then check conditions inside the handler.</p>
+
+        <h3>Persistence Strategies</h3>
+
+        <p>Since service workers terminate when idle, you cannot rely on in-memory state. Here are the patterns I use across the Zovo extension suite:</p>
+
+        <ul>
+            <li><strong>Use <code>chrome.storage.local</code> for all state.</strong> Read it when you need it, write it when it changes. Treat the service worker as stateless.</li>
+            <li><strong>Use <code>chrome.storage.session</code></strong> for temporary state that should survive service worker restarts but not browser restarts. This API was added specifically for MV3.</li>
+            <li><strong>Use <code>chrome.alarms</code></strong> for periodic tasks instead of <code>setInterval</code>. Alarms persist across service worker restarts and even browser restarts.</li>
+            <li><strong>Keep open message ports</strong> if you need to prevent termination temporarily. An active <code>chrome.runtime.connect()</code> port keeps the service worker alive as long as the port is open.</li>
+        </ul>
+
+        <div class="tip-box">
+            <strong>Pro tip:</strong> When I'm building an extension that requires frequent background computation (like Zovo's Tab Suspender, which monitors tab memory usage), I use <code>chrome.alarms</code> with a 1-minute interval combined with <code>chrome.storage.session</code> for hot data. This pattern keeps the extension responsive without fighting the service worker lifecycle.
+        </div>
+
+        <hr>
+
+        <!-- Section 8: Permissions -->
+        <h2 id="permissions">8. Permissions: Request the Minimum</h2>
+
+        <p>Permissions are the trust contract between your extension and its users. Every permission you request is displayed to the user during installation as a warning. Request too many and users will not install your extension. Request unnecessary ones and Google may reject your Web Store submission.</p>
+
+        <p>After publishing 16 extensions, I've learned this lesson the hard way: <strong>less is more</strong>. The Zovo Tab Suspender uses only <code>tabs</code> and <code>storage</code> &mdash; no host permissions at all. It can manage and suspend tabs without ever reading page content. That minimal permission set is a competitive advantage because users trust it instantly.</p>
+
+        <h3>activeTab: Your Best Friend</h3>
+
+        <p>The <code>activeTab</code> permission is the most important permission in the MV3 model. It grants temporary access to the currently active tab <strong>only when the user explicitly interacts with your extension</strong> (clicking the icon, using a keyboard shortcut, or selecting a context menu item). Access is revoked when the user navigates away or switches tabs.</p>
+
+        <p>This replaces broad host permissions for most use cases. Instead of requesting access to all websites all the time, <code>activeTab</code> says "I only need access when the user asks for it." Google loves this, users trust it, and it covers about 80% of extension use cases.</p>
+
+        <h3>Optional Permissions</h3>
+
+        <p>For features that not every user needs, request permissions at runtime using <code>chrome.permissions.request()</code>. This keeps your installation warnings minimal and only asks for elevated access when the user opts into a feature.</p>
+
+<pre><code>// In your popup or options page
+async function enableAdvancedFeature() {
+  const granted = await chrome.permissions.request({
+    permissions: ['bookmarks'],
+    origins: ['https://api.example.com/*']
+  });
+
+  if (granted) {
+    // Permission granted - enable the feature
+    await chrome.storage.local.set({ advancedMode: true });
+    showSuccess('Advanced mode enabled!');
+  } else {
+    // Permission denied - gracefully handle it
+    showInfo('Advanced mode requires bookmark access to work.');
+  }
+}</code></pre>
+
+        <p>Declare optional permissions in your manifest:</p>
+
+<pre><code>{
+  "permissions": ["storage", "activeTab"],
+  "optional_permissions": ["bookmarks", "history"],
+  "optional_host_permissions": ["https://api.example.com/*"]
+}</code></pre>
+
+        <h3>Common Permissions Reference</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Permission</th>
+                    <th>What It Unlocks</th>
+                    <th>Trust Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>activeTab</code></td><td>Temporary access to current tab on user action</td><td>Low (very trustworthy)</td></tr>
+                <tr><td><code>storage</code></td><td>chrome.storage API for persistent data</td><td>None (no warning shown)</td></tr>
+                <tr><td><code>alarms</code></td><td>Scheduled background tasks</td><td>None (no warning shown)</td></tr>
+                <tr><td><code>tabs</code></td><td>Read tab URL, title, and status</td><td>Low</td></tr>
+                <tr><td><code>contextMenus</code></td><td>Right-click menu items</td><td>None (no warning shown)</td></tr>
+                <tr><td><code>notifications</code></td><td>Desktop notifications</td><td>Low</td></tr>
+                <tr><td><code>scripting</code></td><td>Programmatic script/CSS injection</td><td>Medium</td></tr>
+                <tr><td><code>bookmarks</code></td><td>Read and modify bookmarks</td><td>Medium</td></tr>
+                <tr><td><code>history</code></td><td>Read browsing history</td><td>High</td></tr>
+                <tr><td><code>&lt;all_urls&gt;</code></td><td>Access to all websites</td><td>Very high (triggers extra review)</td></tr>
+                <tr><td><code>downloads</code></td><td>Manage downloads</td><td>Medium</td></tr>
+                <tr><td><code>declarativeNetRequest</code></td><td>Block/redirect network requests</td><td>Medium-High</td></tr>
+            </tbody>
+        </table>
+
+        <div class="tip-box">
+            <strong>Pro tip:</strong> Before you add a permission to your manifest, ask yourself: "Can I achieve this with <code>activeTab</code> or <code>chrome.scripting.executeScript</code> instead?" Nine times out of ten, the answer is yes. Your installation rate will thank you.
+        </div>
+
+        <hr>
+
+        <!-- Section 9: Debugging -->
+        <h2 id="debugging">9. Debugging and Testing</h2>
+
+        <p>Debugging Chrome extensions can be confusing because your code runs in multiple separate contexts &mdash; the popup, the service worker, content scripts, and the options page each have their own developer tools window. Here's how to debug each one efficiently.</p>
+
+        <h3>Inspecting the Popup</h3>
+
+        <p>Right-click your extension's toolbar icon and select <strong>"Inspect popup"</strong>. This opens DevTools for the popup's HTML page. You can view the DOM, check network requests, and see console output. Note that the popup closes when it loses focus, and closing it will close the DevTools too. A workaround is to undock DevTools to a separate window first.</p>
+
+        <h3>Inspecting the Service Worker</h3>
+
+        <p>Go to <code>chrome://extensions</code>, find your extension, and click the <strong>"service worker"</strong> link under "Inspect views." This opens DevTools attached to your service worker. You can see console logs, set breakpoints, and debug event handlers. If the service worker has terminated, clicking this link will restart it.</p>
+
+        <h3>Inspecting Content Scripts</h3>
+
+        <p>Open the regular DevTools on any page (F12 or right-click and select "Inspect"). Your content script's console output appears in the same console as the page's output. To set breakpoints in your content script, go to the Sources panel, expand the <strong>"Content scripts"</strong> section in the file navigator, and find your extension's files there.</p>
+
+        <h3>Common Errors and Fixes</h3>
+
+        <ul>
+            <li><strong>"Unchecked runtime.lastError: Could not establish connection. Receiving end does not exist."</strong> &mdash; This means you're sending a message to a tab that doesn't have your content script loaded. Common causes: the tab is a Chrome internal page, the content script hasn't loaded yet, or the page was loaded before the extension was installed. Fix: wrap <code>sendMessage</code> in a try/catch and handle the error gracefully.</li>
+            <li><strong>"Service worker registration failed."</strong> &mdash; Syntax error in your <code>background.js</code> file. Check the error details for the line number. Even a missing comma in the service worker will prevent it from loading.</li>
+            <li><strong>Content script not running on a page.</strong> &mdash; Check your <code>matches</code> pattern in the manifest. After changing the manifest, you must reload the extension AND refresh the target page.</li>
+            <li><strong>Popup shows a blank white page.</strong> &mdash; Usually a wrong file path in <code>default_popup</code>. Paths are relative to the manifest file. Use the DevTools network panel to see which files failed to load.</li>
+            <li><strong>"Cannot read properties of undefined"</strong> &mdash; Often happens when <code>chrome.storage.local.get()</code> returns an empty object because the key hasn't been set yet. Always provide default values: <code>const { settings = {} } = await chrome.storage.local.get('settings');</code></li>
+        </ul>
+
+        <h3>Debugging Strategies</h3>
+
+<pre><code>// I use a simple debug utility in every extension
+const DEBUG = true;
+
+function log(...args) {
+  if (DEBUG) {
+    console.log('[MyExtension]', ...args);
+  }
+}
+
+function logError(...args) {
+  console.error('[MyExtension ERROR]', ...args);
+}
+
+// Tag messages by component for easy filtering
+// In content.js:
+log('[Content]', 'Page loaded, word count:', wordCount);
+
+// In background.js:
+log('[SW]', 'Message received:', message.type);
+
+// In popup.js:
+log('[Popup]', 'Displaying results:', data);</code></pre>
+
+        <div class="tip-box">
+            <strong>Pro tip:</strong> In Chrome DevTools, use the <strong>Console filter</strong> to search for your extension's tag (like <code>[MyExtension]</code>). This cuts through the noise on pages that have heavy console output of their own. I prefix all Zovo extension logs with the extension name so I can filter instantly.
+        </div>
+
+        <hr>
+
+        <!-- Section 10: Publishing -->
+        <h2 id="publishing">10. Publishing to Chrome Web Store</h2>
+
+        <p>You've built and tested your extension. Now it's time to put it in front of users. Publishing to the Chrome Web Store is straightforward, but there are optimization techniques I've learned from publishing 16 extensions that can dramatically affect your visibility and install rate.</p>
+
+        <h3>Developer Registration</h3>
+
+        <p>Before you can publish anything, you need a Chrome Web Store developer account:</p>
+
+        <ol>
+            <li>Go to the <a href="https://chrome.google.com/webstore/devconsole" target="_blank" rel="noopener">Chrome Web Store Developer Dashboard</a>.</li>
+            <li>Sign in with your Google account.</li>
+            <li>Pay the <strong>one-time $5 registration fee</strong>.</li>
+            <li>Verify your developer identity (Google may require ID verification for new accounts).</li>
+        </ol>
+
+        <p>That's it. No recurring fees. You can publish unlimited extensions under one account.</p>
+
+        <h3>Preparing Your Store Listing</h3>
+
+        <p>Your listing has several components, each of which affects whether users click "Add to Chrome":</p>
+
+        <p><strong>Extension name:</strong> You have 75 characters, but aim for under 45. Lead with the primary function. "Page Word Counter - Instant Text Analysis" is better than "My Cool Extension v3 - Word Counter Tool for Chrome Browser." Don't keyword stuff &mdash; Google penalizes it.</p>
+
+        <p><strong>Short description:</strong> 132 characters. This appears in search results. Lead with the problem you solve: "Count words, characters, and reading time on any web page. One click, instant results."</p>
+
+        <p><strong>Detailed description:</strong> Up to 16,000 characters. Structure it like a landing page:</p>
+
+        <ol>
+            <li>Lead with the user's pain point or question.</li>
+            <li>Describe what the extension does in 2-3 sentences.</li>
+            <li>List features as bullet points.</li>
+            <li>Mention what the extension does NOT do (builds trust).</li>
+            <li>Include a changelog for updates.</li>
+        </ol>
+
+        <h3>Title Optimization</h3>
+
+        <p>From my experience publishing 16 extensions: <strong>put your primary keyword in the first 36 characters of your title.</strong> This is what appears in Chrome Web Store search results before truncation. "Word Counter" at the start beats "Ultimate Swiss Army Knife of Word Counting" every time.</p>
+
+        <h3>Icons and Screenshots</h3>
+
+        <ul>
+            <li><strong>Extension icon:</strong> 128x128 PNG. Must be clear and recognizable at 16x16. Avoid text in the icon &mdash; it's unreadable at small sizes. Use a simple, bold symbol with your brand color.</li>
+            <li><strong>Screenshots:</strong> Up to 5 images at 1280x800 or 640x400 pixels. Show your extension <em>in action</em>. The first screenshot is the most important &mdash; it appears in search results. Add brief captions or annotations that explain what the user is seeing.</li>
+            <li><strong>Promotional images:</strong> Optional but recommended. Small tile (440x280), large tile (920x680), and marquee (1400x560). These are used for featured placement.</li>
+        </ul>
+
+        <h3>Packaging Your Extension</h3>
+
+        <p>Create a zip file of your extension directory (the folder containing <code>manifest.json</code>). Exclude any development files:</p>
+
+<pre><code># Create a clean zip for the Chrome Web Store
+zip -r my-extension.zip . \
+  -x "*.git*" \
+  -x "node_modules/*" \
+  -x "*.map" \
+  -x ".DS_Store" \
+  -x "tests/*" \
+  -x ".eslintrc*" \
+  -x "package*.json" \
+  -x "*.md"</code></pre>
+
+        <h3>The Review Process</h3>
+
+        <p>After uploading, your extension enters Google's review queue. Here's what to expect:</p>
+
+        <ul>
+            <li><strong>First submission:</strong> Typically 1-3 business days. Can take up to a week if your extension requests sensitive permissions.</li>
+            <li><strong>Updates:</strong> Usually reviewed within 1-2 business days. Minor updates (description changes, icon updates) are faster.</li>
+            <li><strong>Rejection reasons:</strong> Common ones include requesting unnecessary permissions, missing privacy policy (required if you handle user data), and misleading description. Google emails you specific reasons and you can fix and resubmit.</li>
+        </ul>
+
+        <h3>Chrome Web Store Optimization Tips</h3>
+
+        <p>After managing 16 live extensions, here are the patterns I've observed that actually move the needle:</p>
+
+        <ul>
+            <li><strong>Respond to reviews.</strong> Extensions with developer responses have higher trust signals. Thank positive reviewers and address negative ones constructively.</li>
+            <li><strong>Publish updates regularly.</strong> Even small improvements signal to Google that the extension is maintained. I aim for at least one update every 2-3 months per extension.</li>
+            <li><strong>Keep your permission list short.</strong> Fewer permissions means a less scary installation dialog, which means higher conversion from listing page to installed user.</li>
+            <li><strong>Use the categories wisely.</strong> Pick the most specific category that fits. "Productivity" is overcrowded. If "Developer Tools" fits, use it.</li>
+            <li><strong>Localize if possible.</strong> Even just translating your store listing (not the extension itself) to 3-4 major languages can significantly expand your reach.</li>
+        </ul>
+
+        <div class="tip-box">
+            <strong>Pro tip:</strong> Track your Chrome Web Store performance using the Developer Dashboard analytics. Pay attention to the "Impressions to Install" ratio. If people see your listing but don't install, your screenshots or permission warnings need work. If people install but quickly uninstall, your extension isn't delivering on its promise.
+        </div>
+
+        <hr>
+
+        <!-- Section 11: Advanced -->
+        <h2 id="advanced">11. Beyond the Basics: Advanced Patterns</h2>
+
+        <p>Once you've mastered the fundamentals, these advanced patterns will help you build production-grade extensions. These are techniques I use across the Zovo suite to handle real-world complexity.</p>
+
+        <h3>Cross-Extension Messaging</h3>
+
+        <p>If you build a suite of extensions (like Zovo's 16 tools), they can communicate with each other using <code>chrome.runtime.sendMessage</code> with an explicit extension ID:</p>
+
+<pre><code>// Send a message to a different extension
+chrome.runtime.sendMessage(
+  'abcdefghijklmnopabcdefghijklmnop', // Target extension ID
+  { type: 'REQUEST_DATA', key: 'userPrefs' },
+  (response) => {
+    console.log('Response from other extension:', response);
+  }
+);
+
+// In the receiving extension's service worker:
+chrome.runtime.onMessageExternal.addListener(
+  (message, sender, sendResponse) => {
+    // Verify the sender is one of your own extensions
+    const trustedExtensions = ['abcdef...', 'ghijkl...'];
+    if (trustedExtensions.includes(sender.id)) {
+      // Handle the request
+      sendResponse({ data: 'Here you go' });
+    }
+  }
+);</code></pre>
+
+        <h3>Native Messaging</h3>
+
+        <p>Chrome extensions can communicate with native applications installed on the user's computer. This is how extensions like password managers bridge the browser-to-desktop gap:</p>
+
+<pre><code>// Connect to a native application
+const port = chrome.runtime.connectNative('com.mycompany.myapp');
+
+port.onMessage.addListener((message) => {
+  console.log('Received from native app:', message);
+});
+
+port.postMessage({ action: 'getSystemInfo' });</code></pre>
+
+        <p>Native messaging requires a native messaging host manifest installed on the user's machine, which makes it suitable for enterprise or developer-focused tools rather than general consumer extensions.</p>
+
+        <h3>DevTools Panels</h3>
+
+        <p>You can add custom panels to Chrome DevTools &mdash; ideal for developer-focused extensions:</p>
+
+<pre><code>// devtools.js - registered in manifest as "devtools_page"
+chrome.devtools.panels.create(
+  'My Panel',          // Panel title
+  'icons/icon-16.png', // Icon
+  'panel.html',        // HTML page for the panel
+  (panel) => {
+    panel.onShown.addListener((window) => {
+      // Panel is now visible
+    });
+  }
+);</code></pre>
+
+        <h3>Side Panels</h3>
+
+        <p>Introduced in Chrome 114 (2023) and now fully mature in 2026, side panels are one of the most useful additions to the extension platform. They provide a persistent sidebar UI that doesn't block the page content:</p>
+
+<pre><code>// manifest.json
+{
+  "permissions": ["sidePanel"],
+  "side_panel": {
+    "default_path": "src/sidepanel.html"
+  }
+}
+
+// background.js - Open the side panel programmatically
+chrome.action.onClicked.addListener(async (tab) => {
+  await chrome.sidePanel.open({ windowId: tab.windowId });
+});
+
+// You can also set the panel per-tab
+chrome.sidePanel.setOptions({
+  tabId: tab.id,
+  path: 'src/sidepanel-custom.html',
+  enabled: true
+});</code></pre>
+
+        <p>I've been migrating several Zovo extensions from popup-based to side panel-based UIs. The user experience is dramatically better for tools that need ongoing visibility while the user interacts with the page.</p>
+
+        <h3>Internationalization (i18n)</h3>
+
+        <p>Chrome has built-in support for translating your extension. Create a <code>_locales</code> directory with subdirectories for each language:</p>
+
+<pre><code>_locales/
+  en/
+    messages.json
+  es/
+    messages.json
+  ja/
+    messages.json</code></pre>
+
+<pre><code>// _locales/en/messages.json
+{
+  "extensionName": {
+    "message": "Page Word Counter",
+    "description": "The name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Count words on any web page with one click.",
+    "description": "The description of the extension"
+  },
+  "wordCount": {
+    "message": "$COUNT$ words",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}
+
+// In manifest.json, reference translations:
+{
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en"
+}
+
+// In JavaScript:
+const label = chrome.i18n.getMessage('wordCount', [String(count)]);</code></pre>
+
+        <h3>TypeScript for Extensions</h3>
+
+        <p>For larger extensions, TypeScript is a game-changer. It catches errors at compile time and provides excellent autocompletion for Chrome APIs. Here's a minimal setup:</p>
+
+<pre><code># Install TypeScript and Chrome type definitions
+npm init -y
+npm install -D typescript @anthropic-ai/chrome-types
+# Or use the community types:
+npm install -D typescript @anthropic-ai/chrome-types
+
+# For most projects, the community types package works well:
+npm install -D typescript @anthropic-ai/chrome-types</code></pre>
+
+        <p>A more practical setup for Chrome extension TypeScript development:</p>
+
+<pre><code># Initialize your project
+npm init -y
+npm install -D typescript
+
+# Create tsconfig.json
+npx tsc --init</code></pre>
+
+<pre><code>// tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ES2020",
+    "strict": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "moduleResolution": "node"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+
+// Now you get type safety for Chrome APIs:
+// src/background.ts
+chrome.runtime.onInstalled.addListener((details: chrome.runtime.InstalledDetails) => {
+  if (details.reason === 'install') {
+    initializeDefaults();
+  }
+});
+
+interface WordCountMessage {
+  type: 'COUNT_WORDS';
+  tabId: number;
+}
+
+interface WordCountResponse {
+  success: boolean;
+  count?: number;
+  error?: string;
+}
+
+chrome.runtime.onMessage.addListener(
+  (message: WordCountMessage, sender, sendResponse: (r: WordCountResponse) => void) => {
+    if (message.type === 'COUNT_WORDS') {
+      countWordsInTab(message.tabId).then(sendResponse);
+    }
+    return true;
+  }
+);</code></pre>
+
+        <p>For the Zovo extensions, I use TypeScript for every extension larger than a single file. The upfront cost of setting up the build step pays for itself the first time TypeScript catches a misspelled API method name.</p>
+
+        <hr>
+
+        <!-- Section 12: FAQ -->
+        <h2 id="faq">12. Frequently Asked Questions</h2>
+
+        <div class="faq-section">
+            <div class="faq-item">
+                <h3>How long does it take to create a Chrome extension?</h3>
+                <p>A simple Chrome extension can be created in 30 minutes to 2 hours. More complex extensions with background scripts, content scripts, and API integrations typically take 1-4 weeks. I've built extensions ranging from single-afternoon projects to multi-month tools with thousands of users. The word counter we built in this guide took about 20 minutes, and it's a genuinely useful tool.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Do I need to pay to publish a Chrome extension?</h3>
+                <p>There is a one-time $5 developer registration fee to publish on the Chrome Web Store. After that, publishing and updates are free. There are no ongoing fees unless you choose to offer paid extensions through the Chrome Web Store payment system. It's one of the most affordable distribution channels for software.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What programming language do Chrome extensions use?</h3>
+                <p>Chrome extensions use standard web technologies: HTML, CSS, and JavaScript. You can also use TypeScript (which compiles to JavaScript), and many developers use frameworks like React or Svelte for complex popup or options page UIs. The <code>manifest.json</code> file uses JSON. No special programming language or SDK is required &mdash; if you know web development, you know Chrome extension development.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What is Manifest V3 and why does it matter?</h3>
+                <p>Manifest V3 (MV3) is Chrome's current extension platform, replacing Manifest V2. It introduces service workers instead of persistent background pages, <code>declarativeNetRequest</code> instead of blocking <code>webRequest</code>, and a stricter Content Security Policy. All new extensions must use MV3 &mdash; the Chrome Web Store no longer accepts MV2 submissions. If you're learning to build extensions today, MV3 is the only version you need to learn.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can I make money from a Chrome extension?</h3>
+                <p>Yes. Common monetization strategies include freemium models (free base features + paid pro features), one-time payments through the Chrome Web Store, subscription plans via Stripe or a similar payment processor, and affiliate partnerships. Extensions with 10,000+ active users can generate meaningful recurring revenue. My advice: focus on solving a real problem first. Monetization follows utility. An extension that 1,000 people love is more monetizable than one that 100,000 people feel indifferent about.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can Chrome extensions access data on every website?</h3>
+                <p>Only if you request host permissions for those sites in your manifest. Best practice is to use the <code>activeTab</code> permission, which grants access only to the currently active tab when the user explicitly clicks your extension. Broad host permissions like <code>&lt;all_urls&gt;</code> trigger extra security review from Google and display alarming warnings to users during installation. Only request broad access if your extension genuinely needs it (like an ad blocker or accessibility tool).</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What happens when my service worker goes idle?</h3>
+                <p>In Manifest V3, service workers terminate after approximately 30 seconds of inactivity. When an event fires (like a message, alarm, or tab update), Chrome restarts the service worker automatically. You need to persist all important state using <code>chrome.storage</code> and register event listeners at the top level of your service worker file. Never rely on in-memory global variables for important data.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Is it possible to migrate an existing MV2 extension to MV3?</h3>
+                <p>Yes, and it's required if you want to keep your extension on the Chrome Web Store. The main changes are: converting your background page to a service worker, replacing <code>chrome.browserAction</code> with <code>chrome.action</code>, updating your Content Security Policy to disallow remote code, and replacing blocking <code>webRequest</code> calls with <code>declarativeNetRequest</code> rules. Google provides an <a href="https://developer.chrome.com/docs/extensions/develop/migrate" target="_blank" rel="noopener">official migration guide</a>. I've migrated multiple extensions and the process typically takes 1-3 days per extension.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Can I use React, Vue, or Svelte to build a Chrome extension?</h3>
+                <p>Absolutely. Your popup, options page, and side panel are just HTML pages &mdash; you can use any frontend framework to build them. The most common setup is a Vite or webpack build that compiles your framework code into static HTML/JS/CSS files that you include in the extension package. For the Zovo extensions, I use vanilla JavaScript for simple tools and structured frameworks for complex UIs. Choose based on complexity, not convention.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How do I update my Chrome extension after publishing?</h3>
+                <p>Increment the <code>version</code> field in your <code>manifest.json</code>, create a new zip file, and upload it through the Chrome Web Store Developer Dashboard. Click "Update" on your extension's listing, upload the new zip, and submit for review. Updates typically take 1-2 business days to review. Chrome automatically updates installed extensions for users (usually within a few hours of approval). You don't need to notify users manually.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What are the size limits for a Chrome extension?</h3>
+                <p>The Chrome Web Store accepts extension packages (zip files) up to 500 MB, but you should aim to keep your extension as small as possible. Most extensions are well under 1 MB. Smaller extensions install faster and consume fewer resources. Avoid bundling large assets like images or fonts unless absolutely necessary. Use Chrome's built-in APIs and system fonts where possible.</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Section 13: Conclusion -->
+        <h2 id="conclusion">13. Conclusion</h2>
+
+        <p>You now have everything you need to build a Chrome extension from scratch, test it, debug it, and publish it to the Chrome Web Store. Let me summarize the key steps of creating a Chrome extension from start to finish:</p>
+
+        <ol>
+            <li><strong>Plan your architecture.</strong> Decide which components you need: popup, content scripts, service worker, side panel. Draw the communication flow between them.</li>
+            <li><strong>Start with a minimal manifest.json.</strong> Get the basic structure loading in Chrome before adding features. Validate early and often.</li>
+            <li><strong>Build incrementally.</strong> Get one feature working end-to-end before starting the next. The word counter we built in this guide follows this principle &mdash; it does one thing well.</li>
+            <li><strong>Use message passing for cross-component communication.</strong> Content scripts talk to the service worker via <code>chrome.runtime.sendMessage</code>. The service worker coordinates everything.</li>
+            <li><strong>Request minimal permissions.</strong> Use <code>activeTab</code> wherever possible. Request optional permissions at runtime for advanced features.</li>
+            <li><strong>Debug systematically.</strong> Know which DevTools window corresponds to which component. Use tagged console logs for filtering.</li>
+            <li><strong>Optimize your Web Store listing.</strong> Put keywords in the first 36 characters of your title. Lead your description with the user's problem. Use clear, annotated screenshots.</li>
+            <li><strong>Iterate based on user feedback.</strong> Respond to reviews. Ship updates regularly. A maintained extension outranks an abandoned one.</li>
+        </ol>
+
+        <p>Creating a Chrome extension is one of the highest-leverage things a web developer can do. You're building software that plugs directly into the tool people spend most of their working day inside. The distribution is built in, the development tools are free, and the skills are the same ones you already have.</p>
+
+        <p>I've been building Chrome extensions professionally for over a decade, and I still find the platform genuinely exciting. Every few months, Chrome ships new APIs (side panels, reading list access, user scripts) that open up possibilities that didn't exist before. The Zovo suite started as a single tab manager and grew into 16 extensions because each one solved a real problem that users told me about.</p>
+
+        <p>If you want to see how production Chrome extensions are structured, explore the <a href="https://zovo.one">Zovo extension suite</a>. There are 16 Chrome extensions covering productivity, developer tools, and content analysis &mdash; all built with the same patterns and principles described in this guide. They're a living example of what's possible when you take Chrome extension development seriously.</p>
+
+        <p>Now go build something. Start with the word counter from section 4, modify it to do something you actually need, and ship it. The Chrome Web Store is $5 and 30 minutes away.</p>
+
+        <div class="tip-box">
+            <strong>Need help building a Chrome extension?</strong> I'm available for consulting and custom development. With $400K+ completed on Upwork at a 100% success rate and 16 shipped extensions, I can help you architect, build, and ship your extension. Visit <a href="https://zovo.one">zovo.one</a> or find me on <a href="https://www.upwork.com/freelancers/michaellip" target="_blank" rel="noopener">Upwork</a>.
+        </div>
+
+    </article>
+    <footer class="footer"><div class="footer-inner">Built by Michael Lip &mdash; More at <a href="https://zovo.one">zovo.one</a></div></footer>
+</body>
+</html>
