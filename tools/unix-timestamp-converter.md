@@ -520,6 +520,8 @@ author: Michael Lip
     <p class="ut-intro">Convert Unix timestamps to human-readable dates and back. See results in UTC, your local timezone, and ISO 8601 -- all processed in your browser with nothing sent to a server.</p>
   </div>
 
+  <p style="color:#8888aa;font-size:0.85rem;margin-bottom:2rem;">Last updated: March 2026 | Free to use, no signup required</p>
+
   <!-- Live Current Timestamp -->
   <div class="ut-live" onclick="utCopyLive()" title="Click to copy current timestamp">
     <div class="ut-live-label">Current Unix Timestamp</div>
@@ -755,6 +757,22 @@ author: Michael Lip
 <a href="/guides/creating-a-chrome-extension/" style="color: #1d1d1f; text-decoration: none; font-size: 0.95rem; font-weight: 500;">How to Create a Chrome Extension &rarr;</a>
 </div>
 
+<div style="margin-top:3rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;">
+<h2 style="color:#6C5CE7;font-size:1.3rem;margin-bottom:1rem;">Related Tools</h2>
+<ul style="list-style:none;padding:0;margin:0;">
+<li style="margin-bottom:0.5rem;"><a href="/tools/cron-expression-generator/" style="color:#00ff88;text-decoration:none;">Cron Expression Generator</a> - Build cron expressions visually</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/json-formatter/" style="color:#00ff88;text-decoration:none;">JSON Formatter</a> - Format and validate JSON data</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/uuid-generator/" style="color:#00ff88;text-decoration:none;">UUID Generator</a> - Generate random UUID v4 values</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/base64-encoder-decoder/" style="color:#00ff88;text-decoration:none;">Base64 Encoder Decoder</a> - Encode and decode Base64 strings</li>
+</ul>
+</div>
+
+<div style="margin-top:2rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;display:flex;gap:1rem;align-items:center;">
+<div style="width:48px;height:48px;border-radius:50%;background:#6C5CE7;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;">ML</div>
+<div><div style="color:#e0e0e0;font-weight:600;">Michael Lip</div><div style="color:#8888aa;font-size:0.85rem;">Developer and tools engineer at <a href="https://zovo.one" style="color:#6C5CE7;">Zovo</a>. Building free developer and productivity tools.</div></div>
+</div>
+
+
   <footer style="text-align: center; padding: 2rem 0; color: #8888a0; font-size: 0.85rem; border-top: 1px solid #2a2a3a; margin-top: 3rem;">
     <p>Built by <a href="https://zovo.one" style="color: #6C5CE7; text-decoration: none;">Michael Lip</a>. More tools at <a href="https://zovo.one/tools" style="color: #6C5CE7; text-decoration: none;">zovo.one</a></p>
   </footer>
@@ -958,4 +976,37 @@ author: Michael Lip
   document.getElementById("utDay").value = now.getUTCDate();
 
 })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Unix Timestamp Converter",
+      "url": "https://theluckystrike.github.io/tools/unix-timestamp-converter/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Person", "name": "Michael Lip", "url": "https://zovo.one" },
+      "datePublished": "2026-03-19",
+      "dateModified": "2026-03-19"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theluckystrike.github.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://theluckystrike.github.io/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "Unix Timestamp Converter", "item": "https://theluckystrike.github.io/tools/unix-timestamp-converter/" }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "Zovo",
+      "url": "https://zovo.one",
+      "logo": "https://zovo.one/favicon.ico"
+    }
+  ]
+}
 </script>

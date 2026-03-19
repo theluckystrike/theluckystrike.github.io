@@ -136,6 +136,8 @@ author: Michael Lip
 <p class="qr-intro">Generate scannable QR codes for URLs, text, WiFi credentials, contacts, email, and phone numbers. Customize colors, add your logo, pick the error correction level, and download as PNG or SVG. Everything runs in your browser -- nothing is uploaded anywhere.</p>
 </div>
 
+  <p style="color:#8888aa;font-size:0.85rem;margin-bottom:2rem;">Last updated: March 2026 | Free to use, no signup required</p>
+
 <div class="qr-mode-switch">
 <button class="qr-mode-btn active" onclick="qrSetMode('single')">Single QR</button>
 <button class="qr-mode-btn" onclick="qrSetMode('bulk')">Bulk Mode</button>
@@ -331,6 +333,22 @@ author: Michael Lip
 </div>
 </div>
 </div>
+
+<div style="margin-top:3rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;">
+<h2 style="color:#6C5CE7;font-size:1.3rem;margin-bottom:1rem;">Related Tools</h2>
+<ul style="list-style:none;padding:0;margin:0;">
+<li style="margin-bottom:0.5rem;"><a href="/tools/barcode-generator/" style="color:#00ff88;text-decoration:none;">Barcode Generator</a> - Create barcodes in multiple formats</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/password-generator/" style="color:#00ff88;text-decoration:none;">Password Generator</a> - Generate secure random passwords</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/color-picker/" style="color:#00ff88;text-decoration:none;">Color Picker</a> - Extract colors from images</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/ai-detector/" style="color:#00ff88;text-decoration:none;">AI Content Detector</a> - Analyze text for AI-generated patterns</li>
+</ul>
+</div>
+
+<div style="margin-top:2rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;display:flex;gap:1rem;align-items:center;">
+<div style="width:48px;height:48px;border-radius:50%;background:#6C5CE7;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;">ML</div>
+<div><div style="color:#e0e0e0;font-weight:600;">Michael Lip</div><div style="color:#8888aa;font-size:0.85rem;">Developer and tools engineer at <a href="https://zovo.one" style="color:#6C5CE7;">Zovo</a>. Building free developer and productivity tools.</div></div>
+</div>
+
 
 <footer style="text-align:center;padding:2rem 0;color:var(--qr-muted);font-size:0.85rem;border-top:1px solid var(--qr-border);margin-top:3rem;">
 <p>Built by <a href="https://zovo.one" style="color:var(--qr-primary);text-decoration:none;">Michael Lip</a> at <a href="https://zovo.one" style="color:var(--qr-primary);text-decoration:none;">zovo.one</a></p>
@@ -1348,4 +1366,37 @@ renderHistory();
 qrGenerate();
 
 })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "QR Code Generator",
+      "url": "https://theluckystrike.github.io/tools/qr-code-generator/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Person", "name": "Michael Lip", "url": "https://zovo.one" },
+      "datePublished": "2026-03-19",
+      "dateModified": "2026-03-19"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theluckystrike.github.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://theluckystrike.github.io/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "QR Code Generator", "item": "https://theluckystrike.github.io/tools/qr-code-generator/" }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "Zovo",
+      "url": "https://zovo.one",
+      "logo": "https://zovo.one/favicon.ico"
+    }
+  ]
+}
 </script>

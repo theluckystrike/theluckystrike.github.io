@@ -83,6 +83,8 @@ author: Michael Lip
     <p class="cr-intro">Build cron expressions visually with this free cron expression generator. Select minute, hour, day, month, and weekday from dropdown menus, see the next 5 scheduled run times, and use common presets -- all processed locally in your browser.</p>
   </div>
 
+  <p style="color:#8888aa;font-size:0.85rem;margin-bottom:2rem;">Last updated: March 2026 | Free to use, no signup required</p>
+
   <div class="cr-panel">
     <div class="cr-panel-header">Generated Expression</div>
     <div class="cr-expression">
@@ -173,6 +175,22 @@ author: Michael Lip
       </div>
     </div>
   </div>
+
+<div style="margin-top:3rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;">
+<h2 style="color:#6C5CE7;font-size:1.3rem;margin-bottom:1rem;">Related Tools</h2>
+<ul style="list-style:none;padding:0;margin:0;">
+<li style="margin-bottom:0.5rem;"><a href="/tools/unix-timestamp-converter/" style="color:#00ff88;text-decoration:none;">Unix Timestamp Converter</a> - Convert Unix timestamps to dates</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/regex-tester/" style="color:#00ff88;text-decoration:none;">Regex Tester</a> - Test regular expressions with live highlighting</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/json-formatter/" style="color:#00ff88;text-decoration:none;">JSON Formatter</a> - Format and validate JSON data</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/uuid-generator/" style="color:#00ff88;text-decoration:none;">UUID Generator</a> - Generate random UUID v4 values</li>
+</ul>
+</div>
+
+<div style="margin-top:2rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;display:flex;gap:1rem;align-items:center;">
+<div style="width:48px;height:48px;border-radius:50%;background:#6C5CE7;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;">ML</div>
+<div><div style="color:#e0e0e0;font-weight:600;">Michael Lip</div><div style="color:#8888aa;font-size:0.85rem;">Developer and tools engineer at <a href="https://zovo.one" style="color:#6C5CE7;">Zovo</a>. Building free developer and productivity tools.</div></div>
+</div>
+
 
   <footer style="text-align:center;padding:2rem 0;color:#8888a0;font-size:0.85rem;border-top:1px solid #2a2a3a;margin-top:3rem;">
     <p>Built by <a href="https://zovo.one" style="color:#6C5CE7;text-decoration:none;">Michael Lip</a>. More tools at <a href="https://zovo.one/tools" style="color:#6C5CE7;text-decoration:none;">zovo.one</a></p>

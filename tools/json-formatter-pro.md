@@ -365,6 +365,8 @@ author: Michael Lip
     <p>Format, validate, compare, query, transform, and schema-validate JSON -- all in your browser. Six professional tools in one page, no data leaves your device.</p>
   </div>
 
+  <p style="color:#8888aa;font-size:0.85rem;margin-bottom:2rem;">Last updated: March 2026 | Free to use, no signup required</p>
+
   <!-- Top bar -->
   <div class="jp-topbar">
     <button class="jp-btn jp-btn-sm" onclick="JP.paste()" title="Paste from clipboard">Paste</button>
@@ -711,6 +713,23 @@ author: Michael Lip
     </div>
 
   </div>
+
+<div style="margin-top:3rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;">
+<h2 style="color:#6C5CE7;font-size:1.3rem;margin-bottom:1rem;">Related Tools</h2>
+<ul style="list-style:none;padding:0;margin:0;">
+<li style="margin-bottom:0.5rem;"><a href="/tools/json-formatter/" style="color:#00ff88;text-decoration:none;">JSON Formatter</a> - Format and validate JSON data</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/csv-to-json-converter/" style="color:#00ff88;text-decoration:none;">CSV to JSON Converter</a> - Convert CSV data to JSON format</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/diff-checker/" style="color:#00ff88;text-decoration:none;">Diff Checker</a> - Compare two texts side by side</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/jwt-decoder/" style="color:#00ff88;text-decoration:none;">JWT Decoder</a> - Decode and inspect JSON Web Tokens</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/regex-tester/" style="color:#00ff88;text-decoration:none;">Regex Tester</a> - Test regular expressions with live highlighting</li>
+</ul>
+</div>
+
+<div style="margin-top:2rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;display:flex;gap:1rem;align-items:center;">
+<div style="width:48px;height:48px;border-radius:50%;background:#6C5CE7;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;">ML</div>
+<div><div style="color:#e0e0e0;font-weight:600;">Michael Lip</div><div style="color:#8888aa;font-size:0.85rem;">Developer and tools engineer at <a href="https://zovo.one" style="color:#6C5CE7;">Zovo</a>. Building free developer and productivity tools.</div></div>
+</div>
+
 
   <footer class="jp-footer">
     <p>Built by <a href="https://zovo.one">Michael Lip</a> at <a href="https://zovo.one">zovo.one</a></p>
@@ -1807,4 +1826,37 @@ document.querySelectorAll('.jp-textarea').forEach(function(ta) {
 $('jpFmtInput').addEventListener('input',function(){$('jpFmtInputSize').textContent=fmtBytes(byteSize(this.value))});
 
 })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "JSON Formatter Pro",
+      "url": "https://theluckystrike.github.io/tools/json-formatter-pro/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Person", "name": "Michael Lip", "url": "https://zovo.one" },
+      "datePublished": "2026-03-19",
+      "dateModified": "2026-03-19"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theluckystrike.github.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://theluckystrike.github.io/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "JSON Formatter Pro", "item": "https://theluckystrike.github.io/tools/json-formatter-pro/" }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "Zovo",
+      "url": "https://zovo.one",
+      "logo": "https://zovo.one/favicon.ico"
+    }
+  ]
+}
 </script>

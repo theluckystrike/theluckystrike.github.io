@@ -521,6 +521,8 @@ author: Michael Lip
     <p class="b64-intro">Encode text to base64, decode base64 to text, or upload a file to get its base64 representation. This free base64 encoder decoder runs entirely in your browser with no server uploads. It auto-detects whether your input is base64 and offers one-click conversion.</p>
   </div>
 
+  <p style="color:#8888aa;font-size:0.85rem;margin-bottom:2rem;">Last updated: March 2026 | Free to use, no signup required</p>
+
   <!-- Mode Tabs -->
   <div class="b64-modes">
     <button class="b64-mode-btn active" id="b64ModeEncode" onclick="b64SetMode('encode')">Encode</button>
@@ -652,6 +654,23 @@ author: Michael Lip
 <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #6C5CE7; margin-bottom: 0.5rem; font-weight: 600;">Related Guide</div>
 <a href="/guides/creating-a-chrome-extension/" style="color: #1d1d1f; text-decoration: none; font-size: 0.95rem; font-weight: 500;">How to Create a Chrome Extension &rarr;</a>
 </div>
+
+<div style="margin-top:3rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;">
+<h2 style="color:#6C5CE7;font-size:1.3rem;margin-bottom:1rem;">Related Tools</h2>
+<ul style="list-style:none;padding:0;margin:0;">
+<li style="margin-bottom:0.5rem;"><a href="/tools/base64-encoder-decoder/" style="color:#00ff88;text-decoration:none;">Base64 Encoder Decoder</a> - Full Base64 encode and decode tool</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/url-encoder/" style="color:#00ff88;text-decoration:none;">URL Encoder/Decoder</a> - Encode and decode URL components</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/json-formatter/" style="color:#00ff88;text-decoration:none;">JSON Formatter</a> - Format and validate JSON data</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/jwt-decoder/" style="color:#00ff88;text-decoration:none;">JWT Decoder</a> - Decode and inspect JSON Web Tokens</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/uuid-generator/" style="color:#00ff88;text-decoration:none;">UUID Generator</a> - Generate random UUID v4 values</li>
+</ul>
+</div>
+
+<div style="margin-top:2rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;display:flex;gap:1rem;align-items:center;">
+<div style="width:48px;height:48px;border-radius:50%;background:#6C5CE7;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;">ML</div>
+<div><div style="color:#e0e0e0;font-weight:600;">Michael Lip</div><div style="color:#8888aa;font-size:0.85rem;">Developer and tools engineer at <a href="https://zovo.one" style="color:#6C5CE7;">Zovo</a>. Building free developer and productivity tools.</div></div>
+</div>
+
 
   <footer style="text-align: center; padding: 2rem 0; color: #8888a0; font-size: 0.85rem; border-top: 1px solid #2a2a3a; margin-top: 3rem;">
     <p>Built by <a href="https://zovo.one" style="color: #6C5CE7; text-decoration: none;">Michael Lip</a>. More tools at <a href="https://zovo.one/tools" style="color: #6C5CE7; text-decoration: none;">zovo.one</a></p>
@@ -1024,4 +1043,37 @@ author: Michael Lip
   });
 
 })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Base64 Encoder",
+      "url": "https://theluckystrike.github.io/tools/base64-encoder/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Person", "name": "Michael Lip", "url": "https://zovo.one" },
+      "datePublished": "2026-03-19",
+      "dateModified": "2026-03-19"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theluckystrike.github.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://theluckystrike.github.io/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "Base64 Encoder", "item": "https://theluckystrike.github.io/tools/base64-encoder/" }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "Zovo",
+      "url": "https://zovo.one",
+      "logo": "https://zovo.one/favicon.ico"
+    }
+  ]
+}
 </script>

@@ -782,6 +782,8 @@ author: Michael Lip
     <p class="ad-intro">Paste any text to analyze it for patterns associated with AI-generated writing. This tool uses statistical heuristics including burstiness, vocabulary diversity, sentence variance, and n-gram repetition. Everything runs in your browser. Nothing is sent to a server.</p>
   </div>
 
+  <p style="color:#8888aa;font-size:0.85rem;margin-bottom:2rem;">Last updated: March 2026 | Free to use, no signup required</p>
+
   <!-- Input -->
   <div class="ad-input-section">
     <div class="ad-input-header">
@@ -1032,6 +1034,21 @@ For best results, use at least 50 words. Longer passages (200+ words) produce mo
       </div>
     </div>
   </div>
+
+<div style="margin-top:3rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;">
+<h2 style="color:#6C5CE7;font-size:1.3rem;margin-bottom:1rem;">Related Tools</h2>
+<ul style="list-style:none;padding:0;margin:0;">
+<li style="margin-bottom:0.5rem;"><a href="/tools/password-generator/" style="color:#00ff88;text-decoration:none;">Password Generator</a> - Generate secure random passwords</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/qr-code-generator/" style="color:#00ff88;text-decoration:none;">QR Code Generator</a> - Create custom QR codes</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/random-number-generator/" style="color:#00ff88;text-decoration:none;">Random Number Generator</a> - Generate cryptographically secure random numbers</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/barcode-generator/" style="color:#00ff88;text-decoration:none;">Barcode Generator</a> - Create barcodes in multiple formats</li>
+</ul>
+</div>
+
+<div style="margin-top:2rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;display:flex;gap:1rem;align-items:center;">
+<div style="width:48px;height:48px;border-radius:50%;background:#6C5CE7;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;">ML</div>
+<div><div style="color:#e0e0e0;font-weight:600;">Michael Lip</div><div style="color:#8888aa;font-size:0.85rem;">Developer and tools engineer at <a href="https://zovo.one" style="color:#6C5CE7;">Zovo</a>. Building free developer and productivity tools.</div></div>
+</div>
 
   <footer class="ad-footer">
     <p>Built by <a href="https://zovo.one">Michael Lip</a> at <a href="https://zovo.one">zovo.one</a></p>
@@ -1753,4 +1770,37 @@ For best results, use at least 50 words. Longer passages (200+ words) produce mo
   });
 
 })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Free AI Content Detector",
+      "url": "https://theluckystrike.github.io/tools/ai-detector/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Person", "name": "Michael Lip", "url": "https://zovo.one" },
+      "datePublished": "2026-03-19",
+      "dateModified": "2026-03-19"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theluckystrike.github.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://theluckystrike.github.io/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "AI Content Detector", "item": "https://theluckystrike.github.io/tools/ai-detector/" }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "Zovo",
+      "url": "https://zovo.one",
+      "logo": "https://zovo.one/favicon.ico"
+    }
+  ]
+}
 </script>

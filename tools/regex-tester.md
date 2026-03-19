@@ -95,6 +95,8 @@ author: Michael Lip
  <p class="rt-intro">Test your regular expressions with live match highlighting. This free regex tester online shows matches in real time, lists capture groups, and counts results, all inside your browser with zero data sent to any server.</p>
  </div>
 
+  <p style="color:#8888aa;font-size:0.85rem;margin-bottom:2rem;">Last updated: March 2026 | Free to use, no signup required</p>
+
  <div class="rt-main">
  <div class="rt-editor">
  <div class="rt-panel">
@@ -206,6 +208,22 @@ author: Michael Lip
  </div>
  </div>
  </div>
+
+<div style="margin-top:3rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;">
+<h2 style="color:#6C5CE7;font-size:1.3rem;margin-bottom:1rem;">Related Tools</h2>
+<ul style="list-style:none;padding:0;margin:0;">
+<li style="margin-bottom:0.5rem;"><a href="/tools/diff-checker/" style="color:#00ff88;text-decoration:none;">Diff Checker</a> - Compare two texts side by side</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/json-formatter/" style="color:#00ff88;text-decoration:none;">JSON Formatter</a> - Format and validate JSON data</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/cron-expression-generator/" style="color:#00ff88;text-decoration:none;">Cron Expression Generator</a> - Build cron expressions visually</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/web-scraper/" style="color:#00ff88;text-decoration:none;">Web Scraper</a> - Extract data from HTML with CSS selectors</li>
+</ul>
+</div>
+
+<div style="margin-top:2rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;display:flex;gap:1rem;align-items:center;">
+<div style="width:48px;height:48px;border-radius:50%;background:#6C5CE7;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;">ML</div>
+<div><div style="color:#e0e0e0;font-weight:600;">Michael Lip</div><div style="color:#8888aa;font-size:0.85rem;">Developer and tools engineer at <a href="https://zovo.one" style="color:#6C5CE7;">Zovo</a>. Building free developer and productivity tools.</div></div>
+</div>
+
 
  <footer style="text-align:center;padding:2rem 0;color:#8888a0;font-size:0.85rem;border-top:1px solid #2a2a3a;margin-top:3rem;">
  <p>Built by <a href="https://zovo.one" style="color:#6C5CE7;text-decoration:none;">Michael Lip</a>. More tools at <a href="https://zovo.one/tools" style="color:#6C5CE7;text-decoration:none;">zovo.one</a></p>

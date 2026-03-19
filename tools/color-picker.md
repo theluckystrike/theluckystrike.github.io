@@ -462,6 +462,8 @@ author: Michael Lip
     <p class="cp-intro">Upload any image and click anywhere to extract the exact color. Get hex, RGB, and HSL color codes instantly -- perfect for designers, developers, and anyone who needs to pick a color from a photo. Drag and drop, paste from clipboard, or browse your files. The zoom magnifier helps you target the precise pixel every time.</p>
   </div>
 
+  <p style="color:#8888aa;font-size:0.85rem;margin-bottom:2rem;">Last updated: March 2026 | Free to use, no signup required</p>
+
   <!-- Upload Area -->
   <div class="cp-upload" id="cpUpload">
     <svg class="cp-upload-icon" width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="4" stroke="#6C5CE7" stroke-width="2.5" fill="none"/><circle cx="18" cy="22" r="4" stroke="#6C5CE7" stroke-width="2"/><path d="M6 34l10-10 8 8 6-6 12 12" stroke="#6C5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M24 4v6M24 4l-3 3M24 4l3 3" stroke="#A29BFE" stroke-width="2" stroke-linecap="round"/></svg>
@@ -566,6 +568,22 @@ author: Michael Lip
 <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #6C5CE7; margin-bottom: 0.5rem; font-weight: 600;">Related Guide</div>
 <a href="/guides/chrome-dark-mode-complete-guide/" style="color: #1d1d1f; text-decoration: none; font-size: 0.95rem; font-weight: 500;">Chrome Dark Mode: Complete Guide &rarr;</a>
 </div>
+
+<div style="margin-top:3rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;">
+<h2 style="color:#6C5CE7;font-size:1.3rem;margin-bottom:1rem;">Related Tools</h2>
+<ul style="list-style:none;padding:0;margin:0;">
+<li style="margin-bottom:0.5rem;"><a href="/tools/qr-code-generator/" style="color:#00ff88;text-decoration:none;">QR Code Generator</a> - Create custom QR codes with colors and logos</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/barcode-generator/" style="color:#00ff88;text-decoration:none;">Barcode Generator</a> - Create barcodes in multiple formats</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/ai-detector/" style="color:#00ff88;text-decoration:none;">AI Content Detector</a> - Analyze text for AI-generated patterns</li>
+<li style="margin-bottom:0.5rem;"><a href="/tools/password-generator/" style="color:#00ff88;text-decoration:none;">Password Generator</a> - Generate secure random passwords</li>
+</ul>
+</div>
+
+<div style="margin-top:2rem;padding:1.5rem;background:#12121a;border:1px solid #1e1e2e;border-radius:12px;display:flex;gap:1rem;align-items:center;">
+<div style="width:48px;height:48px;border-radius:50%;background:#6C5CE7;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;">ML</div>
+<div><div style="color:#e0e0e0;font-weight:600;">Michael Lip</div><div style="color:#8888aa;font-size:0.85rem;">Developer and tools engineer at <a href="https://zovo.one" style="color:#6C5CE7;">Zovo</a>. Building free developer and productivity tools.</div></div>
+</div>
+
 
   <footer style="text-align: center; padding: 2rem 0; color: #8888a0; font-size: 0.85rem; border-top: 1px solid #2a2a3a; margin-top: 3rem;">
     <p>Built by <a href="https://zovo.one" style="color: #6C5CE7; text-decoration: none;">Michael Lip</a>. More tools at <a href="https://zovo.one/tools" style="color: #6C5CE7; text-decoration: none;">zovo.one</a></p>
@@ -886,4 +904,37 @@ author: Michael Lip
   };
 
 })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Color Picker",
+      "url": "https://theluckystrike.github.io/tools/color-picker/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Person", "name": "Michael Lip", "url": "https://zovo.one" },
+      "datePublished": "2026-03-19",
+      "dateModified": "2026-03-19"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theluckystrike.github.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://theluckystrike.github.io/tools/" },
+        { "@type": "ListItem", "position": 3, "name": "Color Picker", "item": "https://theluckystrike.github.io/tools/color-picker/" }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "Zovo",
+      "url": "https://zovo.one",
+      "logo": "https://zovo.one/favicon.ico"
+    }
+  ]
+}
 </script>
