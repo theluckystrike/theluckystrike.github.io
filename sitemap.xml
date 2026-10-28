@@ -28,4 +28,8 @@
     <loc>https://theluckystrike.github.io/privacy-tools-guide/sitemap.xml</loc>
     <lastmod>2026-03-16</lastmod>
   </sitemap>
+  <sitemap>
+    <loc>https://theluckystrike.github.io/sitemap-mcp.xml</loc>
+    <lastmod>2026-10-28</lastmod>
+  </sitemap>
 </sitemapindex>
