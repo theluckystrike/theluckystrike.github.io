@@ -6,7 +6,7 @@
   <title>{{ page.title }}</title>
   <meta name="description" content="{{ page.description }}">
   {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
-  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="canonical" href="{{ page.canonical_url | default: page.url | absolute_url }}">
   <meta property="og:title" content="{{ page.title }}">
   <meta property="og:description" content="{{ page.description }}">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
