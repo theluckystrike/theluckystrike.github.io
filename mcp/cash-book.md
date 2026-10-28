@@ -3,6 +3,8 @@ layout: page
 title: "Cash Book MCP server: install, tools and pricing"
 description: "One double-entry ledger derived from your invoices, bank, expenses, deposits and assets."
 permalink: /mcp/cash-book/
+canonical_url: https://claudecodeguides.com/mcp/cash-book/
+canonical: https://claudecodeguides.com/mcp/cash-book/
 date: 2026-10-28
 ---
 

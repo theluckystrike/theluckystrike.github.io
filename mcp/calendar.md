@@ -3,6 +3,8 @@ layout: page
 title: "Calendar MCP server: install, tools and pricing"
 description: "Read the .ics your calendar already exports: what is on this week, when you are actually free, what is double-booked, and turn a meeting into…"
 permalink: /mcp/calendar/
+canonical_url: https://claudecodeguides.com/mcp/calendar/
+canonical: https://claudecodeguides.com/mcp/calendar/
 date: 2026-10-28
 ---
 

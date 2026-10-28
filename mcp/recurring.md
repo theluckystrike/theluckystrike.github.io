@@ -3,6 +3,8 @@ layout: page
 title: "Recurring MCP server: install, tools and pricing"
 description: "Bill the same clients every month without remembering to. Define a recurring invoice once, then generate the real PDFs that are due into your…"
 permalink: /mcp/recurring/
+canonical_url: https://claudecodeguides.com/mcp/recurring/
+canonical: https://claudecodeguides.com/mcp/recurring/
 date: 2026-10-28
 ---
 

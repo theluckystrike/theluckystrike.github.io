@@ -3,6 +3,8 @@ layout: page
 title: "Credit Note MCP server: install, tools and pricing"
 description: "Credit notes against an invoice or standalone: drafts, finalization, rendering, totals."
 permalink: /mcp/credit-note/
+canonical_url: https://claudecodeguides.com/mcp/credit-note/
+canonical: https://claudecodeguides.com/mcp/credit-note/
 date: 2026-10-28
 ---
 

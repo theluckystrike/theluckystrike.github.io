@@ -3,6 +3,8 @@ layout: page
 title: "Office Suite MCP server: install, tools and pricing"
 description: "One install for the whole freelancer office suite: time tracking, price watching, spreadsheets and PDF invoicing, proxied behind a single MCP server."
 permalink: /mcp/office-suite/
+canonical_url: https://claudecodeguides.com/mcp/office-suite/
+canonical: https://claudecodeguides.com/mcp/office-suite/
 date: 2026-10-28
 ---
 

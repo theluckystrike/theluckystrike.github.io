@@ -3,6 +3,8 @@ layout: page
 title: "Per Diem MCP server: install, tools and pricing"
 description: "Daily travel allowances on bundled public rate tables: Poland, HMRC and GSA."
 permalink: /mcp/per-diem/
+canonical_url: https://claudecodeguides.com/mcp/per-diem/
+canonical: https://claudecodeguides.com/mcp/per-diem/
 date: 2026-10-28
 ---
 

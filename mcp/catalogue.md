@@ -3,6 +3,8 @@ layout: page
 title: "Catalogue MCP server: install, tools and pricing"
 description: "A price list and rate card the quotes and invoice servers read by SKU."
 permalink: /mcp/catalogue/
+canonical_url: https://claudecodeguides.com/mcp/catalogue/
+canonical: https://claudecodeguides.com/mcp/catalogue/
 date: 2026-10-28
 ---
 

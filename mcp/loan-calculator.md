@@ -3,6 +3,8 @@ layout: page
 title: "Loan Calculator MCP server: install, tools and pricing"
 description: "MCP server: loan-calculator"
 permalink: /mcp/loan-calculator/
+canonical_url: https://claudecodeguides.com/mcp/loan-calculator/
+canonical: https://claudecodeguides.com/mcp/loan-calculator/
 date: 2026-10-28
 ---
 

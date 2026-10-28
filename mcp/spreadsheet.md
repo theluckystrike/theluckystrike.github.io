@@ -3,6 +3,8 @@ layout: page
 title: "Spreadsheet MCP server: install, tools and pricing"
 description: "Open, inspect, query, edit and convert xlsx and csv files locally from your AI assistant"
 permalink: /mcp/spreadsheet/
+canonical_url: https://claudecodeguides.com/mcp/spreadsheet/
+canonical: https://claudecodeguides.com/mcp/spreadsheet/
 date: 2026-10-28
 ---
 

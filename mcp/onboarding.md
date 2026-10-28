@@ -3,6 +3,8 @@ layout: page
 title: "Onboarding MCP server: install, tools and pricing"
 description: "New-hire onboarding: task templates per role, day-one to day-ninety plans."
 permalink: /mcp/onboarding/
+canonical_url: https://claudecodeguides.com/mcp/onboarding/
+canonical: https://claudecodeguides.com/mcp/onboarding/
 date: 2026-10-28
 ---
 

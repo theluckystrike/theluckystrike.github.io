@@ -3,6 +3,8 @@ layout: page
 title: "Work Order MCP server: install, tools and pricing"
 description: "Job orders for trades and field work: parts, labour, status, completion report, invoice payload."
 permalink: /mcp/work-order/
+canonical_url: https://claudecodeguides.com/mcp/work-order/
+canonical: https://claudecodeguides.com/mcp/work-order/
 date: 2026-10-28
 ---
 

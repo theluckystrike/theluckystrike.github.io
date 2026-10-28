@@ -3,6 +3,8 @@ layout: page
 title: "Change Order MCP server: install, tools and pricing"
 description: "Change orders against a quote or work order: deltas, approval, running contract value."
 permalink: /mcp/change-order/
+canonical_url: https://claudecodeguides.com/mcp/change-order/
+canonical: https://claudecodeguides.com/mcp/change-order/
 date: 2026-10-28
 ---
 

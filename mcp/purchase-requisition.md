@@ -3,6 +3,8 @@ layout: page
 title: "Purchase Requisition MCP server: install, tools and pricing"
 description: "Reusable purchase-requisitions and dated runs: pass, fail, n/a, and a sign-off."
 permalink: /mcp/purchase-requisition/
+canonical_url: https://claudecodeguides.com/mcp/purchase-requisition/
+canonical: https://claudecodeguides.com/mcp/purchase-requisition/
 date: 2026-10-28
 ---
 

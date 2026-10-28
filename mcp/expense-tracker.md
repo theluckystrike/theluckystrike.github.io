@@ -3,6 +3,8 @@ layout: page
 title: "Expense Tracker MCP server: install, tools and pricing"
 description: "Local expenses, receipts and mileage ledger for freelancers: categorise, split VAT, summarise, export to CSV or xlsx and rebill straight into an…"
 permalink: /mcp/expense-tracker/
+canonical_url: https://claudecodeguides.com/mcp/expense-tracker/
+canonical: https://claudecodeguides.com/mcp/expense-tracker/
 date: 2026-10-28
 ---
 

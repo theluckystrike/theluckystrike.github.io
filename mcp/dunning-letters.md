@@ -3,6 +3,8 @@ layout: page
 title: "Dunning Letters MCP server: install, tools and pricing"
 description: "Chase overdue invoices: reminder 1, reminder 2, final notice, escalation dates, aging."
 permalink: /mcp/dunning-letters/
+canonical_url: https://claudecodeguides.com/mcp/dunning-letters/
+canonical: https://claudecodeguides.com/mcp/dunning-letters/
 date: 2026-10-28
 ---
 

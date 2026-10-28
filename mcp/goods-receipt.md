@@ -3,6 +3,8 @@ layout: page
 title: "Goods Receipt MCP server: install, tools and pricing"
 description: "Goods receipt notes against purchase orders: over/under tolerances, damaged and short units, discrepancies, and CSV export."
 permalink: /mcp/goods-receipt/
+canonical_url: https://claudecodeguides.com/mcp/goods-receipt/
+canonical: https://claudecodeguides.com/mcp/goods-receipt/
 date: 2026-10-28
 ---
 

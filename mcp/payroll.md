@@ -3,6 +3,8 @@ layout: page
 title: "Payroll MCP server: install, tools and pricing"
 description: "MCP server: payroll"
 permalink: /mcp/payroll/
+canonical_url: https://claudecodeguides.com/mcp/payroll/
+canonical: https://claudecodeguides.com/mcp/payroll/
 date: 2026-10-28
 ---
 

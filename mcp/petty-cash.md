@@ -3,6 +3,8 @@ layout: page
 title: "Petty Cash MCP server: install, tools and pricing"
 description: "A petty cash float on the imprest system: vouchers, reconciliation and the replenishment."
 permalink: /mcp/petty-cash/
+canonical_url: https://claudecodeguides.com/mcp/petty-cash/
+canonical: https://claudecodeguides.com/mcp/petty-cash/
 date: 2026-10-28
 ---
 

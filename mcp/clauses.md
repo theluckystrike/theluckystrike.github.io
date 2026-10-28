@@ -3,6 +3,8 @@ layout: page
 title: "Clauses MCP server: install, tools and pricing"
 description: "A personal library of reusable contract and proposal clauses: 25 generic freelance starters with {variables}, ranked search, and one-call assembly…"
 permalink: /mcp/clauses/
+canonical_url: https://claudecodeguides.com/mcp/clauses/
+canonical: https://claudecodeguides.com/mcp/clauses/
 date: 2026-10-28
 ---
 

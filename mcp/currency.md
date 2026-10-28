@@ -3,6 +3,8 @@ layout: page
 title: "Currency MCP server: install, tools and pricing"
 description: "Live and historical exchange rates from the European Central Bank, in your AI chat. Convert amounts, read rate history, and hand invoice tools the…"
 permalink: /mcp/currency/
+canonical_url: https://claudecodeguides.com/mcp/currency/
+canonical: https://claudecodeguides.com/mcp/currency/
 date: 2026-10-28
 ---
 

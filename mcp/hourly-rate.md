@@ -3,6 +3,8 @@ layout: page
 title: "Hourly Rate MCP server: install, tools and pricing"
 description: "Freelance hourly-rate calculator with break-even and what-if scenarios."
 permalink: /mcp/hourly-rate/
+canonical_url: https://claudecodeguides.com/mcp/hourly-rate/
+canonical: https://claudecodeguides.com/mcp/hourly-rate/
 date: 2026-10-28
 ---
 

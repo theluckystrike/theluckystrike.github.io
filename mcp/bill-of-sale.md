@@ -3,6 +3,8 @@ layout: page
 title: "Bill Of Sale MCP server: install, tools and pricing"
 description: "Bills of sale for equipment, vehicles and stock: draft, finalize, print with signature lines."
 permalink: /mcp/bill-of-sale/
+canonical_url: https://claudecodeguides.com/mcp/bill-of-sale/
+canonical: https://claudecodeguides.com/mcp/bill-of-sale/
 date: 2026-10-28
 ---
 

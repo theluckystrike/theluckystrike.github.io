@@ -3,6 +3,8 @@ layout: page
 title: "Time Tracker MCP server: install, tools and pricing"
 description: "Track billable time without leaving your AI chat. Timers, entries, reports, CSV export and invoice line items, all stored locally."
 permalink: /mcp/time-tracker/
+canonical_url: https://claudecodeguides.com/mcp/time-tracker/
+canonical: https://claudecodeguides.com/mcp/time-tracker/
 date: 2026-10-28
 ---
 

@@ -3,6 +3,8 @@ layout: page
 title: "Price Tracker MCP server: install, tools and pricing"
 description: "Ask your AI what something costs right now, track price drops and get told when a target price is hit. All data stays local."
 permalink: /mcp/price-tracker/
+canonical_url: https://claudecodeguides.com/mcp/price-tracker/
+canonical: https://claudecodeguides.com/mcp/price-tracker/
 date: 2026-10-28
 ---
 

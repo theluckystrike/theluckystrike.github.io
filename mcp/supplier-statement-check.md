@@ -3,6 +3,8 @@ layout: page
 title: "Supplier Statement Check MCP server: install, tools and pricing"
 description: "Compare supplied supplier statement and AP ledger open items by exact reference with complete discrepancy evidence."
 permalink: /mcp/supplier-statement-check/
+canonical_url: https://claudecodeguides.com/mcp/supplier-statement-check/
+canonical: https://claudecodeguides.com/mcp/supplier-statement-check/
 date: 2026-10-28
 ---
 

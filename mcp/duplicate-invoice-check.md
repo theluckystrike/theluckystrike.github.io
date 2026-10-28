@@ -3,6 +3,8 @@ layout: page
 title: "Duplicate Invoice Check MCP server: install, tools and pricing"
 description: "Review explainable duplicate supplier invoice candidates in a supplied local batch."
 permalink: /mcp/duplicate-invoice-check/
+canonical_url: https://claudecodeguides.com/mcp/duplicate-invoice-check/
+canonical: https://claudecodeguides.com/mcp/duplicate-invoice-check/
 date: 2026-10-28
 ---
 

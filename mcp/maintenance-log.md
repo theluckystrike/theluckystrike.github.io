@@ -3,6 +3,8 @@ layout: page
 title: "Maintenance Log MCP server: install, tools and pricing"
 description: "Equipment maintenance log: assets, service entries with costs, and a due report from stored dates."
 permalink: /mcp/maintenance-log/
+canonical_url: https://claudecodeguides.com/mcp/maintenance-log/
+canonical: https://claudecodeguides.com/mcp/maintenance-log/
 date: 2026-10-28
 ---
 

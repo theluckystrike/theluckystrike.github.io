@@ -3,6 +3,8 @@ layout: page
 title: "Service Agreement MCP server: install, tools and pricing"
 description: "Service agreements for freelancers: scope, deliverables, rate, termination and liability caps."
 permalink: /mcp/service-agreement/
+canonical_url: https://claudecodeguides.com/mcp/service-agreement/
+canonical: https://claudecodeguides.com/mcp/service-agreement/
 date: 2026-10-28
 ---
 

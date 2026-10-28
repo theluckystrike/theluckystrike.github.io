@@ -3,6 +3,8 @@ layout: page
 title: "Invoice MCP server: install, tools and pricing"
 description: "Make real, sendable PDF invoices from a sentence. Clients, numbering that never repeats, VAT lines, discounts and overdue reports, all stored locally."
 permalink: /mcp/invoice/
+canonical_url: https://claudecodeguides.com/mcp/invoice/
+canonical: https://claudecodeguides.com/mcp/invoice/
 date: 2026-10-28
 ---
 

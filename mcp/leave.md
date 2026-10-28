@@ -3,6 +3,8 @@ layout: page
 title: "Leave MCP server: install, tools and pricing"
 description: "Employee leave and PTO requests: balances, approvals, calendars, and who-is-out summaries."
 permalink: /mcp/leave/
+canonical_url: https://claudecodeguides.com/mcp/leave/
+canonical: https://claudecodeguides.com/mcp/leave/
 date: 2026-10-28
 ---
 

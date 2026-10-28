@@ -3,6 +3,8 @@ layout: page
 title: "Mileage Log MCP server: install, tools and pricing"
 description: "Mileage log for deductible driving: trips, effective-dated rates, summaries and CSV export."
 permalink: /mcp/mileage-log/
+canonical_url: https://claudecodeguides.com/mcp/mileage-log/
+canonical: https://claudecodeguides.com/mcp/mileage-log/
 date: 2026-10-28
 ---
 

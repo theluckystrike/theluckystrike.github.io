@@ -3,6 +3,8 @@ layout: page
 title: "Statement Of Account MCP server: install, tools and pricing"
 description: "Per-client statements of account, aging buckets and dunning letters from your own books."
 permalink: /mcp/statement-of-account/
+canonical_url: https://claudecodeguides.com/mcp/statement-of-account/
+canonical: https://claudecodeguides.com/mcp/statement-of-account/
 date: 2026-10-28
 ---
 

@@ -3,6 +3,8 @@ layout: page
 title: "Checklist MCP server: install, tools and pricing"
 description: "Reusable checklists and the dated runs of them: pass, fail, not applicable, and a sign-off."
 permalink: /mcp/checklist/
+canonical_url: https://claudecodeguides.com/mcp/checklist/
+canonical: https://claudecodeguides.com/mcp/checklist/
 date: 2026-10-28
 ---
 

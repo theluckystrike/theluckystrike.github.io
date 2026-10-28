@@ -3,6 +3,8 @@ layout: page
 title: "Three Way Match MCP server: install, tools and pricing"
 description: "Match supplier invoice lines to purchase orders and accepted receipts by SKU with local evidence."
 permalink: /mcp/three-way-match/
+canonical_url: https://claudecodeguides.com/mcp/three-way-match/
+canonical: https://claudecodeguides.com/mcp/three-way-match/
 date: 2026-10-28
 ---
 

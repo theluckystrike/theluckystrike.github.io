@@ -3,6 +3,8 @@ layout: page
 title: "Kanban MCP server: install, tools and pricing"
 description: "A local task board per project: columns, due dates, estimates, priorities and a link into your time tracker. All data stays on your machine."
 permalink: /mcp/kanban/
+canonical_url: https://claudecodeguides.com/mcp/kanban/
+canonical: https://claudecodeguides.com/mcp/kanban/
 date: 2026-10-28
 ---
 

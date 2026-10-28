@@ -3,6 +3,8 @@ layout: page
 title: "Stripe Billing MCP server: install, tools and pricing"
 description: "MCP server: stripe-billing"
 permalink: /mcp/stripe-billing/
+canonical_url: https://claudecodeguides.com/mcp/stripe-billing/
+canonical: https://claudecodeguides.com/mcp/stripe-billing/
 date: 2026-10-28
 ---
 

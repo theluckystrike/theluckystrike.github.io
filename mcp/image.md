@@ -3,6 +3,8 @@ layout: page
 title: "Image MCP server: install, tools and pricing"
 description: "Resize, convert, compress, crop, thumbnail and watermark images from chat: no upload, no account, no native dependency. Every file stays on your…"
 permalink: /mcp/image/
+canonical_url: https://claudecodeguides.com/mcp/image/
+canonical: https://claudecodeguides.com/mcp/image/
 date: 2026-10-28
 ---
 

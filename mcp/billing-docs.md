@@ -3,6 +3,8 @@ layout: page
 title: "Billing Docs MCP server: install, tools and pricing"
 description: "Credit notes against your invoices and purchase orders to your suppliers, on the invoice engine."
 permalink: /mcp/billing-docs/
+canonical_url: https://claudecodeguides.com/mcp/billing-docs/
+canonical: https://claudecodeguides.com/mcp/billing-docs/
 date: 2026-10-28
 ---
 

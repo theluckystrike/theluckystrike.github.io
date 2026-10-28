@@ -3,6 +3,8 @@ layout: page
 title: "Packing List MCP server: install, tools and pricing"
 description: "Packing slips: cartons, contents, weights, chargeable weight and what is still to pack."
 permalink: /mcp/packing-list/
+canonical_url: https://claudecodeguides.com/mcp/packing-list/
+canonical: https://claudecodeguides.com/mcp/packing-list/
 date: 2026-10-28
 ---
 

@@ -3,6 +3,8 @@ layout: page
 title: "Supplier List MCP server: install, tools and pricing"
 description: "A supplier directory that does not rot: contacts, terms, lead times, review dates."
 permalink: /mcp/supplier-list/
+canonical_url: https://claudecodeguides.com/mcp/supplier-list/
+canonical: https://claudecodeguides.com/mcp/supplier-list/
 date: 2026-10-28
 ---
 
