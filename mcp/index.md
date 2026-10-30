@@ -365,6 +365,9 @@ date: 2026-10-28
 }
 </script>
 
+**New.** [Nine free data MCP servers](/mcp/data-servers/) for tax rules, wages, live prices and lake levels, business days and kitchen conversions. No key, paste one URL.
+
+
 # 58 MCP servers for back-office work
 
 Every server on this page is MIT licensed, runs against local files, and speaks the Model
