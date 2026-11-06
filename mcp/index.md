@@ -483,6 +483,24 @@ accounting**, **time and operations**, and **web/SEO**. They are designed to be 
 invoice server writes the PDF, a spreadsheet server reads the export, a time-tracker server
 supplies the billable hours.
 
+## Step-by-step guides
+
+Each guide is a task, not a feature tour: the client you already use, the sentence to type,
+and the server that makes it work.
+
+- [Convert a bank statement PDF to CSV](/mcp/guides/convert-bank-statement-to-csv/)
+- [Create a purchase order from ChatGPT or Claude](/mcp/guides/create-purchase-order-chatgpt/)
+- [Can Claude edit my Excel file?](/mcp/guides/edit-excel-file-claude/)
+- [Fill a Word template from Claude or ChatGPT](/mcp/guides/fill-word-template-ai/)
+- [Generate an invoice as a PDF from Claude](/mcp/guides/generate-invoice-pdf-claude/)
+- [Generate a quote as a PDF from Cursor or Claude](/mcp/guides/generate-quote-pdf-cursor/)
+- [Convert currencies inside Claude, Cursor or ChatGPT](/mcp/guides/mcp-server-currency-conversion/)
+- [MCP server for expense tracking](/mcp/guides/mcp-server-expense-tracking/)
+- [MCP server for time tracking](/mcp/guides/mcp-server-time-tracking/)
+- [Log mileage and reimbursements with an AI assistant](/mcp/guides/track-mileage-ai-assistant/)
+
+[All guides](/mcp/guides/)
+
 ## Questions people actually ask
 
 ### Are these official Anthropic MCP servers?
