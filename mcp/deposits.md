@@ -3,8 +3,8 @@ layout: page
 title: "Deposits MCP server: install, tools and pricing"
 description: "Security and retainer deposits per client: hold them, apply them to invoices, refund them."
 permalink: /mcp/deposits/
-canonical_url: https://claudecodeguides.com/mcp/deposits/
-canonical: https://claudecodeguides.com/mcp/deposits/
+canonical_url: https://theluckystrike.github.io/mcp/deposits/
+canonical: https://theluckystrike.github.io/mcp/deposits/
 date: 2026-10-28
 ---
 

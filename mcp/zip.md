@@ -3,8 +3,8 @@ layout: page
 title: "Zip MCP server: install, tools and pricing"
 description: "Create, inspect and extract zip archives from chat: glob a directory into a zip, list what is inside with a bomb and traversal check, extract…"
 permalink: /mcp/zip/
-canonical_url: https://claudecodeguides.com/mcp/zip/
-canonical: https://claudecodeguides.com/mcp/zip/
+canonical_url: https://theluckystrike.github.io/mcp/zip/
+canonical: https://theluckystrike.github.io/mcp/zip/
 date: 2026-10-28
 ---
 

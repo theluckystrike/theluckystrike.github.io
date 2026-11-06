@@ -3,8 +3,8 @@ layout: page
 title: "Delivery Schedule MCP server: install, tools and pricing"
 description: "Dated deliverables against a quote or work order: due dates, sign-off, what is late, milestones."
 permalink: /mcp/delivery-schedule/
-canonical_url: https://claudecodeguides.com/mcp/delivery-schedule/
-canonical: https://claudecodeguides.com/mcp/delivery-schedule/
+canonical_url: https://theluckystrike.github.io/mcp/delivery-schedule/
+canonical: https://theluckystrike.github.io/mcp/delivery-schedule/
 date: 2026-10-28
 ---
 

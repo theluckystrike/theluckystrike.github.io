@@ -3,8 +3,8 @@ layout: page
 title: "Asset Register MCP server: install, tools and pricing"
 description: "Fixed assets and depreciation on bundled Polish KST, HMRC and IRS MACRS tables."
 permalink: /mcp/asset-register/
-canonical_url: https://claudecodeguides.com/mcp/asset-register/
-canonical: https://claudecodeguides.com/mcp/asset-register/
+canonical_url: https://theluckystrike.github.io/mcp/asset-register/
+canonical: https://theluckystrike.github.io/mcp/asset-register/
 date: 2026-10-28
 ---
 

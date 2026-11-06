@@ -3,8 +3,8 @@ layout: page
 title: "Budget MCP server: install, tools and pricing"
 description: "MCP server: budget"
 permalink: /mcp/budget/
-canonical_url: https://claudecodeguides.com/mcp/budget/
-canonical: https://claudecodeguides.com/mcp/budget/
+canonical_url: https://theluckystrike.github.io/mcp/budget/
+canonical: https://theluckystrike.github.io/mcp/budget/
 date: 2026-10-28
 ---
 

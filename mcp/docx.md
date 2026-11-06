@@ -3,8 +3,8 @@ layout: page
 title: "Docx MCP server: install, tools and pricing"
 description: "Turn a chat into a real Word document: proposals, quotes, contracts, statements of work and letters as .docx files, plus reading and filling…"
 permalink: /mcp/docx/
-canonical_url: https://claudecodeguides.com/mcp/docx/
-canonical: https://claudecodeguides.com/mcp/docx/
+canonical_url: https://theluckystrike.github.io/mcp/docx/
+canonical: https://theluckystrike.github.io/mcp/docx/
 date: 2026-10-28
 ---
 

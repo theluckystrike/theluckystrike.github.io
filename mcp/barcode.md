@@ -3,8 +3,8 @@ layout: page
 title: "Barcode MCP server: install, tools and pricing"
 description: "QR codes and barcodes from chat: URLs, WiFi joins, vCards, SEPA payment QR that a banking app can scan, Code 128 and EAN-13, as SVG or PNG. No…"
 permalink: /mcp/barcode/
-canonical_url: https://claudecodeguides.com/mcp/barcode/
-canonical: https://claudecodeguides.com/mcp/barcode/
+canonical_url: https://theluckystrike.github.io/mcp/barcode/
+canonical: https://theluckystrike.github.io/mcp/barcode/
 date: 2026-10-28
 ---
 

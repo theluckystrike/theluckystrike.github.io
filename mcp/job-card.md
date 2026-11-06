@@ -3,8 +3,8 @@ layout: page
 title: "Job Card MCP server: install, tools and pricing"
 description: "Job cards for trades and field service: hours and materials per job, open to invoiced."
 permalink: /mcp/job-card/
-canonical_url: https://claudecodeguides.com/mcp/job-card/
-canonical: https://claudecodeguides.com/mcp/job-card/
+canonical_url: https://theluckystrike.github.io/mcp/job-card/
+canonical: https://theluckystrike.github.io/mcp/job-card/
 date: 2026-10-28
 ---
 

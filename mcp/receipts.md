@@ -3,8 +3,8 @@ layout: page
 title: "Receipts MCP server: install, tools and pricing"
 description: "MCP server: receipts"
 permalink: /mcp/receipts/
-canonical_url: https://claudecodeguides.com/mcp/receipts/
-canonical: https://claudecodeguides.com/mcp/receipts/
+canonical_url: https://theluckystrike.github.io/mcp/receipts/
+canonical: https://theluckystrike.github.io/mcp/receipts/
 date: 2026-10-28
 ---
 

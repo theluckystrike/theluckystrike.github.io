@@ -3,8 +3,8 @@ layout: page
 title: "Timezone MCP server: install, tools and pricing"
 description: "Time zones, meeting slots and calendar invites for people who work with clients abroad. Convert times, find hours that suit everyone, check DST…"
 permalink: /mcp/timezone/
-canonical_url: https://claudecodeguides.com/mcp/timezone/
-canonical: https://claudecodeguides.com/mcp/timezone/
+canonical_url: https://theluckystrike.github.io/mcp/timezone/
+canonical: https://theluckystrike.github.io/mcp/timezone/
 date: 2026-10-28
 ---
 

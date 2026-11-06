@@ -3,8 +3,8 @@ layout: page
 title: "Amortization MCP server: install, tools and pricing"
 description: "Loan and lease schedules: payment, interest, early settlement and the journal, to the minor unit."
 permalink: /mcp/amortization/
-canonical_url: https://claudecodeguides.com/mcp/amortization/
-canonical: https://claudecodeguides.com/mcp/amortization/
+canonical_url: https://theluckystrike.github.io/mcp/amortization/
+canonical: https://theluckystrike.github.io/mcp/amortization/
 date: 2026-10-28
 ---
 

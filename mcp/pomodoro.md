@@ -3,8 +3,8 @@ layout: page
 title: "Pomodoro MCP server: install, tools and pricing"
 description: "MCP server: pomodoro"
 permalink: /mcp/pomodoro/
-canonical_url: https://claudecodeguides.com/mcp/pomodoro/
-canonical: https://claudecodeguides.com/mcp/pomodoro/
+canonical_url: https://theluckystrike.github.io/mcp/pomodoro/
+canonical: https://theluckystrike.github.io/mcp/pomodoro/
 date: 2026-10-28
 ---
 

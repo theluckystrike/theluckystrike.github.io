@@ -3,8 +3,8 @@ layout: page
 title: "Tax Calc MCP server: install, tools and pricing"
 description: "MCP server: tax-calc"
 permalink: /mcp/tax-calc/
-canonical_url: https://claudecodeguides.com/mcp/tax-calc/
-canonical: https://claudecodeguides.com/mcp/tax-calc/
+canonical_url: https://theluckystrike.github.io/mcp/tax-calc/
+canonical: https://theluckystrike.github.io/mcp/tax-calc/
 date: 2026-10-28
 ---
 

@@ -3,8 +3,8 @@ layout: page
 title: "Quotes MCP server: install, tools and pricing"
 description: "Send a client a real quote in seconds: line items with VAT, a validity date, a plain-text version to paste into email and an A4 PDF. Accepting a…"
 permalink: /mcp/quotes/
-canonical_url: https://claudecodeguides.com/mcp/quotes/
-canonical: https://claudecodeguides.com/mcp/quotes/
+canonical_url: https://theluckystrike.github.io/mcp/quotes/
+canonical: https://theluckystrike.github.io/mcp/quotes/
 date: 2026-10-28
 ---
 
