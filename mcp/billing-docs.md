@@ -109,7 +109,7 @@ When a client sends work back, or you billed them twice, you owe them a credit n
 - **Hosted, nothing to install:** open https://mcp.zovo.one/mcp/connect - it mints a free token and prints a ready URL, `https://mcp.zovo.one/mcp/billing-docs/t/<token>`. Paste that into your client. The bare `https://mcp.zovo.one/mcp/billing-docs` hands out the tool list but answers tool calls with HTTP 401, which is why the tokenised URL is the one to use.
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/billing-docs.mcpb)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/billing-docs`.
-- **npm:** the package `@theluckystrike/mcp-billing-docs` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-billing-docs` runs the server over stdio. In Claude Code that is one line: `claude mcp add billing-docs -- npx -y @theluckystrike/mcp-billing-docs`
 
 ## Tools it exposes
 

@@ -109,7 +109,7 @@ Run the freelancer office from one MCP config entry. The v0.25.0 bundle initiali
 - **Hosted endpoint:** not open for this server yet - use the `.mcpb` bundle or build from source below. The other 46 servers in the suite are already hosted.
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.25.0/office-suite.mcpb)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/office-suite`.
-- **npm:** the package `@theluckystrike/mcp-office-suite` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.25.0):** `npx -y @theluckystrike/mcp-office-suite` runs the server over stdio. In Claude Code that is one line: `claude mcp add office-suite -- npx -y @theluckystrike/mcp-office-suite`
 
 ## Tools it exposes
 

@@ -110,7 +110,7 @@ Say "12.30 euros at Adobe, software, billable to Acme" and it is logged, categor
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.9/expense-tracker.mcpb)
 - **Walk-through with real output:** [MCP server for expense tracking](/mcp/guides/mcp-server-expense-tracking/)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/expense-tracker`.
-- **npm:** the package `@theluckystrike/mcp-expense-tracker` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.9):** `npx -y @theluckystrike/mcp-expense-tracker` runs the server over stdio. In Claude Code that is one line: `claude mcp add expense-tracker -- npx -y @theluckystrike/mcp-expense-tracker`
 
 ## Tools it exposes
 

@@ -109,7 +109,7 @@ Chase overdue invoices: reminder 1, reminder 2, final notice, escalation dates, 
 - **Hosted, nothing to install:** open https://mcp.zovo.one/mcp/connect - it mints a free token and prints a ready URL, `https://mcp.zovo.one/mcp/dunning-letters/t/<token>`. Paste that into your client. The bare `https://mcp.zovo.one/mcp/dunning-letters` hands out the tool list but answers tool calls with HTTP 401, which is why the tokenised URL is the one to use.
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/dunning-letters.mcpb)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/dunning-letters`.
-- **npm:** the package `@theluckystrike/mcp-dunning-letters` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-dunning-letters` runs the server over stdio. In Claude Code that is one line: `claude mcp add dunning-letters -- npx -y @theluckystrike/mcp-dunning-letters`
 
 ## Tools it exposes
 

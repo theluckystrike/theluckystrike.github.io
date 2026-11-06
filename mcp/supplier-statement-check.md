@@ -109,7 +109,7 @@ Compare a supplied supplier statement with an accounts-payable open-item export.
 - **Hosted endpoint:** not open for this server yet - use the `.mcpb` bundle or build from source below. The other 46 servers in the suite are already hosted.
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.25.0/supplier-statement-check.mcpb)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/supplier-statement-check`.
-- **npm:** the package `@theluckystrike/mcp-supplier-statement-check` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.25.0):** `npx -y @theluckystrike/mcp-supplier-statement-check` runs the server over stdio. In Claude Code that is one line: `claude mcp add supplier-statement-check -- npx -y @theluckystrike/mcp-supplier-statement-check`
 
 ## Tools it exposes
 

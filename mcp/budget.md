@@ -109,7 +109,7 @@ Give Claude (or any MCP client) a real envelope budget: `budget_set` to declare 
 - **Hosted endpoint:** not open for this server yet - use the `.mcpb` bundle or build from source below. The other 46 servers in the suite are already hosted.
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/budget.mcpb)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/budget`.
-- **npm:** the package `mcp-budget` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-budget` runs the server over stdio. In Claude Code that is one line: `claude mcp add budget -- npx -y @theluckystrike/mcp-budget`
 
 ## Tools it exposes
 

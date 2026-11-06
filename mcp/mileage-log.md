@@ -110,7 +110,7 @@ Mileage log for deductible driving: trips, effective-dated rates, summaries and 
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/mileage-log.mcpb)
 - **Walk-through with real output:** [Log mileage and reimbursements with an AI assistant](/mcp/guides/track-mileage-ai-assistant/)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/mileage-log`.
-- **npm:** the package `@theluckystrike/mcp-mileage-log` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-mileage-log` runs the server over stdio. In Claude Code that is one line: `claude mcp add mileage-log -- npx -y @theluckystrike/mcp-mileage-log`
 
 ## Tools it exposes
 

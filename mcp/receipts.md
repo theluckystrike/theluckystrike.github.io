@@ -109,7 +109,7 @@ Give Claude (or any MCP client) a receipt parser: `receipt_parse` takes raw rece
 - **Hosted endpoint:** not open for this server yet - use the `.mcpb` bundle or build from source below. The other 46 servers in the suite are already hosted.
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/receipts.mcpb)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/receipts`.
-- **npm:** the package `mcp-receipts` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-receipts` runs the server over stdio. In Claude Code that is one line: `claude mcp add receipts -- npx -y @theluckystrike/mcp-receipts`
 
 ## Tools it exposes
 

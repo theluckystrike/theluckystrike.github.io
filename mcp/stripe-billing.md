@@ -109,7 +109,7 @@ Give Claude (or any MCP client) two working Stripe tools: `stripe_balance` reads
 - **Hosted endpoint:** not open for this server yet - use the `.mcpb` bundle or build from source below. The other 46 servers in the suite are already hosted.
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/stripe-billing.mcpb)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/stripe-billing`.
-- **npm:** the package `mcp-stripe-billing` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-stripe-billing` runs the server over stdio. In Claude Code that is one line: `claude mcp add stripe-billing -- npx -y @theluckystrike/mcp-stripe-billing`
 
 ## Tools it exposes
 

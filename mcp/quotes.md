@@ -110,7 +110,7 @@ Say "quote Acme for 12 hours at 90 EUR plus a 300 EUR setup, 23% VAT, good for 1
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/quotes.mcpb)
 - **Walk-through with real output:** [Generate a customer quote as a PDF from Cursor or Claude](/mcp/guides/generate-quote-pdf-cursor/)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/quotes`.
-- **npm:** the package `@theluckystrike/mcp-quotes` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-quotes` runs the server over stdio. In Claude Code that is one line: `claude mcp add quotes -- npx -y @theluckystrike/mcp-quotes`
 
 ## Tools it exposes
 

@@ -110,7 +110,7 @@ If somebody edits the purchase-requisition afterwards, adds a step or deletes on
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/purchase-requisition.mcpb)
 - **Walk-through with real output:** [Create a purchase order from ChatGPT or Claude](/mcp/guides/create-purchase-order-chatgpt/)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/purchase-requisition`.
-- **npm:** the package `@theluckystrike/mcp-purchase-requisition` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.8):** `npx -y @theluckystrike/mcp-purchase-requisition` runs the server over stdio. In Claude Code that is one line: `claude mcp add purchase-requisition -- npx -y @theluckystrike/mcp-purchase-requisition`
 
 ## Tools it exposes
 

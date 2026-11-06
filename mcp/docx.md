@@ -110,7 +110,7 @@ Say "write a proposal for Beta Corp, checkout rebuild, 4,500 EUR, three phases" 
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/docx.mcpb)
 - **Walk-through with real output:** [Fill a Word document template from Claude or ChatGPT](/mcp/guides/fill-word-template-ai/)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/docx`.
-- **npm:** the package `@theluckystrike/mcp-docx` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-docx` runs the server over stdio. In Claude Code that is one line: `claude mcp add docx -- npx -y @theluckystrike/mcp-docx`
 
 ## Tools it exposes
 

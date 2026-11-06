@@ -109,7 +109,7 @@ MCP server: the minimum hourly rate a freelancer must charge to hit a desired an
 - **Hosted endpoint:** not open for this server yet - use the `.mcpb` bundle or build from source below. The other 46 servers in the suite are already hosted.
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.5/hourly-rate.mcpb)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/hourly-rate`.
-- **npm:** the package `@theluckystrike/mcp-hourly-rate` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-hourly-rate` runs the server over stdio. In Claude Code that is one line: `claude mcp add hourly-rate -- npx -y @theluckystrike/mcp-hourly-rate`
 
 ## Tools it exposes
 

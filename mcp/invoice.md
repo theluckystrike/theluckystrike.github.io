@@ -110,7 +110,7 @@ Say "make an invoice for Acme, 12 hours at 90 EUR, due in 14 days" and get a rea
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/invoice.mcpb)
 - **Walk-through with real output:** [Generate an invoice as a PDF from Claude](/mcp/guides/generate-invoice-pdf-claude/)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/invoice`.
-- **npm:** the package `@theluckystrike/mcp-invoice` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-invoice` runs the server over stdio. In Claude Code that is one line: `claude mcp add invoice -- npx -y @theluckystrike/mcp-invoice`
 
 ## Tools it exposes
 

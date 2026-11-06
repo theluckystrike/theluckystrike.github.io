@@ -109,7 +109,7 @@ Per-client statements of account, aging buckets and dunning letters from your ow
 - **Hosted, nothing to install:** open https://mcp.zovo.one/mcp/connect - it mints a free token and prints a ready URL, `https://mcp.zovo.one/mcp/statement-of-account/t/<token>`. Paste that into your client. The bare `https://mcp.zovo.one/mcp/statement-of-account` hands out the tool list but answers tool calls with HTTP 401, which is why the tokenised URL is the one to use.
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/statement-of-account.mcpb)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/statement-of-account`.
-- **npm:** the package `@theluckystrike/mcp-statement-of-account` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-statement-of-account` runs the server over stdio. In Claude Code that is one line: `claude mcp add statement-of-account -- npx -y @theluckystrike/mcp-statement-of-account`
 
 ## Tools it exposes
 

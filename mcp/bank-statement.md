@@ -110,7 +110,7 @@ Export the CSV from your bank, say "import this", and the month is readable. Thi
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/bank-statement.mcpb)
 - **Walk-through with real output:** [Convert a bank statement PDF to CSV with an AI assistant](/mcp/guides/convert-bank-statement-to-csv/)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/bank-statement`.
-- **npm:** the package `@theluckystrike/mcp-bank-statement` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-bank-statement` runs the server over stdio. In Claude Code that is one line: `claude mcp add bank-statement -- npx -y @theluckystrike/mcp-bank-statement`
 
 ## Tools it exposes
 

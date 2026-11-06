@@ -109,7 +109,7 @@ Service agreements for freelancers: scope, deliverables, rate, termination and l
 - **Hosted, nothing to install:** open https://mcp.zovo.one/mcp/connect - it mints a free token and prints a ready URL, `https://mcp.zovo.one/mcp/service-agreement/t/<token>`. Paste that into your client. The bare `https://mcp.zovo.one/mcp/service-agreement` hands out the tool list but answers tool calls with HTTP 401, which is why the tokenised URL is the one to use.
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/service-agreement.mcpb)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/service-agreement`.
-- **npm:** the package `@theluckystrike/mcp-service-agreement` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-service-agreement` runs the server over stdio. In Claude Code that is one line: `claude mcp add service-agreement -- npx -y @theluckystrike/mcp-service-agreement`
 
 ## Tools it exposes
 

@@ -110,7 +110,7 @@ Track billable time without leaving your AI chat. Say "start a timer on the acme
 - **Claude Desktop, one click:** [download the `.mcpb` bundle](https://github.com/theluckystrike/mcp-servers/releases/download/v0.22.0/time-tracker.mcpb)
 - **Walk-through with real output:** [MCP server for time tracking](/mcp/guides/mcp-server-time-tracking/)
 - **From source:** `git clone https://github.com/theluckystrike/mcp-servers` then build `servers/time-tracker`.
-- **npm:** the package `@theluckystrike/mcp-time-tracker` is staged and publishes shortly; the `.mcpb` bundle is the supported install until then.
+- **npm (v0.22.6):** `npx -y @theluckystrike/mcp-time-tracker` runs the server over stdio. In Claude Code that is one line: `claude mcp add time-tracker -- npx -y @theluckystrike/mcp-time-tracker`
 
 ## Tools it exposes
 
